@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI零基础到精通 — 完整学习路线</title>
+<meta name="description" content="从完全不懂电脑到AI开发高手，最全的自学路线图。计算机基础、Python、API、大模型、Claude Code、提示词工程，手把手教学。">
+<style>
+:root{--bg:#0b0e14;--bg2:#141924;--bg3:#1c2130;--card:#1a1f2b;--border:#252b3b;--text:#d1d5db;--text2:#9ca3af;--text3:#6b7280;--accent:#6366f1;--accent2:#818cf8;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--cyan:#06b6d4;--radius:14px;--max-w:1000px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--accent2);text-decoration:none;transition:.2s}a:hover{color:#a78bfa}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:60px;background:rgba(11,14,20,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);display:flex;align-items:center}
+.nav-inner{max-width:1200px;margin:0 auto;width:100%;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:17px;font-weight:800;background:linear-gradient(135deg,var(--accent2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:4px;list-style:none;flex-wrap:wrap}.nav-links a{color:var(--text2);font-size:12px;padding:6px 12px;border-radius:16px;font-weight:500;white-space:nowrap}.nav-links a:hover{color:#fff;background:var(--bg3)}
+.hero{padding:120px 24px 80px;text-align:center;background:linear-gradient(180deg,rgba(99,102,241,.06) 0%,transparent 60%)}
+.hero h1{font-size:clamp(30px,5vw,50px);font-weight:900;background:linear-gradient(135deg,#fff 0%,var(--accent2) 50%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.25;margin-bottom:16px}
+.hero p{font-size:17px;color:var(--text2);max-width:600px;margin:0 auto 32px}
+.hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}.hero-stat{text-align:center}.hero-stat .hnum{font-size:28px;font-weight:900;color:var(--accent2)}.hero-stat .hlbl{font-size:12px;color:var(--text3)}
+.hero-btn{display:inline-block;padding:14px 36px;border-radius:30px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:15px;transition:.2s}.hero-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,.3);color:#fff}
+
+.chapter{padding:60px 24px;border-bottom:1px solid rgba(255,255,255,.04)}.chapter:nth-child(even){background:var(--bg2)}
+.chapter-inner{max-width:var(--max-w);margin:0 auto}
+.chapter-num{display:inline-block;padding:4px 14px;border-radius:14px;font-size:11px;font-weight:700;letter-spacing:1px;background:rgba(99,102,241,.15);color:var(--accent2);margin-bottom:8px}
+.chapter h2{font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:8px}.chapter h2 span{background:linear-gradient(135deg,var(--accent2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.chapter .desc{color:var(--text2);font-size:15px;margin-bottom:32px}
+.chapter h3{font-size:19px;font-weight:700;color:#e5e7eb;margin:32px 0 12px;display:flex;align-items:center;gap:8px}
+.chapter h4{font-size:16px;font-weight:700;color:#e5e7eb;margin:20px 0 8px}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:.2s}.card:hover{border-color:var(--accent)}.card .emoji{font-size:30px;margin-bottom:10px;display:block}.card h4{font-size:16px;margin:0 0 6px}.card p{font-size:13px;color:var(--text2);line-height:1.6}
+
+.code-block{background:#0a0d14;border:1px solid var(--border);border-radius:10px;margin:14px 0;overflow:hidden;position:relative}
+.code-block .lang{position:absolute;top:8px;left:12px;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px}
+.code-block pre{padding:32px 16px 16px;overflow-x:auto;font-family:"JetBrains Mono","Fira Code","Consolas",monospace;font-size:13px;line-height:1.8;color:#d1d5db}
+.code-block .copy{position:absolute;top:6px;right:10px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:11px;padding:4px 12px;border-radius:12px;cursor:pointer;transition:.2s}.code-block .copy:hover{color:#fff;border-color:var(--accent)}
+.code-block .copy.done{color:var(--green);border-color:var(--green)}
+.cm{color:#6b7280}.kw{color:#c084fc}.str{color:#22c55e}.fn{color:#f59e0b}.num{color:#f472b6}.op{color:#818cf8}
+
+.info-box{padding:16px 20px;border-radius:var(--radius);margin:16px 0;font-size:13px;line-height:1.7;display:flex;gap:10px;align-items:flex-start}
+.info-box.tip{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:var(--accent2)}
+.info-box.warn{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);color:#fbbf24}
+.info-box.good{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);color:var(--green)}
+.info-box .ib-emoji{font-size:18px;flex-shrink:0;margin-top:1px}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--bg3);text-align:left;padding:10px 14px;font-weight:600;color:#e5e7eb;border-bottom:2px solid var(--border)}
+td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2)}
+tr:hover td{background:rgba(99,102,241,.04)}
+
+.steps{list-style:none;counter-reset:step;margin:16px 0}
+.steps li{counter-increment:step;padding:12px 12px 12px 48px;margin-bottom:8px;background:var(--card);border:1px solid var(--border);border-radius:10px;position:relative;font-size:14px}
+.steps li::before{content:counter(step);position:absolute;left:12px;top:14px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.steps li strong{color:#fff}
+
+.timeline{position:relative;padding-left:24px;margin:16px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:18px;padding-left:16px}
+.tl-item::before{content:'';position:absolute;left:-20px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.tl-item .tl-title{font-weight:700;margin-bottom:2px}
+.tl-item .tl-desc{font-size:13px;color:var(--text2)}
+
+footer{border-top:1px solid var(--border);text-align:center;padding:40px 24px;color:var(--text3);font-size:13px}
+.btt{position:fixed;bottom:30px;right:30px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;opacity:0;pointer-events:none}.btt.visible{opacity:1;pointer-events:auto}.btt:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+@media(max-width:768px){.nav-links a{font-size:10px;padding:4px 8px}.card-grid{grid-template-columns:1fr}.hero h1{font-size:26px}}
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner">
+  <span class="nav-logo">🤖 AI 从0到精通</span>
+  <ul class="nav-links">
+    <li><a href="#ch1">计算机基础</a></li><li><a href="#ch2">Python</a></li><li><a href="#ch3">API</a></li>
+    <li><a href="#ch4">AI概念</a></li><li><a href="#ch5">大模型</a></li><li><a href="#ch6">API实操</a></li>
+    <li><a href="#ch7">Claude Code</a></li><li><a href="#ch8">提示词</a></li><li><a href="#ch9">实战</a></li>
+    <li><a href="#ch10">路线图</a></li>
+  </ul>
+</div></nav>
+
+<header class="hero">
+  <h1>AI 零基础到精通</h1>
+  <p>从「电脑是什么」到「AI应用开发」，最完整的自学路线。不需要任何前置知识，手把手带你入门。</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hnum">10</div><div class="hlbl">章节</div></div>
+    <div class="hero-stat"><div class="hnum">50+</div><div class="hlbl">核心知识点</div></div>
+    <div class="hero-stat"><div class="hnum">0</div><div class="hlbl">前置要求</div></div>
+    <div class="hero-stat"><div class="hnum">∞</div><div class="hlbl">免费</div></div>
+  </div>
+  <a href="#ch1" class="hero-btn">🚀 开始学习</a>
+</header>
+
+<!-- ==================== 第1章: 计算机基础 ==================== -->
+<section class="chapter" id="ch1"><div class="chapter-inner">
+  <div class="chapter-num">第 1 章</div>
+  <h2>💻 <span>计算机基础</span> — 从零开始</h2>
+  <p class="desc">如果你连「终端」和「文件」都不太清楚，这一章就是为你准备的。</p>
+
+  <h3>1.1 计算机是怎么工作的</h3>
+  <div class="card-grid">
+    <div class="card"><span class="emoji">🧠</span><h4>CPU（中央处理器）</h4><p>计算机的大脑。执行指令、做计算。主频越高越快，核心越多越能同时干多件事。</p></div>
+    <div class="card"><span class="emoji">💾</span><h4>内存（RAM）</h4><p>CPU 的工作台。数据从硬盘加载到内存，CPU 直接在内存上读写。断电后数据消失。</p></div>
+    <div class="card"><span class="emoji">💿</span><h4>硬盘（SSD/HDD）</h4><p>永久存储数据的地方。你的文件、程序都在这。SSD 比 HDD 快 10 倍以上。</p></div>
+    <div class="card"><span class="emoji">🖥️</span><h4>操作系统（OS）</h4><p>管理硬件和软件的大管家。Windows、macOS、Linux。你所有的操作都是通过它完成的。</p></div>
+  </div>
+
+  <div class="info-box tip"><span class="ib-emoji">💡</span><span><strong>一句话理解：</strong>硬盘存东西 → 点开程序 → 加载到内存 → CPU 执行 → 显示在屏幕上。</span></div>
+
+  <h3>1.2 文件系统 — 你电脑里的一切都是文件</h3>
+  <p>计算机用<strong>文件夹（目录）</strong>组织文件。每个文件有路径：</p>
+  <div class="table-wrap"><table>
+    <tr><th>操作系统</th><th>路径示例</th><th>分隔符</th></tr>
+    <tr><td>Windows</td><td><code>C:\用户\张三\桌面\简历.docx</code></td><td><code>\</code></td></tr>
+    <tr><td>macOS / Linux</td><td><code>/home/zhangsan/Desktop/photo.jpg</code></td><td><code>/</code></td></tr>
+  </table></div>
+
+  <div class="card-grid">
+    <div class="card"><span class="emoji">📁</span><h4>文件后缀名</h4><p><code>.html</code> 是网页、<code>.py</code> 是 Python 程序、<code>.js</code> 是 JavaScript、<code>.json</code> 是数据文件。后缀名告诉电脑该用什么程序打开。</p></div>
+    <div class="card"><span class="emoji">🔗</span><h4>相对路径 vs 绝对路径</h4><p>绝对路径=从根目录开始的完整路径。相对路径=相对于当前目录的路径。<code>./data/info.json</code> 表示当前目录下的 data 文件夹里的文件。</p></div>
+  </div>
+
+  <h3>1.3 终端 — 程序员最常用的工具</h3>
+  <p><strong>终端（Terminal）就是那个黑框框。</strong>你不需要成为命令行大师，但你需要知道怎么打开它、怎么在里面跑命令。</p>
+  <div class="table-wrap"><table>
+    <tr><th>系统</th><th>终端叫什么</th><th>怎么打开</th></tr>
+    <tr><td>Windows</td><td>PowerShell / CMD</td><td>Win+X 选「终端」或搜索「PowerShell」</td></tr>
+    <tr><td>macOS</td><td>终端 (Terminal)</td><td>聚焦搜索 → 输入 Terminal</td></tr>
+    <tr><td>Linux</td><td>Terminal</td><td>Ctrl+Alt+T</td></tr>
+  </table></div>
+
+  <div class="code-block"><span class="lang">终端常用命令</span><button class="copy" onclick="cp(this)">复制</button>
+<pre><span class="cm"># 查看当前文件夹里的文件</span>
+<span class="kw">ls</span>        <span class="cm"># macOS/Linux</span>
+<span class="kw">dir</span>       <span class="cm"># Windows</span>
+
+<span class="cm"># 进入某个文件夹</span>
+<span class="kw">cd</span> 文件夹名
+
+<span class="cm"># 回上一级</span>
+<span class="kw">cd</span> ..
+
+<span class="cm"># 创建新文件夹</span>
+<span class="kw">mkdir</span> 新文件夹名
+
+<span class="cm"># 查看当前路径</span>
+<span class="kw">pwd</span>       <span class="cm"># macOS/Linux</span></pre></div>
+  <div class="info-box good"><span class="ib-emoji">✅</span><span><strong>现在的你只需要：</strong>在终端里打开文件夹、跑到正确的目录。后面 Claude Code 会告诉你具体命令，你复制粘贴就行。</span></div>
+
+  <h3>1.4 互联网是怎么连接世界的</h3>
+  <div class="card-grid">
+    <div class="card"><span class="emoji">🌐</span><h4>IP 地址</h4><p>每台联网设备的唯一地址，像快递的门牌号。IPv4 如 <code>192.168.1.1</code>，IPv6 如 <code>fe80::1</code>。</p></div>
+    <div class="card"><span class="emoji">🔤</span><h4>域名 (Domain)</h4><p>IP 地址太难记，所以有了域名。你在浏览器输入 <code>google.com</code>，DNS 服务器自动翻译成 IP 地址。</p></div>
+    <div class="card"><span class="emoji">📡</span><h4>HTTP / HTTPS</h4><p>浏览器和服务器之间的通信协议。HTTPS 是加密版（有🔒标志），HTTP 是明文版。</p></div>
+    <div class="card"><span class="emoji">🏠</span><h4>服务器 (Server)</h4><p>一台 24 小时开机的远程电脑。你访问的网站、用的 APP，数据全在服务器上。你的电脑是「客户端」。</p></div>
+  </div>
+</div></section>
+
+<!-- ==================== 第2章: Python快速入门 ==================== -->
+<section class="chapter" id="ch2"><div class="chapter-inner">
+  <div class="chapter-num">第 2 章</div>
+  <h2>🐍 <span>Python 快速入门</span></h2>
+  <p class="desc">AI 开发的通用语言。不需要深入，够调用 API 就行。15 分钟能看懂基本代码。</p>
+
+  <h3>2.1 安装 Python</h3>
+  <ol class="steps">
+    <li>打开 <a href="https://python.org" target="_blank">python.org</a> → 点 Downloads → 下载最新版</li>
+    <li>安装时<strong>勾选「Add Python to PATH」</strong>（很重要！）</li>
+    <li>装完打开终端输入 <code>python --version</code>，看到版本号就是装好了</li>
+  </ol>
+
+  <h3>2.2 变量、数据类型、基本操作</h3>
+  <div class="code-block"><span class="lang">Python</span><button class="copy" onclick="cp(this)">复制</button>
+<pre><span class="cm"># 变量 — 给数据起个名字</span>
+<span class="kw">name</span> = <span class="str">"张三"</span>
+<span class="kw">age</span> = <span class="num">25</span>
+<span class="kw">height</span> = <span class="num">1.75</span>
+<span class="kw">is_student</span> = <span class="kw">True</span>
+
+<span class="cm"># 打印 — 输出到屏幕</span>
+<span class="fn">print</span>(name)          <span class="cm"># 张三</span>
+<span class="fn">print</span>(f<span class="str">"{name}今年{age}岁"</span>)  <span class="cm"># 张三今年25岁</span>
+
+<span class="cm"># 列表 — 装一堆东西</span>
+<span class="kw">fruits</span> = [<span class="str">"苹果"</span>, <span class="str">"香蕉"</span>, <span class="str">"橘子"</span>]
+<span class="fn">print</span>(fruits[<span class="num">0</span>])       <span class="cm"># 苹果（从0开始数）</span>
+
+<span class="cm"># 字典 — 键值对</span>
+<span class="kw">person</span> = {<span class="str">"name"</span>: <span class="str">"李四"</span>, <span class="str">"age"</span>: <span class="num">30</span>}
+<span class="fn">print</span>(person[<span class="str">"name"</span>])   <span class="cm"># 李四</span></pre></div>
+
+  <h3>2.3 条件判断和循环</h3>
+  <div class="code-block"><span class="lang">Python</span><button class="copy" onclick="cp(this)">复制</button>
+<pre><span class="cm"># if — 条件判断</span>
+<span class="kw">score</span> = <span class="num">85</span>
+<span class="kw">if</span> score >= <span class="num">90</span>:
+    <span class="fn">print</span>(<span class="str">"优秀"</span>)
+<span class="kw">elif</span> score >= <span class="num">60</span>:
+    <span class="fn">print</span>(<span class="str">"及格"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"不及格"</span>)
+
+<span class="cm"># for — 重复做某事</span>
+<span class="kw">for</span> fruit <span class="kw">in</span> fruits:
+    <span class="fn">print</span>(f<span class="str">"我喜欢吃{fruit}"</span>)
+
+<span class="cm"># range — 重复N次</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="fn">print</span>(i)  <span class="cm"># 0 1 2 3 4</span></pre></div>
+
+  <h3>2.4 函数 — 把一段逻辑封装起来</h3>
+  <div class="code-block"><span class="lang">Python</span><button class="copy" onclick="cp(this)">复制</button>
+<pre><span class="kw">def</span> <span class="fn">greet</span>(name):
+    <span class="kw">return</span> f<span class="str">"你好，{name}！"</span>
+
+<span class="fn">print</span>(<span class="fn">greet</span>(<span class="str">"张三"</span>))  <span class="cm"># 你好，张三！</span>
+
+<span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="kw">return</span> a + b
+<span class="fn">print</span>(<span class="fn">add</span>(<span class="num">3</span>, <span class="num">5</span>))  <span class="cm"># 8</span></pre></div>
+
+  <h3>2.5 pip — 安装别人写好的代码包</h3>
+  <p>Python 最大的优势是有海量的第三方库。用 <code>pip install</code> 就能装：</p>
+  <div class="code-block"><span class="lang">终端</span><button class="copy" onclick="cp(this)">复制</button>
+<pre>pip install openai      <span class="cm"># 调用 OpenAI API</span>
+pip install requests    <span class="cm"># 发送 HTTP 请求</span>
+pip install pandas      <span class="cm"># 数据分析</span></pre></div>
+
+  <div class="info-box tip"><span class="ib-emoji">💡</span><span><strong>新手不需要精通 Python。</strong>你只需要：看懂变量、函数、if/for、会用 pip。剩下的让 Claude Code 帮你写。</span></div>
+</div></section>
+
+<!-- ==================== 第3章: 什么是API ==================== -->
+<section class="chapter" id="ch3"><div class="chapter-inner">
+  <div class="chapter-num">第 3 章</div>
+  <h2>🔌 <span>什么是 API</span> — 你连接 AI 的管道</h2>
+  <p class="desc">API 是你使用一切 AI 工具的基础。搞懂它，后面的路全是平的。</p>
+
+  <h3>3.1 用「餐厅点菜」完全理解 API</h3>
+  <div class="card-grid">
+    <div class="card"><span class="emoji">👤</span><h4>你（客户端）</h4><p>你坐在桌前想吃饭，但<strong>不能进厨房</strong>。只能通过菜单和服务员点菜。</p></div>
+    <div class="card"><span class="emoji">📋</span><h4>菜单（API 文档）</h4><p>写着能点什么菜、每道菜需要什么配料。<strong>API 文档就是菜单</strong>——告诉你有哪些功能可用。</p></div>
+    <div class="card"><span class="emoji">🤵</span><h4>服务员（API）</h4><p>你告诉服务员要什么，服务员去厨房下单，然后把菜端回来。<strong>API 就是服务员</strong>——在你的程序和 AI 之间传话。</p></div>
+    <div class="card"><span class="emoji">👨‍🍳</span><h4>厨房（AI 服务器）</h4><p>大厨根据订单做菜。<strong>大厨就是 OpenAI/DeepSeek 的大模型</strong>，负责「思考」和「生成」内容。</p></div>
+  </div>
+
+  <h3>3.2 请求（Request）和 响应（Response）</h3>
+  <p>整个过程就两个东西：</p>
+  <ul class="steps">
+    <li><strong>请求 (Request)：</strong>你对服务员说「我要一份麻婆豆腐」→ 你的程序向 API 发送一句话「帮我写段代码」</li>
+    <li><strong>响应 (Response)：</strong>服务员把麻婆豆腐端回来 → API 把 AI 生成的结果返回给你的程序</li>
+  </ul>
+
+  <h3>3.3 API Key — 你的门禁卡</h3>
+  <p>API Key 就是你的<strong>门禁卡</strong>。每次你让服务员去厨房，服务员都要刷你的卡，厨房才认。没有 API Key，厨房不理你。</p>
+  <div class="info-box warn"><span class="ib-emoji">⚠️</span><span><strong>API Key 是私密信息！</strong>不能发到 GitHub、不能截图发朋友圈。OpenAI 的 Key 以 <code>sk-</code> 开头，DeepSeek 的也是 <code>sk-</code> 开头。别人拿到你的 Key 就能以你的名义花钱调用 API。</span></div>
+
+  <h3>3.4 JSON — API 的通用语言</h3>
+  <p>API 之间用 <strong>JSON</strong>（JavaScript Object Notation）交换数据。它是最简单、最通用的数据格式。</p>
+  <div class="code-block"><span class="lang">JSON</span><button class="copy" onclick="cp(this)">复制</button>
+<pre>{
+  <span class="str">"name"</span>: <span class="str">"张三"</span>,
+  <span class="str">"age"</span>: <span class="num">25</span>,
+  <span class="str">"skills"</span>: [<span class="str">"Python"</span>, <span class="str">"JavaScript"</span>],
+  <span class="str">"contact"</span>: {
+    <span class="str">"email"</span>: <span class="str">"zhangsan@example.com"</span>,
+    <span class="str">"phone"</span>: <span class="str">"13800000000"</span>
+  }
+}</pre></div>
+  <p>你看，这就是键值对的嵌套。AI 返回的结果、你发送的问题，全用 JSON 包装。</p>
+</div></section>
+
+<!-- ==================== 第4章: AI基础概念 ==================== -->
+<section class="chapter" id="ch4"><div class="chapter-inner">
+  <div class="chapter-num">第 4 章</div>
+  <h2>🧠 <span>AI 基础概念</span> — 别怕，很简单的</h2>
+  <p class="desc">AI、机器学习、深度学习、大语言模型……这些词到底什么意思？</p>
+
+  <h3>4.1 一张图搞懂 AI 家族</h3>
+  <div class="code-block"><pre style="font-family:var(--font-zh);font-size:14px;line-height:2.2">
+  ┌─────────────────────────────────────────────┐
+  │                  AI (人工智能)                │
+  │   让机器表现出智能行为的一切技术               │
+  │  ┌─────────────────────────────────────┐     │
+  │  │        Machine Learning (机器学习)     │     │
+  │  │   让机器从数据中自动学习规律            │     │
+  │  │  ┌─────────────────────────────┐     │     │
+  │  │  │   Deep Learning (深度学习)    │     │     │
+  │  │  │   用多层神经网络处理复杂问题   │     │     │
+  │  │  │  ┌─────────────────────┐   │     │     │
+  │  │  │  │   LLM (大语言模型)    │   │     │     │
+  │  │  │  │  GPT / Claude / DS  │   │     │     │
+  │  │  │  └─────────────────────┘   │     │     │
+  │  │  └─────────────────────────────┘     │     │
+  │  └─────────────────────────────────────┘     │
+  └─────────────────────────────────────────────┘</pre></div>
+
+  <h3>4.2 大语言模型（LLM）到底在干什么</h3>
+  <p>一句话说清楚：<strong>LLM 就是一个「超强续写机器」。</strong>你给它一段文字，它预测下一个最可能的词，然后一个个续写下去。</p>
+  <div class="info-box tip"><span class="ib-emoji">🎯</span><span><strong>例子：</strong>你输入「床前明月光，疑似地上」→ 它预测下一个词是「霜」→ 继续预测下一句 → 输出整首诗。对代码、翻译、写作都是同样的原理——<strong>输入 + 预测 = 输出</strong>。</span></div>
+
+  <h3>4.3 Token（令牌）— 模型的计价单位</h3>
+  <p>模型不是按「字」算钱，是按 <strong>Token</strong> 算。1 个 Token ≈ 0.75 个英文单词 ≈ 0.5 个中文字。</p>
+  <div class="table-wrap"><table>
+    <tr><th>文本</th><th>大约 Token 数</th></tr>
+    <tr><td>"Hello world"</td><td>~3</td></tr>
+    <tr><td>"你好世界"</td><td>~4</td></tr>
+    <tr><td>一段 1000 字的中文文章</td><td>~500-700</td></tr>
+    <tr><td>一段 100 行的 Python 代码</td><td>~200-400</td></tr>
+  </table></div>
+  <div class="info-box good"><span class="ib-emoji">💰</span><span>用 DeepSeek API 的话，1000 个 Token 大概花 <strong>几厘钱</strong>。你充 10 块钱可以玩好几个月。</span></div>
+
+  <h3>4.4 模型的关键参数</h3>
+  <div class="card-grid">
+    <div class="card"><span class="emoji">🌡️</span><h4>Temperature（温度）</h4><p>控制输出的随机性。0=稳定可预测，1=有创意但可能胡说。写代码用 0~0.3，写文章用 0.7~1。</p></div>
+    <div class="card"><span class="emoji">📏</span><h4>Max Tokens</h4><p>限制模型最多输出多少 Token。防止它写个没完。一般设置为 1000-4000。</p></div>
+    <div class="card"><span class="emoji">📐</span><h4>Context Window（上下文窗口）</h4><p>模型一次能「看到」多少内容。GPT-4o 是 128K，Claude 是 200K，DeepSeek V4 是 1M——相当于一次读完一本厚厚的书。</p></div>
+    <div class="card"><span class="emoji">⚙️</span><h4>System Prompt（系统提示）</h4><p>给模型预设的角色和行为。比如「你是一个编程老师，用中文回答」。这个不作为用户输入计费。</p></div>
+  </div>
+</div></section>
+
+<!-- ==================== 第5章: 大模型入门 ==================== -->
+<section class="chapter" id="ch5"><div class="chapter-inner">
+  <div class="chapter-num">第 5 章</div>
+  <h2>🤖 <span>大模型入门</span> — 谁是谁，怎么选</h2>
+  <p class="desc">GPT、Claude、DeepSeek、Gemini……这么多模型，该用哪个？</p>
+
+  <h3>5.1 主流大模型对比</h3>
+  <div class="table-wrap"><table>
+    <tr><th>模型</th><th>公司</th><th>最强能力</th><th>价格</th><th>适合</th></tr>
+    <tr><td>GPT-4.1</td><td>OpenAI</td><td>代码、推理</td><td>$$$</td><td>专业开发</td></tr>
+    <tr><td>Claude Opus 4.8</td><td>Anthropic</td><td>长文、分析</td><td>$$$</td><td>复杂项目</td></tr>
+    <tr><td>Claude Sonnet 4.6</td><td>Anthropic</td><td>性价比王者</td><td>$$</td><td>日常编程</td></tr>
+    <tr><td>DeepSeek V4</td><td>DeepSeek</td><td>中文、代码</td><td>$</td><td>性价比最高</td></tr>
+    <tr><td>Gemini 2.5 Pro</td><td>Google</td><td>多模态、搜索</td><td>$$</td><td>图片理解</td></tr>
+    <tr><td>GPT-4o-mini</td><td>OpenAI</td><td>便宜快速</td><td>$</td><td>简单任务</td></tr>
+  </table></div>
+
+  <div class="info-box tip"><span class="ib-emoji">💡</span><span><strong>新手推荐：DeepSeek V4</strong> — 中文最好、价格最低、代码能力强。充值 ¥10 用一个月。其次 Claude Sonnet — 代码质量最高。</span></div>
+
+  <h3>5.2 网页版 vs API — 别搞混了</h3>
+  <div class="card-grid">
+    <div class="card"><span class="emoji">💬</span><h4>网页版 (ChatGPT/豆包)</h4><p>在网页或 APP 里免费聊天。手动打字，手动复制粘贴结果。不能集成到你的程序里。适合日常问答。</p></div>
+    <div class="card"><span class="emoji">⚡</span><h4>API（编程接口）</h4><p>在你的代码里调用 AI 能力。按量计费，用多少花多少。可以批量处理、做产品、自动化。适合开发产品。</p></div>
+  </div>
+
+  <h3>5.3 国内外模型生态</h3>
+  <div class="card-grid">
+    <div class="card"><span class="emoji">🇺🇸</span><h4>海外主流</h4><p>OpenAI (GPT系列)、Anthropic (Claude系列)、Google (Gemini)、xAI (Grok)。需要外币卡或有代理。</p></div>
+    <div class="card"><span class="emoji">🇨🇳</span><h4>国内主流</h4><p>DeepSeek、通义千问、文心一言、Kimi、豆包。人民币充值，无需翻墙，中文能力强。</p></div>
+  </div>
+</div></section>
+
+<!-- ==================== 第6章: API实操 ==================== -->
+<section class="chapter" id="ch6"><div class="chapter-inner">
+  <div class="chapter-num">第 6 章</div>
+  <h2>⚡ <span>API 实操</span> — 第一行代码就让 AI 为你工作</h2>
+  <p class="desc">安装库 → 获取 Key → 写代码 → AI 开始回复。10 分钟跑通。</p>
+
+  <h3>6.1 用 DeepSeek API（推荐新手）</h3>
+  <ol class="steps">
+    <li>去 <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> 注册 → 短信验证 → 充值 ¥10</li>
+    <li>左侧「API Keys」→ 创建 → 复制 Key（<code>sk-</code> 开头，<strong>只显示一次</strong>）</li>
+    <li>终端安装依赖：<code>pip install openai</code></li>
+    <li>运行下面的代码：</li>
+  </ol>
+  <div class="code-block"><span class="lang">Python — 第一次调用 DeepSeek</span><button class="copy" onclick="cp(this)">复制</button>
+<pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+
+client = OpenAI(
+    api_key=<span class="str">"sk-你的Key放这里"</span>,
+    base_url=<span class="str">"https://api.deepseek.com/v1"</span>
+)
+
+response = client.chat.completions.create(
+    model=<span class="str">"deepseek-chat"</span>,
+    messages=[
+        {<span class="str">"role"</span>: <span class="str">"system"</span>, <span class="str">"content"</span>: <span class="str">"你是中文编程老师，用简单的例子解释"</span>},
+        {<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"用一句话解释什么是递归"</span>}
+    ]
+)
+
+<span class="fn">print</span>(response.choices[<span class="num">0</span>].message.content)</pre></div>
+  <div class="info-box good"><span class="ib-emoji">✅</span><span>跑通了？<strong>你已经完成了最重要的一步。</strong>接下来所有复杂的 AI 应用，本质上都是这段代码的扩展。</span></div>
+
+  <h3>6.2 用 Claude API</h3>
+  <div class="code-block"><span class="lang">Python</span><button class="copy" onclick="cp(this)">复制</button>
+<pre><span class="kw">from</span> anthropic <span class="kw">import</span> Anthropic
+
+client = Anthropic(api_key=<span class="str">"sk-ant-你的Key"</span>)
+
+message = client.messages.create(
+    model=<span class="str">"claude-sonnet-4-6"</span>,
+    max_tokens=<span class="num">1000</span>,
+    system=<span class="str">"你是中文编程老师"</span>,
+    messages=[{<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"解释什么是异步编程"</span>}]
+)
+
+<span class="fn">print</span>(message.content[<span class="num">0</span>].text)</pre></div>
+
+  <h3>6.3 多轮对话</h3>
+  <p>把之前的对话历史一起发回去，模型就能「记住」上下文：</p>
+  <div class="code-block"><span class="lang">Python</span><button class="copy" onclick="cp(this)">复制</button>
+<pre><span class="kw">conversation</span> = [
+    {<span class="str">"role"</span>: <span class="str">"system"</span>, <span class="str">"content"</span>: <span class="str">"你是日语老师"</span>},
+    {<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"「ありがとう」是什么意思？"</span>},
+    {<span class="str">"role"</span>: <span class="str">"assistant"</span>, <span class="str">"content"</span>: <span class="str">"「ありがとう」是"谢谢"的意思，用于表达感谢。"</span>},
+    {<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"那再告诉我一个类似的礼貌用语"</span>}
+]
+
+response = client.chat.completions.create(
+    model=<span class="str">"deepseek-chat"</span>,
+    messages=<span class="kw">conversation</span>
+)</pre></div>
+
+  <h3>6.4 流式输出（打字机效果）</h3>
+  <div class="code-block"><span class="lang">Python</span><button class="copy" onclick="cp(this)">复制</button>
+<pre><span class="kw">stream</span> = client.chat.completions.create(
+    model=<span class="str">"deepseek-chat"</span>,
+    messages=[{<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="str">"写一首关于编程的打油诗"</span>}],
+    stream=<span class="kw">True</span>
+)
+
+<span class="kw">for</span> chunk <span class="kw">in</span> stream:
+    <span class="kw">if</span> chunk.choices[<span class="num">0</span>].delta.content:
+        <span class="fn">print</span>(chunk.choices[<span class="num">0</span>].delta.content, end=<span class="str">""</span>)</pre></div>
+</div></section>
+
+<!-- ==================== 第7章: Claude Code ==================== -->
+<section class="chapter" id="ch7"><div class="chapter-inner">
+  <div class="chapter-num">第 7 章</div>
+  <h2>🦾 <span>Claude Code</span> — 你的 AI 程序员</h2>
+  <p class="desc">在终端里说一句话，它就能帮你写项目、改代码、修 Bug。当前最强的 AI 编程工具。</p>
+
+  <h3>7.1 Claude Code 是什么</h3>
+  <p><strong>Claude Code</strong> 是 Anthropic 出品的命令行 AI 编程助手。它不是网页聊天框——它直接在你的终端里运行，能<strong>读代码、写文件、改代码、运行命令、安装依赖包</strong>。相当于雇了一个 AI 程序员在你的电脑里干活。</p>
+
+  <h3>7.2 安装</h3>
+  <ol class="steps">
+    <li><strong>装 Node.js：</strong><a href="https://nodejs.org" target="_blank">nodejs.org</a> 下载 LTS 版 → 一路 Next。终端输入 <code>node -v</code> 看到版本号就对了</li>
+    <li><strong>装 Claude Code：</strong><code>npm install -g @anthropic-ai/claude-code</code></li>
+    <li><strong>登录：</strong><code>claude login</code> → 浏览器弹出来 → 用 Anthropic 账号或 Google 登录</li>
+    <li><strong>也可以走 DeepSeek：</strong>用 CC Switch 把后端切到 DeepSeek，省一大笔钱</li>
+  </ol>
+
+  <h3>7.3 核心命令</h3>
+  <div class="table-wrap"><table>
+    <tr><th>命令</th><th>作用</th></tr>
+    <tr><td><code>claude</code></td><td>启动对话</td></tr>
+    <tr><td><code>/init</code></td><td>初始化项目记忆文件，让 AI 了解你的项目</td></tr>
+    <tr><td><code>/compact</code></td><td>压缩对话历史，省 Token</td></tr>
+    <tr><td><code>/clear</code></td><td>清空对话，换个话题</td></tr>
+    <tr><td><code>/config</code></td><td>修改模型、主题等设置</td></tr>
+  </table></div>
+
+  <h3>7.4 实战：用一句话做一个网站</h3>
+  <p>打开终端，进入空文件夹，输入 <code>claude</code>，然后说：</p>
+  <div class="code-block"><pre style="font-family:var(--font-zh);font-size:14px;color:var(--text)">
+"帮我做一个个人博客网站，HTML+CSS+JS，深色主题，有首页、文章列表、关于我。先告诉我你打算怎么做，我确认了再动手写。"</pre></div>
+  <p>Claude Code 会先给你设计方案，你认可后它自动创建文件、写代码。你可以继续告诉它「字体大一点」「颜色换成蓝色」，它会直接改文件。</p>
+
+  <div class="info-box tip"><span class="ib-emoji">🔥</span><span><strong>核心优势：</strong>Claude Code 能直接改你的文件，不需要你手动复制粘贴。传统方式是「问 ChatGPT → 复制代码 → 粘贴到编辑器 → 看到报错 → 问 ChatGPT → 复制 → 粘贴 → ……」，Claude Code 一步到位。</span></div>
+
+  <h3>7.5 Claude Code vs Codex CLI vs GitHub Copilot</h3>
+  <div class="table-wrap"><table>
+    <tr><th> 工具</th><th>开发方</th><th>工作方式</th><th>价格</th></tr>
+    <tr><td>Claude Code</td><td>Anthropic</td><td>终端 AI，改文件+跑命令</td><td>Pro $20/月 或 API</td></tr>
+    <tr><td>Codex CLI</td><td>OpenAI</td><td>终端 AI，功能类似</td><td>API 按量计费</td></tr>
+    <tr><td>GitHub Copilot</td><td>GitHub/Microsoft</td><td>编辑器插件，补全代码</td><td>$10/月</td></tr>
+    <tr><td>Cursor</td><td>Cursor Inc</td><td>AI 编辑器，对话+改代码</td><td>$20/月</td></tr>
+  </table></div>
+
+  <h3>7.6 用 CC Switch 切 DeepSeek（省钱方案）</h3>
+  <p>Claude Code 正常用 Anthropic 的 API 比较贵。但你可以用 CC Switch 把后端切成 DeepSeek：</p>
+  <ol class="steps">
+    <li>下载安装 CC Switch（你已经装了：<code>C:\Users\30332\AppData\Local\Programs\CC Switch\cc-switch.exe</code>）</li>
+    <li>Base URL 填 <code>https://api.deepseek.com/anthropic</code></li>
+    <li>API Key 填你的 DeepSeek Key</li>
+    <li>主模型选 <code>deepseek-v4-pro[1m]</code>，快速模型选 <code>deepseek-v4-flash</code></li>
+  </ol>
+  <div class="info-box good"><span class="ib-emoji">💰</span><span>走 DeepSeek 的话，用量成本大概是 Anthropic 官方的 <strong>1/10 到 1/5</strong>。写一天代码可能只要几块钱。</span></div>
+</div></section>
+
+<!-- ==================== 第8章: 提示词工程 ==================== -->
+<section class="chapter" id="ch8"><div class="chapter-inner">
+  <div class="chapter-num">第 8 章</div>
+  <h2>🎯 <span>提示词工程</span> — 让 AI 听话的艺术</h2>
+  <p class="desc">同样的模型，提示词好坏差 10 倍效果。这是 AI 时代的核心技能。</p>
+
+  <h3>8.1 提示词万能公式</h3>
+  <div class="code-block"><pre style="font-family:var(--font-zh);font-size:14px;color:var(--text);line-height:2">
+  角色 + 任务 + 约束 + 格式 = 完美提示词
+
+  角色：你是一个 XX 专家
+  任务：请帮我做 XX
+  约束：要求 XX，不要 XX
+  格式：用 XX 格式输出</pre></div>
+
+  <h3>8.2 好提示词 vs 烂提示词</h3>
+  <div class="card-grid">
+    <div class="card" style="border-left:3px solid var(--red)"><h4>❌ 烂</h4><p>"帮我写个网站"</p><p style="color:var(--text3);font-size:12px">AI 不知道你要什么网站、什么颜色、什么功能，出来的东西大概率不是你要的。</p></div>
+    <div class="card" style="border-left:3px solid var(--green)"><h4>✅ 好</h4><p>"你是一个资深前端工程师。帮我做一个外卖点餐网站的首页，目标用户是大学生。要求：橙色+白色配色、横向滑动热门餐厅卡片、顶部搜索栏、底部4个导航图标。用 HTML+CSS+JS 单文件实现，移动端优先，代码加中文注释。"</p></div>
+  </div>
+
+  <h3>8.3 常用提示词技巧</h3>
+  <div class="table-wrap"><table>
+    <tr><th>技巧</th><th>说明</th><th>示例</th></tr>
+    <tr><td>角色扮演</td><td>给 AI 设定专家身份</td><td>"你是一个 10 年经验的 Python 后端架构师"</td></tr>
+    <tr><td>少样本学习</td><td>给它看几个例子再让它做</td><td>"输入:hello → 输出:你好。输入:goodbye → 输出:再见。输入:thanks → "</td></tr>
+    <tr><td>思维链</td><td>让它一步步推理</td><td>"先分析问题，列出步骤，再逐步执行"</td></tr>
+    <tr><td>拆分任务</td><td>复杂任务拆成多个小步</td><td>"先写 HTML 结构，我确认了再写 CSS"</td></tr>
+    <tr><td>输出格式</td><td>指定要什么格式</td><td>"用 JSON 格式返回，包含 name、age、skills 三个字段"</td></tr>
+    <tr><td>约束输出</td><td>控制不要什么</td><td>"不要引入任何第三方库，用纯原生实现"</td></tr>
+  </table></div>
+
+  <h3>8.4 遇到报错怎么办</h3>
+  <div class="info-box good"><span class="ib-emoji">🔄</span><span><strong>黄金循环：</strong>说需求 → AI 写代码 → 运行 → 报错了 → <strong>把报错信息完整贴给 AI</strong> → AI 修 → 再运行 → 成功。你不需要懂报错是什么意思，AI 懂就行。</span></div>
+</div></section>
+
+<!-- ==================== 第9章: 实战项目 ==================== -->
+<section class="chapter" id="ch9"><div class="chapter-inner">
+  <div class="chapter-num">第 9 章</div>
+  <h2>🚀 <span>实战项目</span> — 跟着做就能赚钱的项目</h2>
+  <p class="desc">学完前面的知识，这章你开始真正动手。每个项目都能卖钱。</p>
+
+  <h3>9.1 项目一：个人简历网页（30分钟）</h3>
+  <p><strong>技术：</strong>HTML + CSS + JS 单文件<br><strong>定价：</strong>闲鱼 ¥50-200<br><strong>怎么做：</strong>让 Claude Code 生成 → 改内容 → 部署到 GitHub Pages → 交付网址</p>
+
+  <h3>9.2 项目二：企业官网（2小时）</h3>
+  <p><strong>技术：</strong>HTML + CSS<br><strong>定价：</strong>¥500-2000<br><strong>怎么做：</strong>用现成模板改公司名+颜色+内容 → 部署 → 给客户网址</p>
+
+  <h3>9.3 项目三：Python 数据爬虫（1-3小时）</h3>
+  <p><strong>技术：</strong>Python + requests + BeautifulSoup<br><strong>定价：</strong>¥100-500<br><strong>怎么做：</strong>告诉 Claude Code 要爬什么网站、取什么数据 → 导出 CSV/Excel → 发给客户</p>
+  <div class="code-block"><span class="lang">Python — 爬虫骨架</span><button class="copy" onclick="cp(this)">复制</button>
+<pre><span class="kw">import</span> requests
+<span class="kw">from</span> bs4 <span class="kw">import</span> BeautifulSoup
+<span class="kw">import</span> csv
+
+url = <span class="str">"https://example.com"</span>
+<span class="kw">resp</span> = requests.get(url)
+<span class="kw">soup</span> = BeautifulSoup(resp.text, <span class="str">"html.parser"</span>)
+
+<span class="cm"># 提取数据（让 Claude Code 帮你写具体的选择器）</span>
+<span class="kw">data</span> = []
+<span class="kw">for</span> item <span class="kw">in</span> soup.select(<span class="str">".item"</span>):
+    data.append({
+        <span class="str">"title"</span>: item.find(<span class="str">"h2"</span>).text,
+        <span class="str">"price"</span>: item.find(<span class="str">".price"</span>).text
+    })
+
+<span class="cm"># 导出 CSV</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"output.csv"</span>, <span class="str">"w"</span>, newline=<span class="str">""</span>) <span class="kw">as</span> f:
+    writer = csv.DictWriter(f, fieldnames=data[<span class="num">0</span>].keys())
+    writer.writeheader()
+    writer.writerows(data)</pre></div>
+
+  <h3>9.4 项目四：Telegram/微信机器人</h3>
+  <p><strong>技术：</strong>Python + python-telegram-bot + DeepSeek API<br><strong>定价：</strong>¥300-1000<br><strong>怎么做：</strong>用户消息 → 你的机器人 → DeepSeek 回复 → 发回给用户</p>
+
+  <h3>9.5 项目五：免费在线工具站</h3>
+  <p><strong>技术：</strong>HTML + CSS + JS（纯前端）<br><strong>赚钱方式：</strong>挂 AdSense 广告 + SEO 流量<br><strong>案例：</strong>JSON格式化、二维码生成、Base64编解码——放上线了就有搜索流量。</p>
+
+  <h3>9.6 如何部署 — 让你的代码变成别人能打开的网址</h3>
+  <div class="table-wrap"><table>
+    <tr><th>平台</th><th>免费额度</th><th>适合</th></tr>
+    <tr><td>GitHub Pages</td><td>无限</td><td>纯静态网站（HTML/CSS/JS）</td></tr>
+    <tr><td>Vercel</td><td>100GB/月</td><td>前端+Serverless后端</td></tr>
+    <tr><td>Cloudflare Pages</td><td>无限</td><td>国内访问快</td></tr>
+    <tr><td>Deno Deploy</td><td>10万次/天</td><td>JS/TS 后端</td></tr>
+  </table></div>
+</div></section>
+
+<!-- ==================== 第10章: 学习路线图 ==================== -->
+<section class="chapter" id="ch10"><div class="chapter-inner">
+  <div class="chapter-num">第 10 章</div>
+  <h2>🗺️ <span>学习路线图</span> & 资源汇总</h2>
+  <p class="desc">从零到能接单赚钱的完整路径。</p>
+
+  <h3>10.1 30 天学习计划</h3>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-title">第1周：打基础</div><div class="tl-desc">计算机基础 → Python 基本语法 → 终端操作 → 文件管理 → 跑通第一个 Python 脚本</div></div>
+    <div class="tl-item"><div class="tl-title">第2周：AI 入门</div><div class="tl-desc">API 概念 → 注册 DeepSeek → 跑通第一个 API 调用 → 理解请求/响应 → JSON 格式</div></div>
+    <div class="tl-item"><div class="tl-title">第3周：工具实操</div><div class="tl-desc">安装 Claude Code / Codex → 用 AI 写第一个网站 → 部署到 GitHub Pages → 拿到真实网址</div></div>
+    <div class="tl-item"><div class="tl-title">第4周：开始赚钱</div><div class="tl-desc">在闲鱼发布服务 → 接第一单（简历网页 ¥50-200）→ 用 AI 交付 → 拿好评 → 涨价</div></div>
+  </div>
+
+  <h3>10.2 长期进阶路线</h3>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-title">第2个月：提效 & 拓品类</div><div class="tl-desc">接更复杂的单子（企业官网、爬虫）→ 单价 ¥500-2000 → 月入 ¥3000-5000</div></div>
+    <div class="tl-item"><div class="tl-title">第3个月：拓渠道</div><div class="tl-desc">开 Upwork/Fiverr 接美元单 → 赚汇率差 → 月入 ¥5000-10000</div></div>
+    <div class="tl-item"><div class="tl-title">第6个月：产品化</div><div class="tl-desc">做一个自己的产品（在线工具/SaaS/插件）→ 被动收入 → 月入 ¥5000-20000</div></div>
+  </div>
+
+  <h3>10.3 免费学习资源</h3>
+  <div class="table-wrap"><table>
+    <tr><th>资源</th><th>内容</th><th>链接</th></tr>
+    <tr><td>DeepSeek 开放平台</td><td>API 文档、定价、示例</td><td>platform.deepseek.com</td></tr>
+    <tr><td>OpenAI 官方文档</td><td>API 使用指南</td><td>platform.openai.com</td></tr>
+    <tr><td>Anthropic 控制台</td><td>Claude API 文档</td><td>console.anthropic.com</td></tr>
+    <tr><td>GitHub Pages</td><td>免费部署静态网站</td><td>pages.github.com</td></tr>
+    <tr><td>Vercel</td><td>免费部署前端+后端</td><td>vercel.com</td></tr>
+    <tr><td>Python 官方教程</td><td>零基础学 Python</td><td>docs.python.org/zh-cn</td></tr>
+    <tr><td>MDN Web 文档</td><td>HTML/CSS/JS 参考</td><td>developer.mozilla.org</td></tr>
+  </table></div>
+
+  <h3>10.4 核心心法</h3>
+  <div class="card-grid">
+    <div class="card"><span class="emoji">🔁</span><h4>AI 是铲子，你是矿工</h4><p>你不需要变成程序员。你需要的是会用 AI 工具 + 能找到需要你服务的人。AI 写代码，你收钱。</p></div>
+    <div class="card"><span class="emoji">⚡</span><h4>先动手，再看书</h4><p>做出第一个东西之前不要看教程。看教程给你虚假的成就感，做东西给你真实的成就感+现金。</p></div>
+    <div class="card"><span class="emoji">💰</span><h4>从 ¥50 开始</h4><p>第一单不要嫌少。赚到第一笔钱的信心比金额重要 100 倍。有了第一单，涨价只是时间问题。</p></div>
+    <div class="card"><span class="emoji">🚫</span><h4>不上当</h4><p>不要买「AI赚钱课」——99%是割韭菜。不要做灰产。不要帮人攻击网站。赚干净的钱，睡得安稳。</p></div>
+  </div>
+</div></section>
+
+<footer>
+  <p>🤖 AI 零基础到精通 · 2026.06 · 持续更新 · 永远免费</p>
+  <p style="margin-top:8px"><strong>记住：一个月前的你，就是现在的你的目标用户。</strong>把你学会的东西教给一个月前的人，就是最好的赚钱方式。</p>
+</footer>
+
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Copy code
+function cp(btn){
+  const pre=btn.parentElement.querySelector('pre');
+  const text=pre.textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='✓';btn.classList.add('done');
+    setTimeout(()=>{btn.textContent='复制';btn.classList.remove('done')},1500);
+  }).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=text;
+    ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);
+    ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    btn.textContent='✓';btn.classList.add('done');
+    setTimeout(()=>{btn.textContent='复制';btn.classList.remove('done')},1500);
+  });
+}
+// Back to top
+window.addEventListener('scroll',()=>{
+  document.getElementById('btt').classList.toggle('visible',window.scrollY>600);
+});
+</script>
+</body>
+</html>
