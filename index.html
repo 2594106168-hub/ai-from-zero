@@ -1,533 +1,643 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>AI 从零到精通 — 18章完整学习路线 | 计算机·Python·大模型·Agent·赚钱</title>
-<meta name="description" content="从电脑基础到AI Agent开发，完整的18章自学路线。计算机原理、Python实战、API、大模型、Agent/RAG/MCP、Claude Code/OpenClaw/Codex、提示词工程、AI赚钱。由易到难，手把手教学。">
-<style>:root{--bg:#0b0e14;--bg2:#121621;--bg3:#1a1f2d;--card:#151b28;--border:#252f3f;--text:#d1d5db;--text2:#94a3b8;--text3:#6b7280;--accent:#6366f1;--a2:#818cf8;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--cyan:#06b6d4;--r:12px;--mw:960px}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:68px}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
-a{color:var(--a2);text-decoration:none;transition:.2s}a:hover{color:#a78bfa}
-nav{position:fixed;top:0;left:0;right:0;z-index:999;height:56px;background:rgba(11,14,20,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center}
-.ni{max-width:1200px;margin:0 auto;width:100%;padding:0 16px;display:flex;align-items:center;justify-content:space-between}
-.nl{font-size:16px;font-weight:800;background:linear-gradient(135deg,var(--a2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
-.nav-links{display:flex;gap:2px;list-style:none;flex-wrap:wrap;overflow-x:auto}
-.nav-links a{color:var(--text2);font-size:11px;padding:5px 10px;border-radius:14px;font-weight:500;white-space:nowrap}.nav-links a:hover{color:#fff;background:var(--bg3)}
-.hero{padding:110px 24px 64px;text-align:center;background:linear-gradient(180deg,rgba(99,102,241,.06) 0%,transparent 70%)}
-.hero h1{font-size:clamp(28px,5vw,46px);font-weight:900;background:linear-gradient(135deg,#fff 0%,var(--a2) 50%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;margin-bottom:12px}
-.hero p{font-size:16px;color:var(--text2);max-width:560px;margin:0 auto 28px}
-.cta{display:inline-block;padding:14px 36px;border-radius:30px;background:linear-gradient(135deg,var(--accent),var(--a2));color:#fff;font-weight:700;font-size:15px;transition:.2s}.cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,.3);color:#fff}
-.ch{padding:56px 24px;border-bottom:1px solid rgba(255,255,255,.04)}.ch:nth-child(even){background:var(--bg2)}.ch-i{max-width:var(--mw);margin:0 auto}
-.chn{display:inline-block;padding:4px 14px;border-radius:14px;font-size:11px;font-weight:700;letter-spacing:1px;background:rgba(99,102,241,.15);color:var(--a2);margin-bottom:6px}
-.ch h2{font-size:clamp(22px,3vw,28px);font-weight:800;margin-bottom:6px}.ch h2 span{background:linear-gradient(135deg,var(--a2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.ch .dsc{color:var(--text2);font-size:14px;margin-bottom:28px}.ch h3{font-size:18px;font-weight:700;color:#e5e7eb;margin:30px 0 10px}.ch h4{font-size:15px;font-weight:700;color:#e5e7eb;margin:18px 0 6px}
-.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0}
-.c{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:.2s}.c:hover{border-color:var(--accent)}.c .em{font-size:28px;margin-bottom:8px;display:block}.c h4{font-size:15px;margin:0 0 4px}.c p{font-size:13px;color:var(--text2);line-height:1.6}
-.cb{background:#0a0d14;border:1px solid var(--border);border-radius:10px;margin:14px 0;overflow:hidden;position:relative}
-.cb .lg{position:absolute;top:7px;left:12px;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px}
-.cb pre{padding:32px 16px 16px;overflow-x:auto;font-family:"JetBrains Mono","Fira Code","Consolas",monospace;font-size:12px;line-height:1.9;color:#d1d5db;white-space:pre-wrap;word-break:break-all}
-.cb .cpy{position:absolute;top:6px;right:10px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:11px;padding:3px 12px;border-radius:12px;cursor:pointer;transition:.2s}.cb .cpy:hover{color:#fff;border-color:var(--accent)}.cb .cpy.done{color:var(--green);border-color:var(--green)}
-.cm{color:#6b7280}.kw{color:#c084fc}.str{color:#22c55e}.fn{color:#f59e0b}.num{color:#f472b6}
-.ib{padding:14px 18px;border-radius:var(--r);margin:14px 0;font-size:13px;line-height:1.7;display:flex;gap:10px;align-items:flex-start}
-.ib.tip{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:var(--a2)}
-.ib.warn{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);color:#fbbf24}
-.ib.good{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);color:var(--green)}
-.ib .ib-e{font-size:16px;flex-shrink:0;margin-top:2px}
-.tb{overflow-x:auto;margin:14px 0}table{width:100%;border-collapse:collapse;font-size:13px}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI 从零到精通 · 完整学习教程 | 计算机·Python·Agent·赚钱</title>
+<meta name="description" content="18章完整AI学习教程，从计算机网络、Python编程到大模型API、Agent开发、RAG系统。每章都有详细解释和可运行代码。">
+<style>
+:root{--bg:#0b0e14;--bg2:#111520;--bg3:#181d2a;--card:#151b28;--border:#253045;--text:#d1d5db;--t2:#94a3b8;--t3:#6b7280;--ac:#6366f1;--a2:#818cf8;--gn:#22c55e;--or:#f59e0b;--rd:#ef4444;--cy:#06b6d4;--r:14px;--mw:900px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:15px}
+a{color:var(--a2);text-decoration:none}a:hover{color:#a78bfa}
+nav{position:fixed;top:0;left:0;right:0;z-index:99;height:52px;background:rgba(11,14,20,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center}
+.ni{max-width:1200px;margin:0 auto;width:100%;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.nl{font-size:15px;font-weight:800;background:linear-gradient(135deg,var(--a2),var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.nav-links{display:flex;gap:2px;list-style:none;flex-wrap:wrap;overflow-x:auto;max-height:44px}
+.nav-links a{color:var(--t2);font-size:11px;padding:4px 8px;border-radius:12px;font-weight:500;white-space:nowrap}.nav-links a:hover{color:#fff;background:var(--bg3)}
+.hero{padding:100px 24px 56px;text-align:center;background:linear-gradient(180deg,rgba(99,102,241,.06) 0%,transparent 70%)}
+.hero h1{font-size:clamp(26px,5vw,44px);font-weight:900;background:linear-gradient(135deg,#fff 0%,var(--a2) 50%,var(--cy) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;margin-bottom:12px}
+.hero p{font-size:15px;color:var(--t2);max-width:540px;margin:0 auto 24px}
+.hero .cta{display:inline-block;padding:12px 32px;border-radius:28px;background:linear-gradient(135deg,var(--ac),var(--a2));color:#fff;font-weight:700;font-size:14px;transition:.2s}.hero .cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,.3);color:#fff}
+.ch{padding:56px 24px;border-bottom:1px solid rgba(255,255,255,.04)}.ch:nth-child(odd){background:var(--bg2)}
+.ci{max-width:var(--mw);margin:0 auto}
+.cn{display:inline-block;padding:3px 12px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:1px;background:rgba(99,102,241,.15);color:var(--a2);margin-bottom:6px;text-transform:uppercase}
+.ch h2{font-size:clamp(20px,3vw,26px);font-weight:800;margin-bottom:4px;line-height:1.3}
+.ch h2 span{background:linear-gradient(135deg,var(--a2),var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ch .ds{color:var(--t2);font-size:14px;margin-bottom:26px}
+.ch h3{font-size:17px;font-weight:700;color:#e5e7eb;margin:28px 0 8px}
+.ch h4{font-size:15px;font-weight:700;color:#e5e7eb;margin:16px 0 6px}
+.ch p{margin-bottom:12px;color:var(--t2)}
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+.c{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;transition:.2s}.c:hover{border-color:var(--ac)}.c .em{font-size:26px;margin-bottom:6px;display:block}.c h4{font-size:14px;margin:0 0 4px}.c p{font-size:12px;color:var(--t2);line-height:1.6}
+.cb{background:#060a10;border:1px solid var(--border);border-radius:10px;margin:12px 0;overflow:hidden;position:relative}
+.cb .lg{position:absolute;top:6px;left:12px;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px}
+.cb pre{padding:28px 16px 14px;overflow-x:auto;font-family:"JetBrains Mono","Fira Code","Consolas",monospace;font-size:12px;line-height:1.9;color:#d1d5db;white-space:pre-wrap;word-break:break-all}
+.cb .cp{position:absolute;top:5px;right:8px;background:var(--bg3);border:1px solid var(--border);color:var(--t2);font-size:10px;padding:2px 10px;border-radius:10px;cursor:pointer;transition:.2s}.cb .cp:hover{color:#fff;border-color:var(--ac)}.cb .cp.done{color:var(--gn);border-color:var(--gn)}
+.cm{color:#6b7280}.kw{color:#c084fc}.st{color:#22c55e}.fn{color:#f59e0b}.nu{color:#f472b6}
+.ib{padding:14px 18px;border-radius:var(--r);margin:12px 0;font-size:13px;line-height:1.7;display:flex;gap:10px;align-items:flex-start}
+.ib.tp{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:var(--a2)}
+.ib.wn{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);color:#fbbf24}
+.ib.gd{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);color:var(--gn)}
+.ib .ie{font-size:16px;flex-shrink:0;margin-top:1px}
+.tb{overflow-x:auto;margin:12px 0}table{width:100%;border-collapse:collapse;font-size:13px}
 th{background:var(--bg3);text-align:left;padding:9px 12px;font-weight:600;color:#e5e7eb;border-bottom:2px solid var(--border)}
-td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text2)}tr:hover td{background:rgba(99,102,241,.04)}
-.steps{list-style:none;counter-reset:st;margin:14px 0}.steps li{counter-increment:st;padding:10px 10px 10px 44px;margin-bottom:6px;background:var(--card);border:1px solid var(--border);border-radius:10px;position:relative;font-size:13px}.steps li::before{content:counter(st);position:absolute;left:10px;top:12px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}.steps li strong{color:#fff}
-.tl{position:relative;padding-left:24px;margin:14px 0}.tl::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border)}
-.tl-i{position:relative;margin-bottom:16px;padding-left:16px}.tl-i::before{content:'';position:absolute;left:-20px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent)}.tl-i .tlt{font-weight:700;margin-bottom:2px;color:#e5e7eb}.tl-i .tld{font-size:13px;color:var(--text2)}
-footer{border-top:1px solid var(--border);text-align:center;padding:36px 24px;color:var(--text3);font-size:13px;line-height:2}
-.btt{position:fixed;bottom:28px;right:28px;z-index:998;width:42px;height:42px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;opacity:0;pointer-events:none}.btt.vis{opacity:1;pointer-events:auto}.btt:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-@media(max-width:768px){.nav-links a{font-size:10px;padding:4px 7px}.cg{grid-template-columns:1fr}.hero h1{font-size:24px}}
-@media print{body{background:#fff;color:#000}nav,.btt{display:none}.ch{border:none;page-break-inside:avoid}}</style></head><body>
+td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--t2)}tr:hover td{background:rgba(99,102,241,.04)}
+.steps{list-style:none;counter-reset:st;margin:12px 0}.steps li{counter-increment:st;padding:10px 10px 10px 42px;margin-bottom:6px;background:var(--card);border:1px solid var(--border);border-radius:10px;position:relative;font-size:13px}.steps li::before{content:counter(st);position:absolute;left:9px;top:11px;width:23px;height:23px;border-radius:50%;background:var(--ac);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}.steps li strong{color:#fff}
+.tl{position:relative;padding-left:24px;margin:12px 0}.tl::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-i{position:relative;margin-bottom:16px;padding-left:16px}.tl-i::before{content:'';position:absolute;left:-20px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--ac)}.tl-i .tlt{font-weight:700;margin-bottom:2px;color:#e5e7eb}.tl-i .tld{font-size:13px;color:var(--t2)}
+footer{border-top:1px solid var(--border);text-align:center;padding:36px 24px;color:var(--t3);font-size:13px;line-height:2}
+.btt{position:fixed;bottom:24px;right:24px;z-index:98;width:40px;height:40px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--t2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;opacity:0;pointer-events:none}.btt.vs{opacity:1;pointer-events:auto}.btt:hover{background:var(--ac);color:#fff;border-color:var(--ac)}
+strong{color:#e5e7eb}
+@media(max-width:768px){.nav-links a{font-size:10px;padding:3px 6px}.cg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
 
-<nav><div class="ni"><span class="nl">🤖 AI 从0到精通</span>
-<ul class="nav-links">
-<li><a href="#c1">计算机</a></li><li><a href="#c2">Python</a></li><li><a href="#c3">网络</a></li><li><a href="#c4">Git</a></li>
-<li><a href="#c5">API</a></li><li><a href="#c6">AI概念</a></li><li><a href="#c7">大模型</a></li><li><a href="#c8">API实操</a></li>
-<li><a href="#c9">提示词</a></li><li><a href="#c10">ClaudeCode</a></li><li><a href="#c11">Codex</a></li><li><a href="#c12">OpenClaw</a></li>
-<li><a href="#c13">Cursor</a></li><li><a href="#c14">数据库</a></li><li><a href="#c15">Agent</a></li><li><a href="#c16">RAG</a></li>
-<li><a href="#c17">赚钱</a></li><li><a href="#c18">路线图</a></li></ul></div></nav>
+<nav><div class="ni"><span class="nl">🤖 AI从0到精通</span>
+<ul class="nav-links"><li><a href="#c1">网络</a></li><li><a href="#c2">终端Git</a></li><li><a href="#c3">Python</a></li><li><a href="#c4">API</a></li><li><a href="#c5">AI理论</a></li><li><a href="#c6">模型</a></li><li><a href="#c7">API编程</a></li><li><a href="#c8">提示词</a></li><li><a href="#c9">ClaudeCode</a></li><li><a href="#c10">其他工具</a></li><li><a href="#c11">数据库</a></li><li><a href="#c12">部署</a></li><li><a href="#c13">Agent</a></li><li><a href="#c14">RAG</a></li><li><a href="#c15">赚钱</a></li><li><a href="#c16">路线图</a></li></ul></div></nav>
 
-<header class="hero"><h1><span>AI 从零到精通</span></h1>
-<p>从「电脑是什么」到「AI Agent开发」。18章循序渐进，50+代码示例，10个赚钱项目。</p>
-<a href="#c1" class="cta">🚀 开始学习</a></header>
+<header class="hero"><h1>AI 从零到精通</h1><p>每个概念都讲透。每行代码都解释。你能真学会。</p><a href="#c1" class="cta">🚀 开始</a></header>
 
-<!-- ======== 第1章 计算机基础 ======== -->
-<section class="ch" id="c1"><div class="ch-i">
-<div class="chn">第 1 章</div><h2>💻 <span>计算机基础</span> — 零基础友好</h2>
-<p class="dsc">如果你连「终端」都不知道怎么打开，从这章开始。看完你至少不会在新手群里被人笑话。</p>
-<h3>1.1 计算机怎么工作 — 4 个核心部件</h3>
-<div class="cg"><div class="c"><span class="em">🧠</span><h4>CPU（处理器）</h4><p>计算机的大脑。执行指令、做加减乘除。主频（GHz）越高越快，核心越多越能同时干多件事。Intel 和 AMD 两家垄断。</p></div>
-<div class="c"><span class="em">💾</span><h4>RAM（内存）</h4><p>CPU 的工作台。程序从硬盘加载到内存，CPU 直接在内存上读写。断电后数据消失。现在主流 16-32GB。</p></div>
-<div class="c"><span class="em">💿</span><h4>硬盘（SSD/HDD）</h4><p>永久存数据的地方。SSD 比 HDD 快 10-50 倍。你的代码、照片、游戏全在这。现在标配 512GB-1TB SSD。</p></div>
-<div class="c"><span class="em">🖥️</span><h4>操作系统（OS）</h4><p>管理硬件和软件的大管家。Windows（最常见）、macOS（苹果）、Linux（服务器/开发者）。所有操作都要经过它。</p></div></div>
-<div class="ib tip"><span class="ib-e">💡</span><span><strong>速记：</strong>硬盘存东西 → 打开程序 → 加载到内存 → CPU 执行 → 显示在屏幕。跟冰箱（硬盘）→ 拿菜到厨房台面（内存）→ 开火做菜（CPU）→ 装盘上桌（屏幕）一个道理。</span></div>
+<!-- ====== 第1章: 计算机网络 ====== -->
+<section class="ch" id="c1"><div class="ci">
+<div class="cn">第 1 章</div><h2>🌐 <span>计算机网络</span> — 数据怎么从你到全世界</h2>
+<p class="ds">你点了"发送"，你的文字怎么到达地球另一边的服务器？这一章彻底讲清楚。</p>
 
-<h3>1.2 文件系统 — 你电脑的「仓库」</h3>
-<p>计算机用<strong>文件夹（目录）</strong>组织一切。每个文件有唯一的路径。在编程里，路径写错是最常见的新手 bug。</p>
-<div class="tb"><table><tr><th>系统</th><th>路径示例</th><th>分隔符</th></tr>
-<tr><td>Windows</td><td><code>C:\Users\张三\Desktop\我的项目\</code></td><td><code>\</code></td></tr>
-<tr><td>macOS / Linux</td><td><code>/home/zhangsan/projects/</code></td><td><code>/</code></td></tr></table></div>
-<div class="cg"><div class="c"><span class="em">📁</span><h4>文件后缀名</h4><p><code>.html</code>=网页，<code>.py</code>=Python，<code>.js</code>=JavaScript，<code>.cpp</code>=C++，<code>.json</code>=数据。后缀名决定用哪个程序打开。</p></div>
-<div class="c"><span class="em">🔗</span><h4>相对路径 vs 绝对路径</h4><p>绝对路径：从根目录开始（<code>C:\...</code>）。相对路径：从当前目录开始（<code>./data/file.json</code>）。编程里一般用相对路径。</p></div></div>
+<h3>1.1 从一个聊天消息说起</h3>
+<p>你用微信给朋友发了一条"你好"。这条消息走了多远？</p>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:22px 20px">
+你的手机 → WiFi路由器 → 光猫 → 运营商基站 → 光纤 → 微信服务器 → 朋友手机
+（30ms完成）   （0.1ms）         （5ms）      （10ms）   （15ms）</pre></div>
+<p>每一步，数据都以<strong>电磁波或光信号</strong>的形式在网线上跑。到了目的地再转回原来的文字。整个过程像快递——你的消息被打包、贴地址、运输、拆包、签收。</p>
 
-<h3>1.3 终端（黑框框）— 程序员的第二双手</h3>
-<p><strong>终端就是你敲命令的地方。</strong>没有漂亮界面，但它能做的事比鼠标多 100 倍。新人只需要记住 6 个命令：</p>
-<div class="cb"><span class="lg">终端 — 必学命令</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre><span class="cm"># 查看当前文件夹里有什么</span><span class="kw">ls</span>        <span class="cm"># macOS/Linux</span><span class="kw">dir</span>       <span class="cm"># Windows</span>
-<span class="cm"># 进入某个文件夹</span><span class="kw">cd</span> 文件夹名     <span class="cm"># 如: cd projects</span><span class="kw">cd</span> ..            <span class="cm"># 返回上一级</span>
-<span class="cm"># 创建文件夹</span><span class="kw">mkdir</span> 新文件夹名
-<span class="cm"># 查看当前所在位置</span><span class="kw">pwd</span>       <span class="cm"># macOS/Linux</span><span class="kw">cd</span>         <span class="cm"># Windows (不带参数)</span></pre></div>
-<div class="ib good"><span class="ib-e">✅</span><span><strong>你不需要精通命令行。</strong>Claude Code 会告诉你跑什么命令，你复制粘贴回车就行。你只需要知道怎么打开终端、怎么 cd 到项目目录。</span></div></div></section>
+<h3>1.2 IP 地址 — 互联网的「门牌号」</h3>
+<p><strong>每一台连接互联网的设备都有一个唯一的 IP 地址。</strong>就像你家有门牌号、你有手机号一样。没有 IP 地址，别的设备找不到你。</p>
+<p>IPv4（老标准）用 4 个数字，每个 0-255。比如 Google 的 <code>142.250.72.46</code>。但全球只有约 43 亿个 IPv4 地址，不够用。所以有了 IPv6——用更长的数字串（如 <code>2001:db8::1</code>），地址多到地球上每一粒沙子都能分一个。</p>
+<div class="ib tp"><span class="ie">💡</span><span><strong>试试：</strong>打开终端输入 <code>ping google.com</code>，你就能看到 Google 的 IP 地址和到你电脑的延迟（ms）。数字越小越快。</span></div>
 
-<!-- ======== 第2章 Python ======== -->
-<section class="ch" id="c2"><div class="ch-i">
-<div class="chn">第 2 章</div><h2>🐍 <span>Python 从入门到接单</span></h2>
-<p class="dsc">AI 开发的通用语言。不需要精通，够调 API 就行。但基础语法必须过一遍。</p>
-<h3>2.1 安装 Python</h3>
-<ol class="steps"><li>打开 <a href="https://python.org" target="_blank">python.org</a> → 「Downloads」→ 下载最新版安装包</li><li>安装时<strong>❗务必勾选「Add Python to PATH」</strong>（忘记勾=废了重装）</li><li>装完打开终端输入 <code>python --version</code>，看到版本号（如 Python 3.12.x）= 成功</li></ol>
-<h3>2.2 虚拟环境 — 新手最容易踩的坑</h3>
-<p>每个项目应该有自己的隔离环境，防止库版本冲突。Python 自带 <code>venv</code>：</p>
-<div class="cb"><span class="lg">终端</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre><span class="cm"># 创建虚拟环境</span>python -m venv myenv
-<span class="cm"># 激活（Windows）</span>myenv\Scripts\activate
-<span class="cm"># 激活（macOS/Linux）</span><span class="kw">source</span> myenv/bin/activate
-<span class="cm"># 退出</span>deactivate</pre></div>
-<h3>2.3 变量、类型、基本操作</h3>
-<div class="cb"><span class="lg">Python</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre><span class="cm"># === 变量和数据类型 ===</span><span class="kw">name</span> = <span class="str">"张三"</span>; <span class="kw">age</span> = <span class="num">25</span>; <span class="kw">score</span> = <span class="num">98.5</span>; <span class="kw">is_student</span> = <span class="kw">True</span>
-<span class="fn">print</span>(f<span class="str">"{name}今年{age}岁，分数{score}"</span>)  <span class="cm"># 张三今年25岁，分数98.5</span>
-<span class="cm"># === 列表（装一堆东西）===</span>
-<span class="kw">fruits</span> = [<span class="str">"🍎"</span>,<span class="str">"🍌"</span>,<span class="str">"🍊"</span>]; <span class="fn">print</span>(fruits[<span class="num">0</span>],fruits[-<span class="num">1</span>])  <span class="cm"># 🍎 🍊</span>
-fruits.append(<span class="str">"🍇"</span>)  <span class="cm"># 加一个</span>
-<span class="cm"># === 字典（键值对）===</span>
-<span class="kw">user</span> = {<span class="str">"name"</span>:<span class="str">"李四"</span>,<span class="str">"age"</span>:<span class="num">30</span>,<span class="str">"skills"</span>:[<span class="str">"Python"</span>,<span class="str">"React"</span>]}
-<span class="fn">print</span>(user[<span class="str">"skills"</span>][<span class="num">0</span>])  <span class="cm"># Python</span>
-<span class="cm"># === 集合（去重）===</span>
-<span class="kw">tags</span> = {<span class="str">"AI"</span>,<span class="str">"Python"</span>,<span class="str">"AI"</span>}  <span class="cm"># 自动去重 → {"AI", "Python"}</span></pre></div>
+<h3>1.3 DNS — 互联网的「电话簿」</h3>
+<p>你可能记得 <code>google.com</code>，但你记不住 <code>142.250.72.46</code>。DNS（域名系统）就是把<strong>你输入的网址翻译成 IP 地址</strong>的全球分布式电话簿。</p>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:22px 20px">
+你在浏览器打 "google.com"
+         ↓
+ ［路由器DNS缓存］有记录吗？→ 没有
+         ↓
+ ［运营商DNS服务器］有记录吗？→ 有！
+         ↓
+  返回 IP: 142.250.72.46
+         ↓
+  浏览器向这个 IP 发请求 → 页面显示</pre></div>
+<p><strong>DNS 也能被劫持。</strong>你之前 WiFi 跳黄网——就是路由器 DNS 被改成了恶意服务器，把正常网址翻译成了色情网站的 IP。换成干净的 DNS（如 <code>223.5.5.5</code> 阿里、<code>1.1.1.1</code> Cloudflare）就能解决。</p>
 
-<h3>2.4 条件判断和循环</h3>
-<div class="cb"><span class="lg">Python</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre><span class="kw">score</span> = <span class="num">85</span>
-<span class="kw">if</span> score >= <span class="num">90</span>: <span class="fn">print</span>(<span class="str">"A"</span>)
-<span class="kw">elif</span> score >= <span class="num">70</span>: <span class="fn">print</span>(<span class="str">"B"</span>)
-<span class="kw">else</span>: <span class="fn">print</span>(<span class="str">"C"</span>)
-<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>): <span class="fn">print</span>(i)  <span class="cm"># 0 1 2 3 4</span>
-<span class="kw">for</span> f <span class="kw">in</span> fruits: <span class="fn">print</span>(f<span class="str">"我喜欢{f}"</span>)
-<span class="kw">while</span> score > <span class="num">0</span>: score -= <span class="num">10</span>  <span class="cm"># 条件循环</span></pre></div>
+<h3>1.4 HTTP — 浏览器和服务器之间的「快递协议」</h3>
+<p>IP 找到机器，但两台机器之间怎么对话？用 <strong>HTTP（超文本传输协议）</strong>。就像寄快递：你要填寄件人、收件人、物品描述。</p>
+<p>一个真正的 HTTP 请求长这样：</p>
+<div class="cb"><span class="lg">HTTP 请求</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>GET /index.html HTTP/1.1                        <span class="cm">← 方法 路径 版本</span>
+Host: www.example.com                            <span class="cm">← 找哪个网站</span>
+Accept: text/html                                <span class="cm">← 我要 HTML</span>
+User-Agent: Mozilla/5.0                          <span class="cm">← 我是浏览器</span></pre></div>
+<p>服务器收到后返回：</p>
+<div class="cb"><span class="lg">HTTP 响应</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>HTTP/1.1 200 OK                                  <span class="cm">← 状态码 200=成功</span>
+Content-Type: text/html; charset=utf-8            <span class="cm">← 内容类型</span>
+Content-Length: 1234                              <span class="cm">← 内容大小</span>
 
-<h3>2.5 函数 — 代码的「积木」</h3>
-<div class="cb"><span class="lg">Python</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre><span class="kw">def</span> <span class="fn">greet</span>(name, greeting=<span class="str">"你好"</span>):  <span class="cm"># 默认参数</span>
-    <span class="kw">return</span> f<span class="str">"{greeting}，{name}！"</span>
-<span class="fn">print</span>(<span class="fn">greet</span>(<span class="str">"张三"</span>))           <span class="cm"># 你好，张三！</span>
-<span class="fn">print</span>(<span class="fn">greet</span>(<span class="str">"Tom"</span>,<span class="str">"Hello"</span>))  <span class="cm"># Hello，Tom！</span>
-<span class="kw">def</span> <span class="fn">calc</span>(*nums): <span class="kw">return</span> <span class="fn">sum</span>(nums)  <span class="cm"># 可变参数</span>
-<span class="fn">print</span>(<span class="fn">calc</span>(<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>))       <span class="cm"># 10</span></pre></div>
+&lt;html&gt;&lt;body&gt;...网页内容...&lt;/body&gt;&lt;/html&gt;</pre></div>
 
-<h3>2.6 类（Class）— 面向对象入门</h3>
-<div class="cb"><span class="lg">Python — OOP 基础</span><button class="cpy" onclick="copy(this)">复制</button>
+<h3>1.5 HTTP 方法 — GET/POST/PUT/DELETE 到底什么意思</h3>
+<div class="tb"><table><tr><th>方法</th><th>干啥的</th><th>类比</th><th>有请求体吗</th></tr>
+<tr><td><strong>GET</strong></td><td>读数据</td><td>淘宝搜"鞋子"→看到列表</td><td>❌ 没有</td></tr>
+<tr><td><strong>POST</strong></td><td>创建数据</td><td>注册账号→填表→提交</td><td>✅ 有</td></tr>
+<tr><td><strong>PUT</strong></td><td>完整更新</td><td>把整篇文章换成新版本</td><td>✅ 有</td></tr>
+<tr><td><strong>PATCH</strong></td><td>部分更新</td><td>只改文章标题不改正文</td><td>✅ 有</td></tr>
+<tr><td><strong>DELETE</strong></td><td>删除</td><td>删帖子</td><td>❌ 没有</td></tr></table></div>
+<div class="ib tp"><span class="ie">💡</span><span><strong>GET 和 POST 的区别是最常考的面试题。</strong>GET 把参数放在网址后面（<code>?name=张三&age=25</code>），POST 把参数藏在请求体里。所以登录密码绝对不能用 GET——网址会被别人看到。用 POST。</span></div>
+
+<h3>1.6 HTTP 状态码 — 一眼看出问题在哪</h3>
+<div class="cg"><div class="c" style="border-left:3px solid var(--gn)"><h4>2xx 成功</h4><p><code>200 OK</code> 正常<br><code>201 Created</code> 创建成功<br><code>204 No Content</code> 成功但没数据返回</p></div>
+<div class="c" style="border-left:3px solid var(--or)"><h4>3xx 重定向</h4><p><code>301</code> 永久搬家<br><code>302</code> 临时搬家<br><code>304</code> 用缓存别重发</p></div>
+<div class="c" style="border-left:3px solid var(--rd)"><h4>4xx 你错了</h4><p><code>400</code> 请求格式错<br><code>401</code> 没登录<br><code>403</code> 没权限<br><code>404</code> 页面不存在</p></div>
+<div class="c" style="border-left:3px solid var(--rd)"><h4>5xx 服务器错了</h4><p><code>500</code> 服务器挂了<br><code>502</code> 网关坏了<br><code>503</code> 服务器维护中</p></div></div>
+<p>记住这两组：<strong>404 是你找的页面不存在，500 是服务器自己出问题了。</strong>遇到 429 说明你请求太频繁被限速了，等一会再试。</p>
+
+<h3>1.7 端口 — 一台机器跑几十个服务</h3>
+<p>IP 找到哪台服务器，<strong>端口（Port）</strong>找到这台服务器上的哪个服务。</p>
+<p>类比：IP=写字楼地址，端口=楼里的房间号。你寄快递要写「XX大楼 801 室」，发 HTTP 请求就是「IP 地址 + 端口 80」。</p>
+<div class="tb"><table><tr><th>端口</th><th>标准服务</th><th>你见过吗</th></tr><tr><td>80</td><td>HTTP（网页）</td><td>每次打开网页</td></tr><tr><td>443</td><td>HTTPS（加密网页）</td><td>地址栏有🔒时</td></tr><tr><td>22</td><td>SSH（远程登录服务器）</td><td>程序员天天用</td></tr><tr><td>3000/8000/8080</td><td>开发调试用</td><td>你本地开发时</td></tr></table></div>
+
+<h3>1.8 HTTPS 为什么比 HTTP 安全</h3>
+<p>HTTP 传输是<strong>明文</strong>的——任何人截获你的数据包都能直接看到内容。你在公共 WiFi 上输入的密码如果走 HTTP，隔壁桌的黑客拿个工具就能读。</p>
+<p><strong>HTTPS = HTTP + TLS 加密</strong>。数据在发送前加密，只有接收方有密钥能解开。中间截获的都是乱码。<strong>地址栏有🔒=HTTPS。</strong>现在几乎所有网站都是 HTTPS。</p>
+
+<h3>1.9 REST API — 当今最主流的 API 风格</h3>
+<p>REST = Representational State Transfer。听起来吓人，其实就几条规范：</p>
+<div class="cb"><span class="lg">REST API 设计示例</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="cm"># 获取所有用户</span>  GET    /api/users
+<span class="cm"># 获取 ID=1 的用户</span>GET    /api/users/1
+<span class="cm"># 创建用户</span>       POST   /api/users           <span class="cm">+ 请求体（用户信息JSON）</span>
+<span class="cm"># 更新用户</span>       PUT    /api/users/1          <span class="cm">+ 请求体（完整新数据）</span>
+<span class="cm"># 删除用户</span>       DELETE /api/users/1</pre></div>
+<p>你调用 DeepSeek API 本质上就是：<strong>POST 一个 JSON 到 https://api.deepseek.com/v1/chat/completions → 服务器返回 JSON → 你的程序解析结果。</strong></p>
+</div></section>
+
+<!-- ====== 第2章 终端和Git ====== -->
+<section class="ch" id="c2"><div class="ci">
+<div class="cn">第 2 章</div><h2>⌨️ <span>终端 & Git</span> — 每个程序员每天都用</h2>
+<p class="ds">终端是黑框框，Git 是时光机。两个工具加一起 = 你的生产力底座。</p>
+
+<h3>2.1 终端为什么重要</h3>
+<p>很多编程工具<strong>没有图形界面，只能用终端</strong>。Claude Code、Codex、npm、pip——全在终端里跑。你不是要成为命令行大师，但你必须能在终端里：①打开正确的文件夹 ②运行一个命令 ③看输出结果。</p>
+<h3>2.2 你真正需要记住的 10 个命令</h3>
+<div class="cb"><span class="lg">终端必会命令</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">ls</span>                <span class="cm"># 列出当前目录的所有文件（macOS/Linux）</span>
+<span class="kw">dir</span>               <span class="cm"># 同上（Windows）</span>
+<span class="kw">cd</span> 文件夹名         <span class="cm"># 进入这个文件夹</span>
+<span class="kw">cd</span> ..              <span class="cm"># 回上一级目录</span>
+<span class="kw">cd</span> ../../          <span class="cm"># 回上两级</span>
+<span class="kw">mkdir</span> 新文件夹名    <span class="cm"># 创建新文件夹</span>
+<span class="kw">pwd</span>               <span class="cm"># 打印当前路径（macOS/Linux）</span>
+<span class="kw">node</span> 文件名.js      <span class="cm"># 运行 JavaScript 文件</span>
+<span class="kw">python</span> 文件名.py    <span class="cm"># 运行 Python 文件</span>
+<span class="kw">npm</span> install 包名   <span class="cm"># 安装 npm 包</span></pre></div>
+
+<h3>2.3 Git 到底解决什么问题</h3>
+<p>你写了一个网站，第二天改了 50 行代码，第三天发现改坏了——但已经不知道原来什么样了。<strong>Git 就是解决这个的。</strong></p>
+<p>每次你 <code>git commit</code>，Git 就给你的整个项目拍一张<strong>快照</strong>。什么时候改坏了，随时回到任意一张快照。你还可以创建<strong>分支（Branch）</strong>——从主线分出一条支线，在上面做实验。做好了合并回去，做烂了直接删分支，主线毫发无损。</p>
+<p>GitHub 就是把你的快照<strong>存在云上</strong>。相当于百度网盘+协作平台。你把代码 push 到 GitHub，别人可以 pull 下来看、改、提合并请求。</p>
+
+<h3>2.4 Git 核心操作 — 你每天做的就这 4 步</h3>
+<div class="cb"><span class="lg">终端 — Git 日常流程</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>git add .               <span class="cm"># ①暂存：把所有改动加入待提交清单</span>
+git commit -m <span class="st">"修复了首页显示bug"</span>  <span class="cm"># ②提交：拍快照，-m后面是备注</span>
+git push                <span class="cm"># ③推送：把快照上传到 GitHub</span>
+git pull                <span class="cm"># ④拉取：下载别人推的更新</span></pre></div>
+<div class="ib wn"><span class="ie">⚠️</span><span><strong>千万不要用 git add . 就提交！</strong>提交前用 <code>git status</code> 看看哪些文件被改了。确保 <code>.env</code>（存 API Key 的文件）不在其中。API Key 上了 GitHub = 全世界都能看到。</span></div>
+
+<h3>2.5 .gitignore — 防止手滑把密钥传上去</h3>
+<div class="cb"><span class="lg">.gitignore</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>node_modules/       <span class="cm"># npm/pnpm 安装的依赖包，体积巨大，别提交</span>
+.env                <span class="cm"># 存 API Key 的文件，绝对不能提交</span>
+__pycache__/        <span class="cm"># Python 的缓存文件</span>
+*.pyc               <span class="cm"># 编译后的 Python 字节码</span>
+dist/ build/        <span class="cm"># 构建产物</span>
+.DS_Store           <span class="cm"># macOS 的垃圾文件</span></pre></div>
+
+<h3>2.6 GitHub Pages — 免费托管你的网站</h3>
+<p>只要你把 HTML 文件推到 GitHub，开启 GitHub Pages 功能，就能得到一个免费的公开网址：<code>https://你的用户名.github.io/仓库名/</code>。全世界都能打开，不用买服务器，不用备案。这是个人开发者最常用的免费部署方案。</p>
+<ol class="steps">
+<li>创建 GitHub 仓库 → 设为 Public</li>
+<li>推一个 <code>index.html</code> 到仓库</li>
+<li><code>gh api repos/用户名/仓库名/pages -X POST -f "source[branch]=master"</code></li>
+<li>得到网址 → 发给客户</li>
+</ol>
+</div></section>
+
+<!-- ====== 第3章 Python ====== -->
+<section class="ch" id="c3"><div class="ci">
+<div class="cn">第 3 章</div><h2>🐍 <span>Python 编程入门</span> — 你不需要精通，但需要看得懂</h2>
+<p class="ds">AI 开发 90% 用 Python。你不需要成为专家，但需要：看得懂、改得动、能用 Claude Code 帮你写。</p>
+
+<h3>3.1 变量 — 给数据贴个标签</h3>
+<p>你有一个数字 <strong>25</strong>，想存起来反复用。给它取个名字 <strong>age</strong>。这就是变量。</p>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">age</span> = <span class="nu">25</span>                        <span class="cm"># 整数</span>
+<span class="kw">price</span> = <span class="nu">99.90</span>                  <span class="cm"># 浮点数（带小数）</span>
+<span class="kw">name</span> = <span class="st">"张三"</span>                  <span class="cm"># 字符串</span>
+<span class="kw">is_admin</span> = <span class="kw">True</span>               <span class="cm"># 布尔值（是/否）</span>
+<span class="kw">nothing</span> = <span class="kw">None</span>                <span class="cm"># 空值</span>
+<span class="fn">print</span>(f<span class="st">"{name}今年{age}岁"</span>)  <span class="cm"># f-string：把变量插进文字里</span></pre></div>
+<p>Python 是动态类型语言——你不需要声明变量的类型。解释器自己判断。这在写代码时很爽，但在大型项目里可能出 bug（因为你可能把字符串当数字用了）。</p>
+
+<h3>3.2 容器：列表、元组、字典、集合</h3>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="cm"># 【列表 list】— 有序、可改、可重复</span>
+<span class="kw">fruits</span> = [<span class="st">"🍎"</span>, <span class="st">"🍌"</span>, <span class="st">"🍊"</span>]
+<span class="fn">print</span>(fruits[<span class="nu">0</span>])          <span class="cm"># 🍎（索引从 0 开始！）</span>
+<span class="fn">print</span>(fruits[-<span class="nu">1</span>])         <span class="cm"># 🍊（-1 表示倒数第一个）</span>
+fruits.append(<span class="st">"🍇"</span>)       <span class="cm"># 加到末尾</span>
+
+<span class="cm"># 【元组 tuple】— 有序、不可改</span>
+<span class="kw">point</span> = (<span class="nu">3</span>, <span class="nu">4</span>)           <span class="cm"># 坐标、配置项等不该被改的用元组</span>
+
+<span class="cm"># 【字典 dict】— 键值对，超常用</span>
+<span class="kw">user</span> = {
+    <span class="st">"name"</span>: <span class="st">"张三"</span>,
+    <span class="st">"age"</span>: <span class="nu">25</span>,
+    <span class="st">"skills"</span>: [<span class="st">"Python"</span>, <span class="st">"React"</span>]
+}
+<span class="fn">print</span>(user[<span class="st">"name"</span>])       <span class="cm"># "张三"</span>
+
+<span class="cm"># 【集合 set】— 无序、不可重复、快速查找</span>
+<span class="kw">tags</span> = {<span class="st">"AI"</span>, <span class="st">"Python"</span>, <span class="st">"AI"</span>}  <span class="cm"># 自动去重 → {"AI", "Python"}</span></pre></div>
+
+<h3>3.3 条件判断 — "如果...就...否则..."</h3>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">score</span> = <span class="nu">85</span>
+<span class="kw">if</span> score >= <span class="nu">90</span>:
+    <span class="fn">print</span>(<span class="st">"优秀"</span>)
+<span class="kw">elif</span> score >= <span class="nu">70</span>:         <span class="cm"># elif = else if</span>
+    <span class="fn">print</span>(<span class="st">"良好"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"需要加油"</span>)
+<span class="cm"># 注意：Python 用缩进（4个空格）表示代码块，不是 {} </span></pre></div>
+
+<h3>3.4 循环 — "每xx做一次"</h3>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="cm"># for 循环 — 遍历一个集合里的每个东西</span>
+<span class="kw">for</span> fruit <span class="kw">in</span> fruits:
+    <span class="fn">print</span>(f<span class="st">"我喜欢{fruit}"</span>)
+
+<span class="cm"># range(n) — 生成 0 到 n-1 这 n 个整数 | 超级常用</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">5</span>):
+    <span class="fn">print</span>(i)  <span class="cm"># 0 1 2 3 4（注意没有5）</span>
+
+<span class="cm"># enumerate — 同时拿索引和值 | 面试/写项目必备</span>
+<span class="kw">for</span> i, f <span class="kw">in</span> <span class="fn">enumerate</span>(fruits):
+    <span class="fn">print</span>(f<span class="st">"第{i}个：{f}"</span>)
+
+<span class="cm"># 列表推导式 — 一行代码生成新列表 | Pythonic 写法</span>
+<span class="kw">squares</span> = [x**<span class="nu">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">10</span>)]  <span class="cm"># [0,1,4,9,...,81]</span></pre></div>
+
+<h3>3.5 函数 — 把常用逻辑封装成积木</h3>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">def</span> <span class="fn">calculate_price</span>(base, discount=<span class="nu">0</span>, tax=<span class="nu">0.13</span>):
+    <span class="st">"""计算最终价格。discount=折扣率，tax=税率"""</span>
+    <span class="kw">discounted</span> = base * (<span class="nu">1</span> - discount)
+    <span class="kw">return</span> discounted * (<span class="nu">1</span> + tax)
+
+<span class="kw">result</span> = <span class="fn">calculate_price</span>(<span class="nu">100</span>, discount=<span class="nu">0.2</span>)  <span class="cm"># 100块打8折+13%税=90.4</span>
+<span class="fn">print</span>(result)  <span class="cm"># 90.4</span></pre></div>
+
+<h3>3.6 类（Class）— 把数据和操作打包</h3>
+<p><strong>类=蓝图，实例=根据蓝图造出来的具体对象。</strong>"人"是一个类，"你"是这个类的实例。类定义了属性（name,age）和方法（speak()）。</p>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
 <pre><span class="kw">class</span> <span class="fn">Student</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, score):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, score):  <span class="cm"># __init__ = 构造函数，创建实例时自动调用</span>
         <span class="kw">self</span>.name = name; <span class="kw">self</span>.score = score
-    <span class="kw">def</span> <span class="fn">pass_or_not</span>(<span class="kw">self</span>):
-        <span class="kw">return</span> <span class="str">"通过✅"</span> <span class="kw">if</span> <span class="kw">self</span>.score >= <span class="num">60</span> <span class="kw">else</span> <span class="str">"挂科❌"</span>
-<span class="kw">s1</span> = <span class="fn">Student</span>(<span class="str">"张三"</span>,<span class="num">85</span>)
-<span class="fn">print</span>(s1.pass_or_not())  <span class="cm"># 通过✅</span></pre></div>
-<div class="ib tip"><span class="ib-e">💡</span><span><strong>面向对象就是：</strong>把数据和操作数据的方法打包在一起。学生有名字和分数（数据），能判断是否及格（方法）。类是模板，对象是具体的实例。</span></div>
+    <span class="kw">def</span> <span class="fn">pass_or_not</span>(<span class="kw">self</span>):  <span class="cm"># 方法 = 类里定义的函数</span>
+        <span class="kw">return</span> <span class="st">"✅"</span> <span class="kw">if</span> <span class="kw">self</span>.score >= <span class="nu">60</span> <span class="kw">else</span> <span class="st">"❌"</span>
+    <span class="kw">def</span> <span class="fn">change_score</span>(<span class="kw">self</span>, new_score):
+        <span class="kw">self</span>.score = new_score  <span class="cm"># 修改自己的属性</span>
 
-<h3>2.7 Python 实战：Excel 批量处理（能卖钱的技能）</h3>
-<p>这是你能接的第一类单子。帮人批量处理 Excel——合并表格、统计、自动填充——AI 帮你写代码，你 5 分钟搞定客户 2 小时才能做完的活。</p>
-<div class="cb"><span class="lg">Python — Excel 自动处理</span><button class="cpy" onclick="copy(this)">复制</button>
+<span class="kw">s1</span> = <span class="fn">Student</span>(<span class="st">"张三"</span>, <span class="nu">85</span>); <span class="kw">s2</span> = <span class="fn">Student</span>(<span class="st">"李四"</span>, <span class="nu">45</span>)
+<span class="fn">print</span>(s1.pass_or_not())  <span class="cm"># ✅</span>
+<span class="fn">print</span>(s2.pass_or_not())  <span class="cm"># ❌</span></pre></div>
+
+<h3>3.7 Python 赚钱实操：Excel 自动处理</h3>
+<p>这是你最可能接到的第一类单。客户给你混乱的 Excel，你写个脚本自动处理。</p>
+<div class="cb"><span class="lg">Python — 真实 Excel 处理脚本</span><button class="cp" onclick="cp(this)">复制</button>
 <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
-<span class="cm"># 读取 Excel</span><span class="kw">df</span> = pd.read_excel(<span class="str">"销售数据.xlsx"</span>)
-<span class="cm"># 筛选：找出销售额大于 5000 的记录</span><span class="kw">high</span> = df[df[<span class="str">"销售额"</span>] > <span class="num">5000</span>]
-<span class="cm"># 按部门汇总</span><span class="kw">summary</span> = df.groupby(<span class="str">"部门"</span>)[<span class="str">"销售额"</span>].<span class="fn">sum</span>()
-<span class="cm"># 合并多个 Excel</span><span class="kw">files</span> = [<span class="str">"1月.xlsx"</span>,<span class="str">"2月.xlsx"</span>,<span class="str">"3月.xlsx"</span>]
-<span class="kw">all_data</span> = pd.concat([pd.read_excel(f) <span class="kw">for</span> f <span class="kw">in</span> files])
-all_data.to_excel(<span class="str">"合并结果.xlsx"</span>, index=<span class="kw">False</span>)</pre></div>
+<span class="kw">df</span> = pd.read_excel(<span class="st">"销售数据.xlsx"</span>)
+<span class="cm"># ① 过滤：只要销售额>5000的</span><span class="kw">high</span> = df[df[<span class="st">"销售额"</span>] > <span class="nu">5000</span>]
+<span class="cm"># ② 按部门汇总</span><span class="kw">summary</span> = df.groupby(<span class="st">"部门"</span>)[<span class="st">"销售额"</span>].<span class="fn">sum</span>().reset_index()
+<span class="cm"># ③ 多个 Excel 合并成一个</span>
+<span class="kw">all_data</span> = pd.concat([pd.read_excel(f) <span class="kw">for</span> f <span class="kw">in</span> [<span class="st">"1月.xlsx"</span>,<span class="st">"2月.xlsx"</span>,<span class="st">"3月.xlsx"</span>]])
+<span class="cm"># ④ 导出结果</span>all_data.to_excel(<span class="st">"合并结果.xlsx"</span>, index=<span class="kw">False</span>)</pre></div>
+<p>这个脚本在闲鱼能卖 ¥50-200。客户手动做可能要 2 小时，你让 Claude Code 帮你写 5 分钟。</p>
 
-<h3>2.8 Python 实战：网页爬虫（另一个高价技能）</h3>
-<div class="cb"><span class="lg">Python — 网页爬虫</span><button class="cpy" onclick="copy(this)">复制</button>
+<h3>3.8 Python 赚钱实操：网页爬虫</h3>
+<div class="cb"><span class="lg">Python — 爬取商品信息</span><button class="cp" onclick="cp(this)">复制</button>
 <pre><span class="kw">import</span> requests; <span class="kw">from</span> bs4 <span class="kw">import</span> BeautifulSoup; <span class="kw">import</span> csv
-<span class="kw">url</span> = <span class="str">"https://books.toscrape.com"</span>  <span class="cm"># 示例网站</span>
-<span class="kw">resp</span> = requests.get(url); <span class="kw">soup</span> = BeautifulSoup(resp.text, <span class="str">"html.parser"</span>)
+<span class="kw">url</span> = <span class="st">"https://books.toscrape.com"</span>  <span class="cm"># 练习用网站，随便爬不违法</span>
+<span class="kw">resp</span> = requests.get(url); <span class="kw">soup</span> = BeautifulSoup(resp.text, <span class="st">"html.parser"</span>)
 <span class="kw">books</span> = []
-<span class="kw">for</span> item <span class="kw">in</span> soup.select(<span class="str">"article.product_pod"</span>):
-    books.append({<span class="str">"title"</span>: item.h3.a.attrs[<span class="str">"title"</span>], <span class="str">"price"</span>: item.select_one(<span class="str">".price_color"</span>).text})
-<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"books.csv"</span>,<span class="str">"w"</span>,newline=<span class="str">""</span>) <span class="kw">as</span> f:
-    w = csv.DictWriter(f, fieldnames=[<span class="str">"title"</span>,<span class="str">"price"</span>]); w.writeheader(); w.writerows(books)
-<span class="fn">print</span>(f<span class="str">"✅ 爬了{len(books)}本书"</span>)</pre></div>
+<span class="kw">for</span> item <span class="kw">in</span> soup.select(<span class="st">"article.product_pod"</span>):
+    books.append({<span class="st">"title"</span>:item.h3.a.attrs[<span class="st">"title"</span>], <span class="st">"price"</span>:item.select_one(<span class="st">".price_color"</span>).text})
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"books.csv"</span>,<span class="st">"w"</span>,newline=<span class="st">""</span>,encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    w = csv.DictWriter(f, fieldnames=[<span class="st">"title"</span>,<span class="st">"price"</span>]); w.writeheader(); w.writerows(books)
+<span class="fn">print</span>(f<span class="st">"✅ 爬了{len(books)}本书"</span>)</pre></div>
+<p><strong>注意：</strong>爬虫有法律风险。只爬公开数据，不爬需要登录的网站，不把数据转卖。遵守 robots.txt 协议。</p>
 </div></section>
 
-<!-- ======== 第3章 计算机网络 ======== -->
-<section class="ch" id="c3"><div class="ch-i">
-<div class="chn">第 3 章</div><h2>🌐 <span>计算机网络</span> — 你的数据是怎么传出去的</h2>
-<p class="dsc">前端调后端、浏览器发请求、服务器响应——这些背后全靠网络打交道。</p>
-<h3>3.1 HTTP — 互联网的通用语言</h3>
-<p>浏览器和服务器之间用 <strong>HTTP</strong> 通信。HTTPS=HTTP+加密（地址栏🔒）。HTTP 有 7 种常见<strong>方法（Method）</strong>：</p>
-<div class="tb"><table><tr><th>方法</th><th>作用</th><th>对应数据库操作</th></tr><tr><td>GET</td><td>读取数据</td><td>SELECT</td></tr><tr><td>POST</td><td>创建数据</td><td>INSERT</td></tr><tr><td>PUT</td><td>完整更新</td><td>UPDATE(全字段)</td></tr><tr><td>PATCH</td><td>部分更新</td><td>UPDATE(部分字段)</td></tr><tr><td>DELETE</td><td>删除数据</td><td>DELETE</td></tr></table></div>
-<h3>3.2 HTTP 状态码 — 一眼看出问题在哪</h3>
-<div class="cg"><div class="c"><h4 style="color:var(--green)">2xx 成功</h4><p>200 OK — 正常<br>201 Created — 创建成功<br>204 No Content — 成功但无返回</p></div>
-<div class="c"><h4 style="color:var(--orange)">3xx 重定向</h4><p>301 永久搬家<br>302 临时搬家<br>304 用缓存</p></div>
-<div class="c"><h4 style="color:var(--red)">4xx 客户端错误</h4><p>400 请求格式错<br>401 没认证<br>403 你没权限<br>404 找不到<br>429 请求太多被限</p></div>
-<div class="c"><h4 style="color:var(--red)">5xx 服务端错误</h4><p>500 服务器崩了<br>502 网关坏了<br>503 服务器在维护<br>504 超时</p></div></div>
-<h3>3.3 DNS — 域名怎么变成 IP 的</h3>
-<p>你在浏览器打 <code>google.com</code> → DNS 服务器自动查出真正的 IP（如 <code>142.250.72.46</code>）→ 浏览器向这个 IP 发请求。DNS 像一个全球电话簿。</p>
-<h3>3.4 端口 — 一台服务器跑多个服务</h3>
-<p>IP 找到机器，<strong>端口</strong>找到这台机器上的具体服务：</p>
-<div class="tb"><table><tr><th>端口</th><th>服务</th></tr><tr><td>80</td><td>HTTP（网页）</td></tr><tr><td>443</td><td>HTTPS（加密网页）</td></tr><tr><td>22</td><td>SSH（远程登录）</td></tr><tr><td>3306</td><td>MySQL 数据库</td></tr><tr><td>3000/8000/8080</td><td>开发常用端口</td></tr></table></div>
-<div class="ib tip"><span class="ib-e">💡</span><span><strong>一句话记住网络：</strong>DNS 翻译域名→IP → HTTP 协议发请求 → 端口决定哪个服务处理 → 服务器处理完返回响应。整个过程通常不到 1 秒。</span></div>
+<!-- ====== 第4章 API ====== -->
+<section class="ch" id="c4"><div class="ci">
+<div class="cn">第 4 章</div><h2>🔌 <span>API 彻底讲透</span> — 所有 AI 应用都建立在它上面</h2>
+<p class="ds">API = Application Programming Interface。别被名字唬住。它就是一个「服务员」。</p>
+
+<h3>4.1 为什么需要 API</h3>
+<p>你点外卖。你不进厨房、不开火、不买菜——你只要对着手机点两下，饭就送到门口。厨房和你之间有个<strong>中间层</strong>：菜单+外卖员。这个中间层就是 API。</p>
+<p>同理，DeepSeek 的模型跑在云端的大 GPU 服务器上。你不可能在自己的笔记本上跑 6710 亿参数的模型。你只能发请求给 DeepSeek 的服务器，让它算完把结果返回给你。这个「发请求→收结果」的通道就是 API。</p>
+
+<h3>4.2 API Key — 不是订阅，是按量计费的预付费表</h3>
+<p>很多人以为 API Key 是"买了个会员"。<strong>不是的。</strong>API Key 像一张<strong>预付费电卡</strong>。你往账户里充值 ¥10，每次调用扣几分到几毛，余额归零就停。你不调用就不扣钱。</p>
+<p>OpenAI 的 Key 以 <code>sk-</code> 开头，Anthropic 的 Key 以 <code>sk-ant-</code> 开头，DeepSeek 的也是 <code>sk-</code>。Key 是幂等凭证——拿到 Key = 能花钱 = 绝对不能泄露。</p>
+
+<h3>4.3 JSON — API 世界的通用语</h3>
+<p>你的程序说 Python 话，AI 服务器说 C++ 话，中间怎么沟通？用 JSON——一种极其简单的、纯文本的、人和机器都能读懂的格式。</p>
+<p>JSON 只有 6 种类型：字符串（<code>"hello"</code>）、数字（<code>42</code>）、布尔（<code>true/false</code>）、数组（<code>[1,2,3]</code>）、对象（<code>{"key":"value"}</code>）、null（<code>null</code>）。<strong>一切都是键值对+嵌套。</strong></p>
+<div class="cb"><span class="lg">JSON — 这就是 API 通信的格式</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>{
+  <span class="st">"messages"</span>: [
+    { <span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"解释什么是API"</span> }
+  ],
+  <span class="st">"model"</span>: <span class="st">"deepseek-chat"</span>,
+  <span class="st">"temperature"</span>: <span class="nu">0.7</span>,
+  <span class="st">"stream"</span>: <span class="kw">false</span>
+}</pre></div>
+<p>这个 JSON 翻译成人话：<strong>"喂，DeepSeek，用 deepseek-chat 模型，温度 0.7，别流式，帮我回答这个问题：解释什么是 API。"</strong>——然后 DeepSeek 内部处理，返回另一个 JSON 给你，里面就有答案。</p>
 </div></section>
 
-<!-- ======== 第4章 Git ======== -->
-<section class="ch" id="c4"><div class="ch-i">
-<div class="chn">第 4 章</div><h2>🔄 <span>Git & GitHub</span> — 代码的时光机</h2>
-<p class="dsc">Git 是全球通用的版本控制系统。没有 Git，多人协作写代码是灾难。</p>
-<h3>4.1 Git 解决什么问题</h3>
-<div class="cg"><div class="c"><span class="em">📸</span><h4>快照（Save Point）</h4><p>每次 commit 就是给你的代码拍一张快照。改坏了随时回滚到任意历史版本。</p></div><div class="c"><span class="em">🌿</span><h4>分支（Branch）</h4><p>从主线分出支线，在上面做实验。做好了合并（merge），做烂了删掉。互不干扰。</p></div><div class="c"><span class="em">☁️</span><h4>远程仓库（Remote）</h4><p>代码存在 GitHub/Gitee 上。相当于代码的百度网盘+协作平台。</p></div><div class="c"><span class="em">🤝</span><h4>合并（Merge）</h4><p>你的代码和他的代码自动合并。有冲突时 Git 会标出来，手动解决就行。</p></div></div>
-<h3>4.2 常用 Git 命令</h3>
-<div class="cb"><span class="lg">终端</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre>git init              <span class="cm"># 初始化（让当前目录变成仓库）</span>
-git add .             <span class="cm"># 暂存所有改动</span>
-git commit -m <span class="str">"解决了bug"</span>  <span class="cm"># 提交（-m是备注）</span>
-git push              <span class="cm"># 推到 GitHub</span>
-git pull              <span class="cm"># 拉下别人的更新</span>
-git status            <span class="cm"># 看当前状态</span>
-git log               <span class="cm"># 看提交历史</span>
-git checkout -b xxx   <span class="cm"># 创建并切换到新分支</span>
-git merge xxx         <span class="cm"># 合并分支</span>
-git reset --hard HEAD~1  <span class="cm"># 回到上一个版本（危险操作！）</span></pre></div>
-<div class="ib warn"><span class="ib-e">⚠️</span><span><strong>千万不要</strong>把你的 API Key、密码、.env 文件提交到 GitHub 上。用 <code>.gitignore</code> 文件排除它们。已经提交的密钥=公开的秘密，必须立即删除+重新生成。</span></div>
-<h3>4.3 .gitignore — 什么不该提交</h3>
-<div class="cb"><span class="lg">.gitignore</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre>node_modules/       <span class="cm"># 依赖包（太大）</span>
-.env                <span class="cm"># 环境变量（含密钥）</span>
-__pycache__/        <span class="cm"># Python 缓存</span>
-*.pyc               <span class="cm">#编译文件</span>
-dist/ build/        <span class="cm"># 构建产物</span></pre></div>
+<!-- ====== 第5章 AI理论 ====== -->
+<section class="ch" id="c5"><div class="ci">
+<div class="cn">第 5 章</div><h2>🧠 <span>AI 理论</span> — 模型到底怎么「学」出来的</h2>
+<p class="ds">不要求你推导公式，但你要知道 Token 是什么、Context Window 怎么影响成本、Temperature 怎么调。</p>
+
+<h3>5.1 AI → 机器学习 → 深度学习 → LLM → Agent</h3>
+<p>这是一个嵌套关系。AI 是最大的圈，Agent 是最里面那个：</p>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:22px 20px">
+AI（人工智能）→ 让机器表现出智能，包罗万象：下棋、识图、翻译、开车...
+  └── ML（机器学习）→ AI当前最成功的子领域：不靠人工写规则，让机器从数据里自动找规律
+       └── DL（深度学习）→ ML 中最牛的子领域：用多层次的人工神经网络模拟人脑
+            └── LLM（大语言模型）→ DL 的最新突破：用海量文本训练出的"写文章机器"
+                 └── Agent（智能体）→ LLM + 工具调用：不只是聊天，能自主执行任务</pre></div>
+
+<h3>5.2 LLM 的本质：超强「下一个词预测器」</h3>
+<p>不要神话大模型。<strong>它做的事情本质上就是：给定前文，猜下一个最可能的词。</strong>然后一个词一个词地续写下去，直到写完。它没有「意识」、不懂「意义」——但它见过万亿级别的文字，对词汇之间的概率关系掌握到极致。这种「概率续写」能力强大到让它看起来像在「思考」。</p>
+
+<h3>5.3 Token — 模型不是按字算钱的</h3>
+<p>用中文说："我喜欢你"→ 但模型内部不是按汉字处理的。它把文字切成 <strong>Token</strong>（子词级片段）。</p>
+<p>大致换算：<strong>1 Token ≈ 0.75 个英文单词 ≈ 0.5 个中文字 ≈ 3-4 个英文字母。</strong>"Hello world" 约 3 Token，"你好世界" 约 4 Token。</p>
+<p>你调一次 API，费用 =（输入 Token 数 + 输出 Token 数）× 单价。DeepSeek 的单价是每百万 Token 1-4 块钱。</p>
+<div class="ib gd"><span class="ie">💰</span><span><strong>成本实测：</strong>我问 DeepSeek "写一首关于编程的打油诗"，输入约 15 Token，输出约 120 Token，总消耗约 135 Token。DeepSeek V4 定价每百万 Token 约 ¥2，这次调用花了 135/1,000,000 × 2 ≈ ¥0.00027。不到 0.03 分钱。你充 ¥10，能这样聊几万次。</span></div>
+
+<h3>5.4 Temperature — 控制 AI 的「创意浓度」</h3>
+<p>Temperature 范围 0~2。原理：它影响模型选词的概率分布。</p>
+<p><strong>Temperature = 0</strong> → 模型只选概率最高的词。输出稳定、可重复。适合：写代码、事实问答、翻译。<br><strong>Temperature = 1</strong> → 模型可能在"概率前几名"中随机选。有创意但如果选到低概率的词可能不准确。适合：写故事、诗歌、头脑风暴。<br><strong>Temperature > 1</strong> → 开始胡说八道。不建议。</p>
+<div class="ib tp"><span class="ie">🎯</span><span><strong>经验公式：</strong>写代码/数据提取/翻译 → 0.0~0.3。写文章/邮件/文案 → 0.7~0.9。头脑风暴/创意 → 1.0。</span></div>
+
+<h3>5.5 Context Window — 模型一次能「读」多少字</h3>
+<p>Context Window 越大，AI 越能理解你的整本书、整个项目的全部代码。但 Context 越大也越贵——因为你把更多 Token 放进去了。DeepSeek V4 的 1M Context 能一次性读完《三体》第一部（约 80 万字），Claude 200K 相当于一本中篇小说，GPT-4o 128K ≈ 300 页文档。</p>
+<p>在实际开发中：<strong>Context Window = 你的整个项目代码能否一次性喂给 AI。</strong>如果项目超过 Context Window，你需要做 RAG（后面讲）。</p>
 </div></section>
 
-<!-- ======== 第5章 API ======== -->
-<section class="ch" id="c5"><div class="ch-i">
-<div class="chn">第 5 章</div><h2>🔌 <span>什么是 API</span> — 你连接 AI 的管道</h2>
-<p class="dsc">API=服务员。你在程序中发请求，API 传话给后端 AI，AI 返回结果。本质就是两层：请求+响应。</p>
-<h3>5.1 餐厅类比 — 5分钟彻底搞懂</h3>
-<div class="cg"><div class="c"><span class="em">👤</span><h4>你（客户端）</h4><p>坐在桌前想吃饭，<strong>不能进厨房</strong>。只能看菜单、叫服务员。</p></div><div class="c"><span class="em">📋</span><h4>菜单（API 文档）</h4><p>写着能点什么、需要什么配料。<strong>API 文档就是菜单</strong>。</p></div><div class="c"><span class="em">🤵</span><h4>服务员（API）</h4><p>你→服务员→厨房→端回来。<strong>API 就是传话员。</strong></p></div><div class="c"><span class="em">👨‍🍳</span><h4>厨房（AI 服务器）</h4><p>大厨=OpenAI/DeepSeek 的模型。负责思考、生成。</p></div></div>
-<h3>5.2 API Key — 你的门禁卡</h3>
-<p>每次你调用 AI 的 API，都要带着 Key。没 Key，厨房不理你。OpenAI 的 Key 是 <code>sk-</code> 开头，Anthropic 的是 <code>sk-ant-</code>。它不是订阅制——你充值 ¥10，每次调用扣几分钱，花完就停。</p>
-<h3>5.3 JSON — API 对话的唯一语言</h3>
-<div class="cb"><span class="lg">JSON</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre>{<span class="str">"model"</span>:<span class="str">"deepseek-chat"</span>,
- <span class="str">"messages"</span>:[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好"</span>}],
- <span class="str">"temperature"</span>:<span class="num">0.7</span>}</pre></div>
-<p>你发的请求是 JSON，AI 返回的结果也是 JSON。编程的本质就是：构造 JSON → 发给 API → 解析返回的 JSON → 用数据做事。</p>
+<!-- ====== 第6章 大模型 ====== -->
+<section class="ch" id="c6"><div class="ci">
+<div class="cn">第 6 章</div><h2>🤖 <span>大模型全景</span> — 2026 年你应该知道的模型</h2>
+<div class="tb"><table><tr><th>模型</th><th>公司</th><th>最强</th><th>Context</th><th>价格</th><th>适合场景</th></tr>
+<tr><td><strong>GPT-4.1</strong></td><td>OpenAI</td><td>代码/推理</td><td>1M</td><td>$$$</td><td>复杂算法/深度推理</td></tr>
+<tr><td><strong>Claude Opus 4.8</strong></td><td>Anthropic</td><td>长文分析/逻辑</td><td>200K</td><td>$$$$</td><td>法律文书/研究报告</td></tr>
+<tr><td><strong>Claude Sonnet 4.6</strong></td><td>Anthropic</td><td>性价比王者</td><td>200K</td><td>$$</td><td>日常编程（推荐）</td></tr>
+<tr><td><strong>DeepSeek V4</strong></td><td>深度求索</td><td>中文/代码/性价比</td><td>1M</td><td>$</td><td>国内开发首选</td></tr>
+<tr><td><strong>Gemini 2.5 Pro</strong></td><td>Google</td><td>多模态/搜索</td><td>1M</td><td>$$</td><td>图片+文字混合任务</td></tr>
+<tr><td><strong>GPT-4o-mini</strong></td><td>OpenAI</td><td>便宜快速</td><td>128K</td><td>$</td><td>简单任务/大批量</td></tr></table></div>
+<div class="ib tp"><span class="ie">🎯</span><span><strong>你的最优策略：</strong>主模型用 DeepSeek V4（中文好+极便宜），复杂代码项目用 Claude Sonnet。月费控制在 ¥50 以内。</span></div>
+<p><strong>开源模型（Ollama 部署）：</strong>如果你有 GPU，可以用 Qwen3（通义千问开源版）、Llama-4 等开源模型跑在本地。Ollama 是一个一行命令就能在本地跑开源模型的工具。好处：完全免费、数据不出你的电脑。坏处：需要好的显卡。</p>
 </div></section>
 
-<!-- ======== 第6章 AI概念 ======== -->
-<section class="ch" id="c6"><div class="ch-i">
-<div class="chn">第 6 章</div><h2>🧠 <span>AI 基础概念</span> — 别怕，很简单的</h2>
-<h3>6.1 一张图搞懂 AI 家族</h3>
-<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:24px 20px">
-┌────── AI (人工智能) ── 让机器表现出智能的一切技术 ──────────────────┐
-│  ┌─ ML (机器学习) ── 从数据中自动学习规律，不用人工写规则 ─────────┐ │
-│  │ ┌─ DL (深度学习) ── 多层神经网络，模拟人脑结构 ──────────────┐ │ │
-│  │ │ ┌─ LLM (大语言模型) ── GPT / Claude / DeepSeek ────────┐ │ │ │
-│  │ │ │ ┌─ Agent ── 能使用工具、执行多步任务的自主AI ───┐    │ │ │ │
-│  │ │ │ └──────────────────────────────────────────────┘    │ │ │ │
-│  │ │ └────────────────────────────────────────────────────┘ │ │ │
-│  │ └────────────────────────────────────────────────────────┘ │ │
-│  └────────────────────────────────────────────────────────────┘ │
-└──────────────────────────────────────────────────────────────────┘</pre></div>
-<h3>6.2 LLM 到底在干什么</h3>
-<p><strong>LLM 是一个超强续写机器。</strong>你给它一段文字，它预测下一个最可能的词，一个词一个词续写下去。对代码、翻译、写作——全是同一个机制。</p>
-<h3>6.3 Token、Temperature、Context Window</h3>
-<div class="cg"><div class="c"><span class="em">🪙</span><h4>Token（令牌）</h4><p>模型的计价单位。1 token≈0.75个英文单词≈0.5个中文汉字。1000 token≈几厘钱（DeepSeek）。一句话总结：<strong>按字数收钱，但计价单位不是"字"而是"token"。</strong></p></div>
-<div class="c"><span class="em">🌡️</span><h4>Temperature（温度）</h4><p>0~2之间。0=最保守（代码/事实），1=有创意的发散（写作/头脑风暴）。写代码设 0.0~0.3，写文章 0.7~1.0。</p></div>
-<div class="c"><span class="em">📐</span><h4>Context Window</h4><p>模型一次能"读到"的最大文字量。GPT-4o=128K(≈一本中篇小说)，Claude=200K，DeepSeek V4=1M(≈三体第一部)。context越大越贵。</p></div>
-<div class="c"><span class="em">⚙️</span><h4>System Prompt</h4><p>预设角色+规则。比如"你是资深前端工程师，用中文+emoji回复"。这不算在用户输入里，不计费。</p></div></div>
-</div></section>
-
-<!-- ======== 第7章 大模型 ======== -->
-<section class="ch" id="c7"><div class="ch-i">
-<div class="chn">第 7 章</div><h2>🤖 <span>大模型全景</span> — 谁是谁，怎么选</h2>
-<div class="tb"><table><tr><th>模型</th><th>公司</th><th>最强</th><th>Context</th><th>价格</th><th>适合谁</th></tr>
-<tr><td>GPT-4.1</td><td>OpenAI</td><td>代码、推理</td><td>1M</td><td>$$$</td><td>专业开发</td></tr>
-<tr><td>Claude Opus 4.8</td><td>Anthropic</td><td>长文、逻辑</td><td>200K</td><td>$$$</td><td>复杂项目</td></tr>
-<tr><td>Claude Sonnet 4.6</td><td>Anthropic</td><td>性价比王者</td><td>200K</td><td>$$</td><td>日常编程</td></tr>
-<tr><td>DeepSeek V4</td><td>DeepSeek</td><td>中文、代码</td><td>1M</td><td>$</td><td>国内开发首选</td></tr>
-<tr><td>Gemini 2.5 Pro</td><td>Google</td><td>多模态/搜索</td><td>1M</td><td>$$</td><td>图片理解</td></tr>
-<tr><td>GPT-4o-mini</td><td>OpenAI</td><td>便宜快速</td><td>128K</td><td>$</td><td>简单任务</td></tr>
-<tr><td>Claude Haiku 4.5</td><td>Anthropic</td><td>极速响应</td><td>200K</td><td>$</td><td>高并发/实时</td></tr></table></div>
-<div class="ib tip"><span class="ib-e">🎯</span><span><strong>新手推荐：</strong>DeepSeek V4（中文好+最便宜）做主模型，Claude Sonnet 4.6 做复杂代码项目。双枪切换，成本最低。</span></div>
-<h3>网页版 vs API</h3>
-<div class="cg"><div class="c"><span class="em">💬</span><h4>网页版（免费）</h4><p>ChatGPT/豆包/通义千问。在浏览器聊天，手动打字，手动复制粘贴结果。不能集成到你的程序里。</p></div><div class="c"><span class="em">⚡</span><h4>API（按量计费）</h4><p>在代码里调用 AI。可以批量处理、自动化、做产品、嵌入网站/APP。充 ¥10 够学两个月。</p></div></div>
-</div></section>
-
-<!-- ======== 第8章 API实操 ======== -->
-<section class="ch" id="c8"><div class="ch-i">
-<div class="chn">第 8 章</div><h2>⚡ <span>API 实操</span> — 第一行代码就让 AI 为你工作</h2>
-<h3>8.1 调用 DeepSeek API</h3>
-<ol class="steps"><li>注册 <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> → 实名认证 → 充值 ¥10</li><li>创建 API Key（sk-开头，<strong>只显示一次！立即复制保存</strong>）</li><li><code>pip install openai</code></li></ol>
-<div class="cb"><span class="lg">Python — 第一段 AI 代码</span><button class="cpy" onclick="copy(this)">复制</button>
+<!-- ====== 第7章 API编程 ====== -->
+<section class="ch" id="c7"><div class="ci">
+<div class="cn">第 7 章</div><h2>⚡ <span>API 编程</span> — 从第一段代码到生产级应用</h2>
+<h3>7.1 调用 DeepSeek（推荐起步）</h3>
+<ol class="steps">
+<li>注册 <a href="https://platform.deepseek.com">platform.deepseek.com</a>，实名认证，充值</li>
+<li>创建 API Key，<strong>立刻复制保存</strong>（只显示一次）</li>
+<li><code>pip install openai</code></li>
+</ol>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
 <pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
-<span class="kw">client</span> = OpenAI(api_key=<span class="str">"sk-你的Key"</span>, base_url=<span class="str">"https://api.deepseek.com/v1"</span>)
-<span class="kw">resp</span> = client.chat.completions.create(model=<span class="str">"deepseek-chat"</span>,
-  messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"用一句话解释什么是递归"</span>}])
-<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
-<h3>8.2 多轮对话</h3>
-<div class="cb"><span class="lg">Python</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre><span class="kw">msgs</span> = [{<span class="str">"role"</span>:<span class="str">"system"</span>,<span class="str">"content"</span>:<span class="str">"你是日语老师"</span>},
-        {<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"「ありがとう」是什么意思？"</span>},
-        {<span class="str">"role"</span>:<span class="str">"assistant"</span>,<span class="str">"content"</span>:<span class="str">"是"谢谢"的意思。"</span>},
-        {<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"再教我3个常用日语单词"</span>}]
-<span class="kw">r</span> = client.chat.completions.create(model=<span class="str">"deepseek-chat"</span>, messages=<span class="kw">msgs</span>)</pre></div>
-<h3>8.3 流式输出（逐字吐出，像打字机）</h3>
-<div class="cb"><span class="lg">Python</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre><span class="kw">stream</span> = client.chat.completions.create(model=<span class="str">"deepseek-chat"</span>,
-  messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"写一首关于编程的五言绝句"</span>}], stream=<span class="kw">True</span>)
-<span class="kw">for</span> chunk <span class="kw">in</span> stream:
-    <span class="kw">if</span> chunk.choices[<span class="num">0</span>].delta.content:
-        <span class="fn">print</span>(chunk.choices[<span class="num">0</span>].delta.content, end=<span class="str">""</span>, flush=<span class="kw">True</span>)</pre></div>
-<h3>8.4 调用 Claude API</h3>
-<div class="cb"><span class="lg">Python</span><button class="cpy" onclick="copy(this)">复制</button>
+<span class="kw">client</span> = OpenAI(
+    api_key=<span class="st">"sk-你的Key"</span>,
+    base_url=<span class="st">"https://api.deepseek.com/v1"</span>  <span class="cm"># 这行是关键！指向 DeepSeek</span>
+)
+<span class="kw">r</span> = client.chat.completions.create(
+    model=<span class="st">"deepseek-chat"</span>,
+    messages=[{<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>:<span class="st">"用一句话解释递归"</span>}]
+)
+<span class="fn">print</span>(r.choices[<span class="nu">0</span>].message.content)</pre></div>
+<div class="ib gd"><span class="ie">✅</span><span>跑通这段代码 = <strong>你人生的第一段 AI 程序。</strong>以后写的所有 AI 应用——聊天机器人、自动写作、代码生成器——本质上都是这段代码的扩展。</span></div>
+
+<h3>7.2 调用 Claude API</h3>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
 <pre><span class="kw">from</span> anthropic <span class="kw">import</span> Anthropic
-<span class="kw">c</span> = Anthropic(api_key=<span class="str">"sk-ant-"</span>)
-<span class="kw">m</span> = c.messages.create(model=<span class="str">"claude-sonnet-4-6"</span>, max_tokens=<span class="num">1000</span>,
-  system=<span class="str">"你是中文编程老师"</span>,
-  messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"解释 async/await"</span>}])
-<span class="fn">print</span>(m.content[<span class="num">0</span>].text)</pre></div>
+<span class="kw">c</span> = Anthropic(api_key=<span class="st">"sk-ant-"</span>)
+<span class="kw">m</span> = c.messages.create(
+    model=<span class="st">"claude-sonnet-4-6"</span>,
+    max_tokens=<span class="nu">1000</span>,
+    system=<span class="st">"用中文。你是编程老师。"</span>,  <span class="cm"># System Prompt 独立出来</span>
+    messages=[{<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>:<span class="st">"解释async/await"</span>}]
+)
+<span class="fn">print</span>(m.content[<span class="nu">0</span>].text)</pre></div>
+
+<h3>7.3 多轮对话 — 让 AI 记住上下文</h3>
+<p>AI 本身<strong>无状态</strong>——每次请求它是"失忆"的。要让 AI "记住"上下文，你需要把前面的对话也放进 messages 数组里。</p>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">history</span> = [<span class="st">"user:你好"</span>, <span class="st">"assistant:你好！有什么可以帮你？"</span>]
+<span class="kw">msgs</span> = [{<span class="st">"role"</span>:<span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"你是日语老师"</span>}]
+<span class="kw">for</span> line <span class="kw">in</span> history:
+    role, content = line.split(<span class="st">":"</span>, <span class="nu">1</span>)
+    <span class="kw">if</span> role == <span class="st">"user"</span>: msgs.append({<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>: content})
+    <span class="kw">else</span>: msgs.append({<span class="st">"role"</span>:<span class="st">"assistant"</span>, <span class="st">"content"</span>: content})
+msgs.append({<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"刚教的3个单词是什么？"</span>})
+<span class="kw">r</span> = client.chat.completions.create(model=<span class="st">"deepseek-chat"</span>, messages=msgs)</pre></div>
+
+<h3>7.4 流式输出 & Function Calling</h3>
+<p>流式（Streaming）：打开一个开关，AI 就逐字返回结果而非一次性全部返回。用户体验像打字机——ChatGPT 就是这样的。</p>
+<div class="cb"><span class="lg">Python — 流式输出</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">stream</span> = client.chat.completions.create(model=<span class="st">"deepseek-chat"</span>,
+    messages=[{<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"写一首编程打油诗"</span>}], stream=<span class="kw">True</span>)
+<span class="kw">for</span> chunk <span class="kw">in</span> stream:
+    <span class="kw">if</span> chunk.choices[<span class="nu">0</span>].delta.content:
+        <span class="fn">print</span>(chunk.choices[<span class="nu">0</span>].delta.content, end=<span class="st">""</span>, flush=<span class="kw">True</span>)</pre></div>
+<p><strong>Function Calling（工具调用）</strong>：告诉 AI "你有这些工具可用"，AI 决定调用哪个工具、传什么参数，你的代码执行后把结果返回给 AI 继续对话。这是 Agent 的核心机制（第13章详讲）。</p>
 </div></section>
 
-<!-- ======== 第9章 提示词 ======== -->
-<section class="ch" id="c9"><div class="ch-i">
-<div class="chn">第 9 章</div><h2>🎯 <span>提示词工程</span> — 说人话让AI听话</h2>
-<h3>9.1 万能公式</h3>
-<div class="cb"><pre style="font-family:var(--font-zh);font-size:14px;padding:20px"> 角色 + 任务 + 细节 + 约束 + 格式 = 完美提示词</pre></div>
-<h3>9.2 好 vs 烂</h3>
-<div class="cg"><div class="c" style="border-left:3px solid var(--red)"><h4>❌ 烂</h4><p>"帮我写个网站"<br><small style="color:var(--text3)">AI 不知道什么网站、什么风格、什么技术栈，大概率出废稿</small></p></div>
-<div class="c" style="border-left:3px solid var(--green)"><h4>✅ 好</h4><p>"你是资深前端工程师。做一个外卖点餐网站首页。橙色+白色，横向滑动热门餐厅卡片，搜索栏+底部4个导航图标。HTML+CSS+JS单文件，移动端优先，中文注释。"</p></div></div>
-<h3>9.3 进阶技巧</h3>
-<div class="tb"><table><tr><th>技巧</th><th>说明</th><th>示例</th></tr>
-<tr><td>少样本(Few-shot)</td><td>给它看几个例子再让它做</td><td>"输入:hello→输出:你好。输入:goodbye→输出:再见。输入:thanks→"</td></tr>
-<tr><td>思维链(CoT)</td><td>让它一步步推理</td><td>"先分析问题，列出解决步骤，再逐步执行。每步说明为什么这么做。"</td></tr>
-<tr><td>自我一致性</td><td>让它自检</td><td>"写完代码后，自己检查一遍：有没有bug？有没有更好的写法？如果有，请修改。"</td></tr>
-<tr><td>角色扮演</td><td>设定专家身份</td><td>"你是10年经验的Python后端架构师，擅长高并发系统设计"</td></tr>
-<tr><td>格式约束</td><td>指定输出格式</td><td>"用Markdown表格输出，第一列XX，第二列YY"</td></tr>
-<tr><td>拆分复杂任务</td><td>大任务拆小任务</td><td>"先设计数据库表结构，我确认了再写API接口，最后写前端页面"</td></tr></table></div>
-<div class="ib good"><span class="ib-e">🔄</span><span><strong>黄金循环：</strong>说需求 → AI生成 → 运行测试 → 报错→<strong>完整贴报错给AI</strong>→ AI修复→再运行→完工。90%的问题AI都能自己修。你不需要看懂报错。</span></div>
+<!-- ====== 第8章 提示词工程 ====== -->
+<section class="ch" id="c8"><div class="ci">
+<div class="cn">第 8 章</div><h2>🎯 <span>提示词工程</span> — 同样的模型，10倍的效果差</h2>
+<h3>8.1 万能公式</h3>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:15px;line-height:2.2;padding:22px 28px;text-align:center"><strong>角色</strong> + <strong>任务</strong> + <strong>细节</strong> + <strong>约束</strong> + <strong>格式</strong> = 完美提示词</pre></div>
+<h3>8.2 为什么需要角色</h3>
+<p>你对一个路人说"帮我看看这段代码"，和对一个工作 10 年的资深工程师说同样的话——回答质量天差地别。AI 也一样。你让它扮演专家，它真的会更严谨。</p>
+<h3>8.3 六大进阶技巧</h3>
+<div class="tb"><table><tr><th>技巧</th><th>干什么</th><th>示例</th></tr>
+<tr><td>少样本(Few-shot)</td><td>给它几个例子再让它做，效果飙升</td><td>"输入:hello→输出:你好。输入:goodbye→输出:再见。输入:thanks→"</td></tr>
+<tr><td>思维链(CoT)</td><td>逼它一步步推理，别跳结论</td><td>"先分析问题，列出解决步骤，然后逐步执行。每步说明为什么这么做。"</td></tr>
+<tr><td>自我检查</td><td>让它自己审自己的代码</td><td>"写完代码后自己检查：有bug吗？有更好的写法吗？如有请修改。"</td></tr>
+<tr><td>角色扮演</td><td>设定专家身份和年资</td><td>"你是10年经验的Python后端架构师，擅长高并发系统设计"</td></tr>
+<tr><td>拆分任务</td><td>大任务分小步，每步确认</td><td>"先设计数据库表结构，我确认了再写API，最后写前端"</td></tr>
+<tr><td>格式约束</td><td>锁死输出格式</td><td>"用Markdown表格输出，第一列XX，第二列YY。不要加任何解释文字。"</td></tr></table></div>
+<div class="ib gd"><span class="ie">🔄</span><span><strong>黄金循环：</strong>说需求 → AI生成 → 运行测试 → 报错 → <strong>把完整报错贴给AI</strong> → AI修复 → 成功。<strong>你不需要看懂报错。</strong></span></div>
 </div></section>
 
-<!-- ======== 第10章 Claude Code ======== -->
-<section class="ch" id="c10"><div class="ch-i">
-<div class="chn">第 10 章</div><h2>🦾 <span>Claude Code</span> — AI编程的最强形态</h2>
-<h3>10.1 它是什么</h3>
-<p>Claude Code=<strong>你终端里的 AI 程序员。</strong>能读你的全部文件、写新代码、改旧代码、运行命令、安装依赖、部署项目。你不是在跟AI聊天——你是在指挥一个虚拟程序员干活。</p>
-<h3>10.2 安装</h3>
-<ol class="steps"><li><code>node -v</code> → 没装就去 nodejs.org 下 LTS 版</li><li><code>npm install -g @anthropic-ai/claude-code</code></li><li><code>claude login</code> → 浏览器授权</li></ol>
-<h3>10.3 核心命令</h3>
-<div class="tb"><table><tr><th>命令</th><th>作用</th></tr><tr><td><code>claude</code></td><td>启动对话</td></tr><tr><td><code>/init</code></td><td>初始化项目（生成 CLAUDE.md）</td></tr><tr><td><code>/compact</code></td><td>压缩对话历史（省 token）</td></tr><tr><td><code>/clear</code></td><td>清空对话</td></tr><tr><td><code>/config</code></td><td>换模型/改配置</td></tr><tr><td><code>/doctor</code></td><td>自检诊断</td></tr></table></div>
-<h3>10.4 用 CC Switch 走 DeepSeek（省钱 90%）</h3>
-<p>Claude Code 默认走 Anthropic 的 API，较贵。你已装了 CC Switch：</p>
-<div class="cb"><span class="lg">CC Switch 配置</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre>Base URL:    https://api.deepseek.com/anthropic
-API Key:     sk-你的DeepSeek Key
-主模型:      deepseek-v4-pro[1m]
-快速模型:    deepseek-v4-flash</pre></div>
-<div class="ib good"><span class="ib-e">💰</span><span>走 DeepSeek 成本降低约 90%。本来是 $20/月或按 API 收费，走 DeepSeek 后写一天代码可能只要几块钱。</span></div>
-<h3>10.5 CLAUDE.md — 让 AI 记住你的项目</h3>
-<p>项目根目录放一个 <code>CLAUDE.md</code>，Claude Code 每次启动都会读。写清楚项目用啥技术栈、代码风格偏好、当前任务。省得每次对话重新解释。</p>
-<div class="cb"><span class="lg">CLAUDE.md 示例</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre><span class="cm"># 项目: 个人博客</span>
-- 技术: HTML + CSS + JS, 不用框架
-- 部署: GitHub Pages
-- 风格: 深色主题, 紫色为主, 简洁
-- 不要引入任何第三方库
-- 代码加中文注释
-- 修改前先告诉我你打算怎么做</pre></div>
+<!-- ====== 第9章 Claude Code ====== -->
+<section class="ch" id="c9"><div class="ci">
+<div class="cn">第 9 章</div><h2>🦾 <span>Claude Code</span> — 你的 AI 程序员</h2>
+<p class="ds">终端里说一句话，它帮你写项目、改文件、运行命令、修 Bug、部署上线。不是一个聊天应用——它是一个能操作你电脑的 AI。</p>
+
+<h3>9.1 安装（3步）</h3>
+<ol class="steps">
+<li><strong>安装 Node.js →</strong> <code>nodejs.org</code> 下 LTS 版，装完终端输 <code>node -v</code> 验证</li>
+<li><code>npm install -g @anthropic-ai/claude-code</code></li>
+<li><code>claude login</code> → 浏览器弹出来授权</li>
+</ol>
+<h3>9.2 用 CC Switch 省钱走 DeepSeek</h3>
+<p>Claude Code 默认走 Anthropic 的 API，但你可以用 CC Switch 把后端切到 DeepSeek——成本降低 90%。</p>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2;padding:20px">
+Base URL  :  https://api.deepseek.com/anthropic
+API Key   :  sk-你的DeepSeek Key
+主模型    :  deepseek-v4-pro[1m]
+快速模型  :  deepseek-v4-flash</pre></div>
+
+<h3>9.3 实战：一句话建网站</h3>
+<div class="cb"><pre style="padding:20px;font-family:var(--font-zh);font-size:14px;color:var(--text)">
+在空文件夹里打开终端 → 输入 <code>claude</code> → 直接说：
+
+"帮我做一个个人博客，HTML+CSS+JS，深色主题，首页、文章列表、关于我。
+先告诉我你打算怎么设计，我确认了你再写代码。"
+
+然后 Claude Code: ①先给你看设计方案 ②你点头后自动创建文件写代码
+③你继续提修改意见 ④它直接改文件</pre></div>
+
+<h3>9.4 CLAUDE.md — 让 AI 记住你的项目</h3>
+<p>项目根目录放一个 <code>CLAUDE.md</code>，Claude Code 每次启动自动读。用中文写清楚：技术栈、代码风格、当前任务、禁止用的东西。省得每次重新解释。</p>
 </div></section>
 
-<!-- ======== 第11章 Codex CLI ======== -->
-<section class="ch" id="c11"><div class="ch-i">
-<div class="chn">第 11 章</div><h2>📟 <span>Codex CLI</span> — OpenAI 的终端 AI 工具</h2>
-<h3>11.1 Codex vs Claude Code</h3>
-<div class="tb"><table><tr><th>维度</th><th>Claude Code</th><th>Codex CLI</th></tr>
-<tr><td>开发方</td><td>Anthropic</td><td>OpenAI</td></tr>
-<tr><td>底层模型</td><td>Claude Opus/Sonnet</td><td>GPT-4.1 / o4-mini</td></tr>
-<tr><td>代码理解</td><td>⭐⭐⭐⭐⭐（长上下文王者）</td><td>⭐⭐⭐⭐（推理强）</td></tr>
-<tr><td>操作文件</td><td>✅ 读/写/改/删/运行</td><td>✅ 读/写/改/删/运行</td></tr>
-<tr><td>价格</td><td>Pro $20/月 或 API</td><td>按 OpenAI API 计费</td></tr>
-<tr><td>适合</td><td>大型项目、复杂重构</td><td>快速原型、OpenAI生态</td></tr></table></div>
-<div class="ib tip"><span class="ib-e">💡</span><span><strong>怎么选：</strong>做复杂大项目→Claude Code。做快速原型/小工具→Codex。两个都装，哪个便宜用哪个。切换成本为0。</span></div>
-<h3>11.2 安装 Codex</h3>
-<div class="cb"><span class="lg">终端</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre>npm install -g @openai/codex
-<span class="kw">set</span> OPENAI_API_KEY=sk-你的OpenAI Key  <span class="cm"># Windows</span>
-<span class="kw">export</span> OPENAI_API_KEY=sk-你的OpenAI Key  <span class="cm"># Mac/Linux</span>
-codex  <span class="cm"># 启动</span></pre></div>
-</div></section>
-
-<!-- ======== 第12章 OpenClaw ======== -->
-<section class="ch" id="c12"><div class="ch-i">
-<div class="chn">第 12 章</div><h2>🦞 <span>OpenClaw</span> — 多模型聚合 AI 中心</h2>
-<h3>12.1 OpenClaw 是什么</h3>
-<p>OpenClaw 是一个<strong>多模型聚合器</strong>。它不像 Claude Code 专注编程——它把你的所有 AI 工具统一到一个入口里：支持 50+ 供应商（OpenAI/Anthropic/DeepSeek/通义千问/豆包/Ollama 本地模型…），可以一键切换。</p>
-<div class="ib tip"><span class="ib-e">🎯</span><span><strong>适用场景：</strong>你同时用多个 AI 服务（比如 DeepSeek+Claude+本地模型），不想在多个应用之间切来切去。OpenClaw 是统一网关。</span></div>
-<h3>12.2 安装（你已经装过了）</h3>
-<div class="cb"><span class="lg">终端</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre>npm install -g openclaw@latest
-openclaw onboard           <span class="cm"># 交互式配置</span>
-openclaw onboard --auth-choice deepseek-api-key --deepseek-api-key "sk-你的Key" --skip-health --accept-risk --non-interactive --mode local  <span class="cm"># 非交互式配置(DeepSeek)</span>
-openclaw tui               <span class="cm"># 终端界面（类似 Claude Code）</span>
-openclaw dashboard         <span class="cm"># 浏览器 Web 面板</span>
-openclaw terminal          <span class="cm"># 纯终端对话</span></pre></div>
-<h3>12.3 OpenClaw 核心功能</h3>
-<div class="cg"><div class="c"><span class="em">🔀</span><h4>多模型切换</h4><p>一句话切模型："用 DeepSeek 写"、"换 Claude 帮我分析这段代码"。50+模型随时切。</p></div><div class="c"><span class="em">🏠</span><h4>本地 Gateway</h4><p>在你的电脑上跑一个本地网关，所有 AI 请求统一走这个网关出去。控制面板、权限管理全有。</p></div><div class="c"><span class="em">🤖</span><h4>Agent 系统</h4><p>内置多 Agent 支持——可以让多个子 AI 同时干活，比如一个写前端一个写后端，并行干活。</p></div><div class="c"><span class="em">📡</span><h4>多频道接入</h4><p>支持微信、Telegram、Discord 等多频道接入。把你的 AI Bot 挂到微信群里。</p></div></div>
-</div></section>
-
-<!-- ======== 第13章 Cursor ======== -->
-<section class="ch" id="c13"><div class="ch-i">
-<div class="chn">第 13 章</div><h2>🖊️ <span>Cursor & 其他工具</span> — 完整的 AI 编程武器库</h2>
-<div class="tb"><table><tr><th>工具</th><th>类型</th><th>核心功能</th><th>价格</th><th>适合谁</th></tr>
-<tr><td><strong>Cursor</strong></td><td>AI 编辑器</td><td>编辑器内聊天+改代码+自动补全</td><td>Pro $20/月</td><td>日常编程（最推荐）</td></tr>
+<!-- ====== 第10章 其他AI工具 ====== -->
+<section class="ch" id="c10"><div class="ci">
+<div class="cn">第 10 章</div><h2>🛠️ <span>AI 编程武器库</span> — 每个工具干什么、怎么选</h2>
+<div class="tb"><table><tr><th>工具</th><th>类型</th><th>核心理念</th><th>价格</th><th>适合场景</th></tr>
+<tr><td><strong>Claude Code</strong></td><td>终端 AI Agent</td><td>全自动：改文件+跑命令</td><td>Pro $20/月</td><td>任何项目</td></tr>
+<tr><td><strong>Codex CLI</strong></td><td>终端 AI Agent</td><td>OpenAI 版 Claude Code</td><td>API 计费</td><td>OpenAI 生态</td></tr>
+<tr><td><strong>Cursor</strong></td><td>AI 编辑器</td><td>编辑器里对话+改代码</td><td>$20/月</td><td>日常编程</td></tr>
 <tr><td><strong>GitHub Copilot</strong></td><td>编辑器插件</td><td>智能代码补全</td><td>$10/月</td><td>VS Code 用户</td></tr>
-<tr><td><strong>Windsurf</strong></td><td>AI 编辑器</td><td>类似 Cursor，多 agent 模式</td><td>$15/月</td><td>复杂项目</td></tr>
-<tr><td><strong>Claude Code</strong></td><td>终端 AI</td><td>全自动编程，改文件跑命令</td><td>Pro $20/月或API</td><td>任何项目</td></tr>
-<tr><td><strong>Codex CLI</strong></td><td>终端 AI</td><td>类似 Claude Code</td><td>API 计费</td><td>OpenAI 生态</td></tr>
-<tr><td><strong>OpenClaw</strong></td><td>AI 聚合器</td><td>多模型统一入口+Agent</td><td>免费开源自部署</td><td>多模型用户</td></tr>
-<tr><td><strong>v0.dev</strong></td><td>AI 生成页面</td><td>描述→出前端页面（React/Tailwind）</td><td>免费额度+付费</td><td>前端原型</td></tr>
-<tr><td><strong>Bolt.new</strong></td><td>AI 全栈</td><td>在浏览器里直接生成+运行全栈应用</td><td>免费额度+付费</td><td>快速原型</td></tr>
+<tr><td><strong>OpenClaw</strong></td><td>AI 聚合网关</td><td>统一面板，50+模型，多Agent</td><td>免费开源</td><td>多模型管理</td></tr>
+<tr><td><strong>v0.dev</strong></td><td>AI 建站</td><td>描述→出前端页面（React/Tailwind）</td><td>免费额度</td><td>前端原型</td></tr>
+<tr><td><strong>Bolt.new</strong></td><td>AI 全栈</td><td>浏览器里生成+运行全栈应用</td><td>免费额度</td><td>快速原型</td></tr>
 </table></div>
-<div class="ib tip"><span class="ib-e">🎯</span><span><strong>新手最佳组合：</strong>Cursor（日常编码）+ Claude Code（大任务一次搞定）+ v0.dev（前端页面快速原型）。三个加起来月费约 ¥200，一人开发效率顶3个初级程序员。</span></div>
+<p><strong>OpenClaw 深入：</strong>它本质上是一个<strong>多模型聚合网关</strong>。你在一个界面里可以同时发起对话给 DeepSeek、Claude、GPT-4o。它还支持 MCP 协议、子 Agent 编排、私密知识库。适合同时用多个 AI 服务的进阶用户。</p>
+<div class="ib tp"><span class="ie">🎯</span><span><strong>新手最佳组合：</strong>Cursor（日常编码）+ Claude Code（大项目）+ v0（前端原型）。如果全走 DeepSeek 的 API + CC Switch，一个月 50 块以内搞定全部。</span></div>
 </div></section>
 
-<!-- ======== 第14章 数据库 ======== -->
-<section class="ch" id="c14"><div class="ch-i">
-<div class="chn">第 14 章</div><h2>🗄️ <span>数据库基础</span> — 你的数据存在哪</h2>
-<h3>14.1 关系型 SQL vs 非关系型 NoSQL</h3>
-<div class="cg"><div class="c"><span class="em">📊</span><h4>SQL（关系型）</h4><p>数据像 Excel 表格，有严格的行列结构。MySQL、PostgreSQL、SQLite。适合有清晰结构的数据：用户表、订单表、商品表。用 SQL 语言查询。<br><code>SELECT * FROM users WHERE age>18</code></p></div>
-<div class="c"><span class="em">📦</span><h4>NoSQL（非关系型）</h4><p>数据像 JSON 文档，灵活随意。MongoDB、Redis、Firebase。适合结构不固定的数据：日志、用户行为、缓存。查询方式各不相同。<br><code>db.users.find({age:{$gt:18}})</code></p></div></div>
-<h3>14.2 新手应该用哪个</h3>
-<p><strong>SQLite</strong>。不需要装服务器，一个文件就是整个数据库。适合个人项目、原型开发。Python 自带支持：<code>import sqlite3</code>。</p>
-<div class="cb"><span class="lg">Python — SQLite 示例</span><button class="cpy" onclick="copy(this)">复制</button>
+<!-- ====== 第11章 数据库 ====== -->
+<section class="ch" id="c11"><div class="ci">
+<div class="cn">第 11 章</div><h2>🗄️ <span>数据库</span> — 数据存哪、怎么查</h2>
+
+<h3>11.1 SQL vs NoSQL — 什么时候用哪个</h3>
+<div class="cg"><div class="c"><span class="em">📊</span><h4>SQL（关系型）</h4><p>数据像 Excel 表格，有固定的列。数据之间有关联（外键）。MySQL、PostgreSQL、SQLite。适合：用户表、订单表、任何结构固定的数据。</p></div>
+<div class="c"><span class="em">📦</span><h4>NoSQL（非关系型）</h4><p>数据像 JSON 文档。结构不固定，随时能加字段。MongoDB、Redis、Firebase。适合：日志、用户行为、缓存、实时数据。</p></div></div>
+
+<h3>11.2 SQLite — 新手之神，一行代码建数据库</h3>
+<p>SQLite 不需要装服务器——<strong>一个文件就是整个数据库。</strong>Python 自带 <code>import sqlite3</code>。个人项目、原型、小工具，SQLite 完全够用。</p>
+<div class="cb"><span class="lg">Python + SQLite</span><button class="cp" onclick="cp(this)">复制</button>
 <pre><span class="kw">import</span> sqlite3
-<span class="kw">conn</span> = sqlite3.connect(<span class="str">"myapp.db"</span>)  <span class="cm"># 文件即数据库</span>
-<span class="kw">cur</span> = conn.cursor()
-cur.execute(<span class="str">"CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)"</span>)
-cur.execute(<span class="str">"INSERT INTO users VALUES (1, '张三', 25)"</span>)
-<span class="kw">rows</span> = cur.execute(<span class="str">"SELECT * FROM users"</span>).fetchall()
-<span class="fn">print</span>(rows)  <span class="cm"># [(1, '张三', 25)]</span>
+<span class="kw">conn</span> = sqlite3.connect(<span class="st">"myapp.db"</span>)  <span class="cm"># 文件就是数据库！没有MySQL服务器</span>
+<span class="kw">c</span> = conn.cursor()
+c.execute(<span class="st">"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)"</span>)
+c.execute(<span class="st">"INSERT INTO users VALUES (1, '张三', 25), (2, '李四', 30)"</span>)
+<span class="kw">rows</span> = c.execute(<span class="st">"SELECT * FROM users WHERE age > 20"</span>).fetchall()
+<span class="kw">for</span> row <span class="kw">in</span> rows: <span class="fn">print</span>(row)  <span class="cm"># (1, '张三', 25)  (2, '李四', 30)</span>
 conn.commit(); conn.close()</pre></div>
-<div class="ib tip"><span class="ib-e">💡</span><span><strong>什么时候上真正的数据库？</strong>当你的项目需要多用户同时访问、数据量超过 10 万条、或者需要高可用时。一个人做的小项目 SQLite 完全够用。</span></div>
+
+<h3>11.3 什么时候该升级到 PostgreSQL / MongoDB</h3>
+<p>当你的项目需要多用户同时读写（并发）、数据量超过 10 万条、需要高可用（服务器挂了自动切到备用）、或者有复杂的关联查询时。一个人的项目 SQLite 完全够。</p>
 </div></section>
 
-<!-- ======== 第15章 Agent ======== -->
-<section class="ch" id="c15"><div class="ch-i">
-<div class="chn">第 15 章</div><h2>🤖 <span>AI Agent</span> — 让 AI 自己干活</h2>
-<p class="dsc">这是 AI 应用的最新形态。Agent 不是聊天——它能使用工具、制定计划、执行多步任务。</p>
-<h3>15.1 什么是 Agent</h3>
-<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:20px">
-  ┌─────────────────────────────────────────────┐
-  │            AI Agent 工作循环                 │
-  │                                             │
-  │  用户指令 → LLM思考 → 决定用哪个工具        │
-  │      ↑                      ↓               │
-  │      └── 返回结果 ← 执行工具（搜索/代码/API）│
-  └─────────────────────────────────────────────┘</pre></div>
-<p>普通 LLM：我问你答，一问一答。<br><strong>Agent：</strong>你给我目标，我自己查资料、写代码、调 API、修 bug、最终交付。中间不需要你插手。</p>
-<h3>15.2 Agent 的核心能力：工具调用（Function Calling）</h3>
-<p>Agent 不是说"我应该帮你搜一下"——它直接调搜索 API 搜了、把结果读出来了、基于结果继续干活。这就是 <strong>Tool Use（工具调用）</strong>：</p>
-<div class="cb"><span class="lg">Python — Agent 工具调用概念</span><button class="cpy" onclick="copy(this)">复制</button>
-<pre><span class="cm"># 定义工具：Agent 能用的功能</span>
-<span class="kw">tools</span> = [{
-    <span class="str">"type"</span>: <span class="str">"function"</span>,
-    <span class="str">"function"</span>: {
-        <span class="str">"name"</span>: <span class="str">"search_web"</span>,
-        <span class="str">"description"</span>: <span class="str">"搜索互联网"</span>,
-        <span class="str">"parameters"</span>: {<span class="str">"query"</span>: {<span class="str">"type"</span>: <span class="str">"string"</span>}}
-    }
-}]
-<span class="cm"># LLM 决定调哪个工具 → 你执行工具 → 把结果返回给 LLM → 继续对话</span>
-<span class="cm"># 循环直到 LLM 说 "任务完成"</span></pre></div>
-<h3>15.3 多 Agent 系统</h3>
-<p>真正的 Agent 应用往往不止一个 Agent：</p>
-<div class="cg"><div class="c"><span class="em">🏗️</span><h4>架构师 Agent</h4><p>分析需求 → 拆解任务 → 分派给子 Agent</p></div><div class="c"><span class="em">💻</span><h4>开发 Agent</h4><p>写代码 → 运行测试 → 修 bug</p></div><div class="c"><span class="em">🔍</span><h4>审查 Agent</h4><p>检查代码质量 → 发现安全问题 → 提出改进建议</p></div><div class="c"><span class="em">📝</span><h4>文档 Agent</h4><p>自动生成 README → 写 API 文档</p></div></div>
-<div class="ib tip"><span class="ib-e">🤯</span><span><strong>这就是 Claude Code 里「子 Agent」的底层原理。</strong>你让它做一个网站，它内部可能调用一个前端 Agent 写 HTML，一个样式 Agent 写 CSS，一个逻辑 Agent 写 JS，然后合并给你。</span></div>
-<h3>15.4 MCP（Model Context Protocol）— Agent 的 USB 接口</h3>
-<p>MCP 是 Anthropic 推出的<strong>大模型统一工具接口标准</strong>。类比：USB 插口统一了键盘鼠标U盘的连接方式，MCP 统一了 AI 连接各种工具的方式。</p>
-<div class="ib good"><span class="ib-e">✅</span><span><strong>MCP 的意义：</strong>不用每个 Agent 框架自己写一套工具调用。只要工具支持 MCP，任何支持 MCP 的 AI 都能直接用它。就像 USB 设备插任何电脑都能用。<a href="https://modelcontextprotocol.io" target="_blank">modelcontextprotocol.io</a></span></div>
+<!-- ====== 第12章 部署 ====== -->
+<section class="ch" id="c12"><div class="ci">
+<div class="cn">第 12 章</div><h2>🚀 <span>部署上线</span> — 让你的代码变成别人能打开的网址</h2>
+<h3>12.1 GitHub Pages — 免费、最简单</h3>
+<ol class="steps"><li>推 HTML 到 GitHub</li><li><code>gh api repos/用户名/仓库名/pages -X POST -f "source[branch]=master"</code></li><li>获得网址 <code>https://用户名.github.io/仓库名/</code></li></ol>
+<h3>12.2 Vercel — 前端+后端 Serverless</h3>
+<p>Vercel 不只托管静态文件——它还能跑 Node.js/Python 后端代码（Serverless Functions）。比如你的 API 代理。免费额度 100GB/月带宽，个人项目足够。</p>
+<h3>12.3 Cloudflare Pages & Workers — 国内访问更快</h3>
+<p>Cloudflare 的 CDN 节点在国内有覆盖，访问速度比 Vercel 快。Workers 是免费的 Serverless 函数，支持 JS/TS。缺点是需要绑域名才能用 Workers Dev 子域名。</p>
+<div class="ib tp"><span class="ie">💡</span><span><strong>推荐部署方案：</strong>纯静态（无后端）→ GitHub Pages。有 Node.js 后端 → Vercel 或 Cloudflare Workers。需要数据库 → Supabase（免费 PostgreSQL 托管）。</span></div>
 </div></section>
 
-<!-- ======== 第16章 RAG ======== -->
-<section class="ch" id="c16"><div class="ch-i">
-<div class="chn">第 16 章</div><h2>📚 <span>RAG & 向量数据库</span> — 让 AI 读懂你的文档</h2>
-<h3>16.1 RAG 是什么</h3>
-<p><strong>RAG（Retrieval-Augmented Generation）= 检索增强生成。</strong>LLM 的知识只到训练日期截止。RAG 让 AI 能「现查现答」——先检索你的文档，再基于检索结果回答。</p>
-<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:20px">
-  用户问："公司今年的销售额是多少？"
-     ↓
-  ［RAG流程］
-  1. 把问题转成向量（Embedding）
-  2. 在向量库中搜索最相关的文档片段
-  3. 找到 3 条相关记录 → 把这些记录+用户问题一起发给 LLM
-  4. LLM 基于检索到的数据回答："今年销售额为 ¥520万，同比增长23%"
-     ↓
-  用户得到基于真实数据的准确答案</pre></div>
-<h3>16.2 Embedding（嵌入）— 把文字变成数学向量</h3>
-<p>Embedding 是把文字转成一串数字，意义相近的文字在数学空间中距离更近。比如 "猫"和"猫咪"的向量很近，"猫"和"汽车"的向量很远。</p>
-<div class="cb"><span class="lg">Python — Embedding 示例</span><button class="cpy" onclick="copy(this)">复制</button>
+<!-- ====== 第13章 Agent ====== -->
+<section class="ch" id="c13"><div class="ci">
+<div class="cn">第 13 章</div><h2>🤖 <span>AI Agent</span> — 让 AI 自主干活</h2>
+<h3>13.1 Agent 是什么</h3>
+<p>普通 LLM：你问→它答→你问→它答……每一轮都靠你驱动。<br><strong>Agent：</strong>你给一个目标→它自己规划步骤→自己调用工具→自己判断结果是否正确→循环直到目标达成。你在中途不需要插手。</p>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:18px 20px">
+用户: "帮我做市场调研：上周AI行业有什么大新闻？整理成报告发邮件给我。"
+  ↓
+Agent: ① 调用 web_search 工具搜索 "AI news last week"
+     ② 读搜索结果，提取关键信息
+     ③ 调用 write_file 工具写报告
+     ④ 调用 send_email 工具发送
+     ⑤ 报告用户 "✅ 已完成，请查收邮件"</pre></div>
+
+<h3>13.2 Agent 的核心：ReAct 循环</h3>
+<p>Agent 最常见的决策框架叫 <strong>ReAct（Reasoning + Acting）</strong>：</p>
+<ol class="steps"><li><strong>思考（Thought）：</strong>我现在该做什么？有哪些可用工具？</li><li><strong>行动（Action）：</strong>调用一个工具（搜索API、写文件、运行代码…）</li><li><strong>观察（Observation）：</strong>工具返回了什么结果？</li><li>回到步骤 1，直到目标达成。</li></ol>
+
+<h3>13.3 MCP（Model Context Protocol）</h3>
+<p>MCP 是 Anthropic 推出的<strong>模型→工具的连接标准</strong>。类比：USB 统一了电脑和键盘/鼠标/U盘的连接方式，MCP 统一了 AI 和各种外部工具的连接方式。只要一个工具支持 MCP，任何支持 MCP 的 AI 程序都能直接调用它——不需要为每个 AI 重写适配代码。</p>
+<div class="ib tp"><span class="ie">📍</span><span><strong>官方文档：</strong><a href="https://modelcontextprotocol.io">modelcontextprotocol.io</a>。Claude Code、Cursor、OpenClaw 都已经支持 MCP。</span></div>
+</div></section>
+
+<!-- ====== 第14章 RAG ====== -->
+<section class="ch" id="c14"><div class="ci">
+<div class="cn">第 14 章</div><h2>📚 <span>RAG</span> — 让 AI 读懂你的文档</h2>
+<h3>14.1 为什么需要 RAG</h3>
+<p>LLM 的知识只到训练截止日——它不知道你公司的内部销售数据，不知道你的产品文档。RAG 在 LLM 收到问题后<strong>先检索相关文档</strong>，把检索到的文档拼到 prompt 里，让 LLM 基于文档回答。答案不再是"编"的——是有据可查的。</p>
+
+<h3>14.2 Embedding — 把文字变成数学向量</h3>
+<p>Embedding 是把任意文本转成一串数字（向量），语义相近的文本在向量空间中距离更近。比如："猫"和"猫咪"的向量几乎重叠，"猫"和"汽车"的向量差很远。</p>
+<div class="cb"><span class="lg">Python — 生成 Embedding</span><button class="cp" onclick="cp(this)">复制</button>
 <pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
-<span class="kw">client</span> = OpenAI(api_key=<span class="str">"sk-你的Key"</span>, base_url=<span class="str">"https://api.deepseek.com/v1"</span>)
-<span class="kw">r</span> = client.embeddings.create(model=<span class="str">"text-embedding-3-small"</span>, input=<span class="str">"你好世界"</span>)
-<span class="fn">print</span>(<span class="fn">len</span>(r.data[<span class="num">0</span>].embedding))  <span class="cm"># 1536 个数字 = 这句话的"数学指纹"</span></pre></div>
-<h3>16.3 向量数据库（Vector DB）— 专门存 Embedding 的数据库</h3>
-<div class="tb"><table><tr><th>数据库</th><th>特点</th></tr><tr><td>Chroma</td><td>轻量开源，适合学习和小项目</td></tr><tr><td>Pinecone</td><td>托管服务，开箱即用，有免费额度</td></tr><tr><td>Qdrant</td><td>高性能，支持 Rust 编写</td></tr><tr><td>Weaviate</td><td>自带向量化+存储+搜索</td></tr></table></div>
-<div class="ib tip"><span class="ib-e">🎯</span><span><strong>新手建议：</strong>Chroma 装起来就能用，适合学习。Pinecone 免费额度够做 Demo。做产品再考虑迁移。</span></div>
+<span class="kw">client</span> = OpenAI(api_key=<span class="st">"sk-"</span>, base_url=<span class="st">"https://api.deepseek.com/v1"</span>)
+<span class="kw">r</span> = client.embeddings.create(model=<span class="st">"text-embedding-3-small"</span>, input=<span class="st">"你好世界"</span>)
+<span class="fn">print</span>(<span class="fn">len</span>(r.data[<span class="nu">0</span>].embedding))  <span class="cm"># 1536个数字 = 这句话的语义指纹</span></pre></div>
+
+<h3>14.3 RAG 完整流程</h3>
+<ol class="steps">
+<li><strong>分块（Chunking）：</strong>把你所有的文档切成小段（每段 500-1000 字）</li>
+<li><strong>向量化（Embedding）：</strong>每一段转成向量，存进向量数据库（Chroma/Pinecone）</li>
+<li><strong>检索（Retrieval）：</strong>用户提问→把问题也转成向量→在数据库里找最相似的 N 个文档片段</li>
+<li><strong>生成（Generation）：</strong>把「检索结果 + 用户问题」一起发给 LLM→它基于文档回答</li>
+</ol>
+<h3>14.4 向量数据库选型</h3>
+<div class="tb"><table><tr><th>数据库</th><th>适合</th><th>部署</th></tr>
+<tr><td><strong>Chroma</strong></td><td>学习/小项目</td><td>Python 一行 <code>pip install chromadb</code></td></tr>
+<tr><td><strong>Pinecone</strong></td><td>生产环境</td><td>托管服务，有免费额度</td></tr>
+<tr><td><strong>Qdrant</strong></td><td>高性能</td><td>自托管或云服务</td></tr>
+<tr><td><strong>Supabase pgvector</strong></td><td>已用 PostgreSQL</td><td>直接扩展，不用新数据库</td></tr></table></div>
 </div></section>
 
-<!-- ======== 第17章 赚钱 ======== -->
-<section class="ch" id="c17"><div class="ch-i">
-<div class="chn">第 17 章</div><h2>💰 <span>AI 赚钱实操</span> — 10个已验证的变现方式</h2>
-<h3>17.1 外包接单（最快见钱）</h3>
-<div class="tb"><table><tr><th>平台</th><th>单子类型</th><th>单价</th><th>难易</th></tr><tr><td>闲鱼</td><td>网页制作/PPT/脚本/简历</td><td>¥50-2000</td><td>⭐</td></tr><tr><td>猪八戒</td><td>企业官网/小程序</td><td>¥500-5000</td><td>⭐⭐</td></tr><tr><td>码市/程序员客栈</td><td>正规外包</td><td>¥2000-20000</td><td>⭐⭐⭐</td></tr><tr><td>Upwork</td><td>HTML/CSS/Automation</td><td>$30-150</td><td>⭐⭐（需英文）</td></tr><tr><td>Fiverr</td><td>小任务/快速交付</td><td>$15-100</td><td>⭐（需英文简单）</td></tr></table></div>
-<h3>17.2 Python 脚本接单（单价高、竞争少）</h3>
-<p>帮人写自动化脚本是利润最高的接单方向之一：Excel自动处理（¥50-200）、网页爬虫（¥100-500）、自动发邮件/报表（¥100-300）、全自动工作流（¥300-800）。</p>
-<div class="ib good"><span class="ib-e">💰</span><span><strong>用 AI 你的交付速度是传统开发的 5 倍。</strong>一个爬虫脚本传统程序员要写半天，你喂给 Claude Code 10 分钟出代码。按市场价报价，成本几乎为零。</span></div>
-<h3>17.3 做自己的在线工具站</h3>
-<p>做一个免费小工具网站 → 获取 SEO 搜索流量 → 挂 Google AdSense 广告/倒流到付费服务。成功案例：remove.bg（抠图工具，年收入千万美元）、50个小工具矩阵（月入 $13,000）。</p>
-<h3>17.4 Chrome 插件（轻量 SaaS）</h3>
-<p>做一个浏览器插件 → 免费版获取用户 → 付费 Pro 版赚钱。案例：网页高亮+笔记插件月入 $1,500，全页截图工具 400万用户、月入 $10,000。</p>
-<h3>17.5 其他方向</h3>
-<div class="cg"><div class="c"><span class="em">🤖</span><h4>AI Agent 定制</h4><p>帮企业搭建 AI 客服/智能体。Coze/扣子零代码搭建。单价 ¥500-3000/单。</p></div><div class="c"><span class="em">📱</span><h4>小程序开发</h4><p>微信/支付宝小程序。用 AI 写前端逻辑。社区团购/点餐/预约类需求巨大。</p></div><div class="c"><span class="em">🎓</span><h4>知识付费</h4><p>把你学会的东西写成教程。卖给你之前那个"零基础"的自己。¥9.9-99/份。</p></div><div class="c"><span class="em">📊</span><h4>AI 数据服务</h4><p>帮客户爬数据→清洗→分析→可视化看板。企业需求大。</p></div></div>
+<!-- ====== 第15章 赚钱 ====== -->
+<section class="ch" id="c15"><div class="ci">
+<div class="cn">第 15 章</div><h2>💰 <span>赚钱实操</span> — 10个已验证的AI变现路径</h2>
+<h3>15.1 外包接单（最快）</h3>
+<div class="tb"><table><tr><th>平台</th><th>什么单子</th><th>单价</th><th>AI提效</th></tr>
+<tr><td>闲鱼</td><td>网页制作/爬虫/PPT/简历</td><td>¥50-2000</td><td>5x</td></tr>
+<tr><td>猪八戒</td><td>企业官网/小程序</td><td>¥500-5000</td><td>3x</td></tr>
+<tr><td>Upwork</td><td>HTML+CSS / Automation</td><td>$30-$150</td><td>5x</td></tr>
+<tr><td>Fiverr</td><td>小任务/快速交付</td><td>$15-$100</td><td>10x</td></tr></table></div>
+
+<h3>15.2 做产品（最稳）</h3>
+<div class="cg"><div class="c"><span class="em">🌐</span><h4>免费工具站</h4><p>JSON格式化、二维码、图片压缩…放上线→SEO流量→AdSense广告→睡后收入。成功案例：remove.bg 年入千万美元。</p></div>
+<div class="c"><span class="em">🧩</span><h4>Chrome 插件</h4><p>做一个实用插件→免费获取用户→Pro版收费。轻量SaaS模式。成功案例：月入 $1,500-$13,000。</p></div>
+<div class="c"><span class="em">🤖</span><h4>AI Agent 定制</h4><p>帮小企业搭建AI客服/智能体。Coze零代码搭建。单价 ¥500-3000/单。</p></div>
+<div class="c"><span class="em">🎓</span><h4>知识付费</h4><p>把你学会的写成教程。卖给你两个月前的那个自己。¥9.9-99/份。</p></div></div>
 </div></section>
 
-<!-- ======== 第18章 路线图 ======== -->
-<section class="ch" id="c18"><div class="ch-i">
-<div class="chn">第 18 章</div><h2>🗺️ <span>完整学习路线图</span> — 从零到月入过万</h2>
-<h3>18.1 60 天计划</h3>
-<div class="tl"><div class="tl-i"><div class="tlt">第1-7天：地基</div><div class="tld">装 Python+Node.js+Git。跑通 Hello World。学文件路径、终端基本命令。用 Python 写一个 50 行的小脚本（比如批量改文件名）。</div></div>
-<div class="tl-i"><div class="tlt">第8-14天：API 初体验</div><div class="tld">注册 DeepSeek 开发者账号。跑通第一次 API 调用。理解请求/响应/JSON。做一个命令行聊天机器人。</div></div>
-<div class="tl-i"><div class="tlt">第15-21天：AI 编程工具</div><div class="tld">Claude Code 从安装到写出第一个网站。用 CC Switch 切换 DeepSeek 省成本。部署到 GitHub Pages。</div></div>
-<div class="tl-i"><div class="tlt">第22-30天：提示词+实战</div><div class="tld">掌握提示词工程。用 AI 做3个项目：简历网页 + Excel自动处理脚本 + 简单爬虫。部署上线。</div></div>
-<div class="tl-i"><div class="tlt">第31-45天：接单赚钱</div><div class="tld">闲鱼发布服务。接5单低价积累好评。学会定价、沟通、交付。月入目标 ¥500-2000。</div></div>
-<div class="tl-i"><div class="tlt">第46-60天：提价+拓渠</div><div class="tld">好评够了涨价50%-100%。拓展猪八戒/Upwork。月入目标 ¥2000-5000。</div></div></div>
-<h3>18.2 进阶（60天以后）</h3>
-<div class="tl"><div class="tl-i"><div class="tlt">第3-4月：产品化</div><div class="tld">做一个自己的在线工具站，获取 SEO 流量。或开发一个付费 Chrome 插件。</div></div>
-<div class="tl-i"><div class="tlt">第5-6月：Agent & RAG</div><div class="tld">学习 AI Agent 开发，搭建企业级 AI 解决方案。月入 ¥5000-15000。</div></div>
-<div class="tl-i"><div class="tlt">第7-12月：规模化</div><div class="tld">矩阵化运营多个产品。自动化部署+监控。月入 ¥10000-30000+。</div></div></div>
-<h3>18.3 免费学习资源</h3>
-<div class="tb"><table><tr><th>资源</th><th>内容</th></tr><tr><td>platform.deepseek.com</td><td>DeepSeek API 文档</td></tr><tr><td>platform.openai.com</td><td>OpenAI API 文档</td></tr><tr><td>console.anthropic.com</td><td>Claude API 文档</td></tr><tr><td>modelcontextprotocol.io</td><td>MCP 协议规范</td></tr><tr><td>pages.github.com</td><td>免费部署网站</td></tr><tr><td>docs.python.org/zh-cn</td><td>Python 官方中文教程</td></tr><tr><td>developer.mozilla.org</td><td>HTML/CSS/JS 参考</td></tr></table></div>
-<h3>18.4 核心心法 — 背诵级金句</h3>
-<div class="cg"><div class="c"><span class="em">🔁</span><h4>AI 是铲子，你是矿工</h4><p>不需要变成程序员。需要会用 AI 工具+能找到需要你服务的人。AI 写代码，你收钱。</p></div><div class="c"><span class="em">⚡</span><h4>先做事，再看书</h4><p>做出第一个能跑的东西之前不要看教程。教程给你虚假的成就感，做东西给你真实的成就感+现金。</p></div><div class="c"><span class="em">💰</span><h4>从 ¥50 开始</h4><p>第一单不要嫌少。赚到第一笔钱的信心比金额重要100倍。有了第一单，涨价只是时间。</p></div><div class="c"><span class="em">🚫</span><h4>三不做</h4><p>不买"AI赚钱课"（99%割韭菜）、不做灰产、不帮人攻击网站。赚干净的钱睡得安稳。</p></div></div>
+<!-- ====== 第16章 路线图 ====== -->
+<section class="ch" id="c16"><div class="ci">
+<div class="cn">第 16 章</div><h2>🗺️ <span>完整路线</span> — 60天从零到月入5000</h2>
+<div class="tl"><div class="tl-i"><div class="tlt">第1-7天：地基</div><div class="tld">装 Python+Node+Git。跑通Hello World。理解文件路径/终端。用Python写一个50行的脚本（批量改名、数据统计）。</div></div>
+<div class="tl-i"><div class="tlt">第8-14天：API初体验</div><div class="tld">注册DeepSeek→跑通第一次API调用→理解JSON→做一个命令行聊天机器人。</div></div>
+<div class="tl-i"><div class="tlt">第15-21天：AI编程工具</div><div class="tld">装Claude Code→用CC Switch→用AI写第一个网站→部署到GitHub Pages→拿到真实网址→截图发朋友圈。</div></div>
+<div class="tl-i"><div class="tlt">第22-30天：实战期</div><div class="tld">做3个项目：简历网页+Excel处理脚本+简单爬虫。每一个都部署上线。你会发现自己已经能收钱了。</div></div>
+<div class="tl-i"><div class="tlt">第31-45天：开干赚钱</div><div class="tld">闲鱼上架→接5单低价冲好评→月入 ¥500-2000。</div></div>
+<div class="tl-i"><div class="tlt">第46-60天：提价拓渠</div><div class="tld">好评够了涨价50%。拓展Upwork/Fiverr赚美元。月入 ¥2000-5000。</div></div>
+<div class="tl-i"><div class="tlt">第3-12月：产品化</div><div class="tld">做一个自己的工具站或插件。被动收入+外包双轨并行。月入 ¥5000-20000。</div></div></div>
+
+<h3>核心心法</h3>
+<div class="cg"><div class="c"><span class="em">🔁</span><h4>AI是铲子，你是矿工</h4><p>你不需要变成程序员。你需要会用AI工具+能找到需要你服务的人。</p></div>
+<div class="c"><span class="em">⚡</span><h4>先做出来，再回去学</h4><p>做出第一个能用的东西之前别看教程。教程给你虚假成就感。做东西给你钱。</p></div>
+<div class="c"><span class="em">💰</span><h4>从 ¥50 开始</h4><p>第一单别嫌少。赚到第一笔钱的信心比金额重要100倍。</p></div>
+<div class="c"><span class="em">🚫</span><h4>三不碰</h4><p>不买"AI赚钱课"、不做灰产、不帮人攻击网站。</p></div></div>
 </div></section>
 
-<footer><p>🤖 AI 零基础到精通 · 2026.06 · 18章 · 50+代码示例<br>永远免费 · 持续更新</p>
-<p style="margin-top:6px;font-size:12px;color:var(--text3)"><strong>一个月前的你，就是现在的你的目标用户。</strong>把你学会的东西教给一个月前的人——这就是最好的赚钱方式。</p></footer>
+<footer><p>🤖 AI 从零到精通 · 2026.06 · 16章深讲 · 永久免费<br><strong>一个月前的你，就是现在的你的目标用户。</strong>教给别人——这才是最好的学习。</p></footer>
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-function copy(btn){const pre=btn.parentElement.querySelector('pre');const t=pre.textContent;navigator.clipboard.writeText(t).then(()=>{btn.textContent='✓';btn.classList.add('done');setTimeout(()=>{btn.textContent='复制';btn.classList.remove('done')},1500)}).catch(()=>{const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);btn.textContent='✓';btn.classList.add('done');setTimeout(()=>{btn.textContent='复制';btn.classList.remove('done')},1500)})}
-window.addEventListener('scroll',()=>{document.getElementById('btt').classList.toggle('vis',window.scrollY>600)});
-</script>
-</body></html>
+function cp(b){const p=b.parentElement.querySelector('pre');const t=p.textContent;navigator.clipboard.writeText(t).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)}).catch(()=>{const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}
+window.addEventListener('scroll',()=>{document.getElementById('btt').classList.toggle('vs',window.scrollY>500)});
+</script></body></html>
