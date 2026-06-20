@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RAG — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>📚 RAG & 向量数据库</h1><p class="subtitle">LLM不懂你的公司文档。RAG在回答前先查文档——答案有据可查，不是编的。</p>
+
+<h2>1. 为什么需要RAG</h2>
+<p>LLM只有训练截止日前的知识。它不知道你公司昨天的销售数据，不知道你的产品手册，不知道你的内部文档。RAG在LLM收到问题后<strong>先去你的文档库检索相关内容</strong>→把文档和问题一起发给LLM→LLM基于文档回答。答案来自你的文档，非幻觉。</p>
+
+<h2>2. Embedding — 把文字变成数学向量</h2>
+<p>Embedding是把一段文字转成一串数字（向量）。语义相近的文字在向量空间中距离更近。"猫"和"猫咪"的向量几乎重叠，"猫"和"汽车"离很远。</p>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+<span class="kw">c</span> = OpenAI(api_key=<span class="st">"sk-"</span>, base_url=<span class="st">"https://api.deepseek.com/v1"</span>)
+<span class="kw">r</span> = c.embeddings.create(model=<span class="st">"text-embedding-3-small"</span>, input=<span class="st">"你好世界"</span>)
+<span class="fn">print</span>(<span class="fn">len</span>(r.data[<span class="nu">0</span>].embedding))  <span class="cm"># 1536个数字 = 这句话的"语义指纹"</span></pre></div>
+
+<h2>3. RAG完整流程</h2>
+<ol class="steps"><li><strong>分块（Chunking）：</strong>把你的文档切成小段（每段300-1000字）</li><li><strong>向量化：</strong>每段转成向量，存进向量数据库</li><li><strong>检索：</strong>用户提问→把问题也转成向量→在库里找最相似的Top-K个文档片段</li><li><strong>增强：</strong>把"文档片段+用户问题"拼成prompt，发给LLM</li><li><strong>生成：</strong>LLM基于文档回答，给出引用来源</li></ol>
+
+<h2>4. 向量数据库选型</h2>
+<div class="tb"><table><tr><th>数据库</th><th>适合</th><th>部署</th></tr><tr><td><strong>Chroma</strong></td><td>学习/小项目</td><td><code>pip install chromadb</code> 直接本地跑</td></tr><tr><td><strong>Pinecone</strong></td><td>生产环境</td><td>托管服务，有免费额度</td></tr><tr><td><strong>Qdrant</strong></td><td>高性能</td><td>自托管或云服务</td></tr><tr><td><strong>Supabase pgvector</strong></td><td>已用PostgreSQL</td><td>直接挂扩展</td></tr></table></div>
+
+<h2>5. 一句话总结</h2>
+<div class="ib tp"><span class="ie">💡</span><span><strong>RAG = 搜索 + LLM。</strong>搜索负责"找什么"，LLM负责"怎么说"。先把相关内容找出来，再让AI基于真实数据组织语言回答。这样就杜绝了AI的"瞎编"。</span></div>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

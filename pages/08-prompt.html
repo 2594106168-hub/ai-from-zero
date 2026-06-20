@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>提示词工程 — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>🎯 提示词工程</h1><p class="subtitle">同样的模型，好提示词和烂提示词效果差10倍。这是AI时代的核心技能。</p>
+
+<h2>1. 万能公式</h2>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:15px;line-height:2.2;padding:22px 28px;text-align:center"><b>角色</b> + <b>任务</b> + <b>细节</b> + <b>约束</b> + <b>格式</b> = 完美提示词</pre></div>
+
+<h2>2. 好vs烂 — 差距有多大</h2>
+<div class="cg"><div class="c" style="border-left:3px solid var(--rd)"><h4>❌ "帮我写个网站"</h4><p>AI不知道什么网站、什么风格、什么技术。大概率出废稿。</p></div>
+<div class="c" style="border-left:3px solid var(--gn)"><h4>✅ 好提示词</h4><p>"你是资深前端。做外卖点餐首页。橙色+白色，横向滑动热门餐厅卡片，搜索栏+4个底部导航。HTML+CSS+JS单文件，移动优先，中文注释。先给设计方案我确认。"</p></div></div>
+
+<h2>3. 为什么角色扮演有效</h2>
+<p>你问路人"帮我看看这段代码"，和问资深工程师同一句话——回答质量天差地别。AI也一样。你让它扮演专家，它会模仿专家的语气、严谨度、思维方式。这不是魔法——是模型在训练数据中见过"专家写的东西"和"普通人写的东西"，它知道怎么模仿。</p>
+
+<h2>4. 六大进阶技巧</h2>
+<div class="tb"><table><tr><th>技巧</th><th>原理</th><th>示例</th></tr>
+<tr><td><strong>少样本(Few-shot)</strong></td><td>给它看几个例子，它模仿格式</td><td>"输入:hello→输出:你好。输入:thanks→输出:谢谢。输入:goodbye→"</td></tr>
+<tr><td><strong>思维链(CoT)</strong></td><td>逼它一步步推理别跳</td><td>"先分析问题→列出步骤→逐步执行。每步解释为什么。"</td></tr>
+<tr><td><strong>自我检查</strong></td><td>让它审自己的答案</td><td>"写完代码后自查：有bug吗？有更好写法吗？有请修改。"</td></tr>
+<tr><td><strong>拆分任务</strong></td><td>大任务拆小步，每步确认</td><td>"先设计数据库表结构→我确认→再写API→我确认→再写前端"</td></tr>
+<tr><td><strong>格式约束</strong></td><td>锁死输出格式</td><td>"用Markdown表格输出。不要加解释文字。"</td></tr>
+<tr><td><strong>角色扮演</strong></td><td>设定专家+年资</td><td>"你是10年经验Python架构师，擅长高并发。用中文+emoji回复。"</td></tr></table></div>
+
+<h2>5. 黄金循环</h2>
+<div class="ib gd"><span class="ie">🔄</span><span><strong>说需求→AI生成→运行→报错→把完整报错贴给AI→AI修→再运行→成功。</strong>你不需要看懂报错信息。AI看得懂。90%的问题AI能自己修好。</span></div>
+
+<h2>6. 常见有毒提示词</h2>
+<div class="tb"><table><tr><th>毒</th><th>解</th></tr><tr><td>"优化这段代码"</td><td>"这段代码在用户超过1000时变慢。分析瓶颈在哪里，给出优化方案。不改功能。"</td></tr><tr><td>"修复这个bug"</td><td>"点击提交按钮后页面闪退。控制台报错：XXX。帮我定位原因并修复。"</td></tr><tr><td>"写一个注册页面"</td><td>"写用户注册页。字段：手机号+验证码+密码+确认密码。手机号校验格式。密码至少8位含字母+数字。前端验证，不要引入新依赖。"</td></tr></table></div>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

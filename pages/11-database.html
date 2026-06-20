@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>数据库 — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>🗄️ 数据库</h1><p class="subtitle">你的数据存哪里、怎么查。SQL vs NoSQL。新手从SQLite开始。</p>
+
+<h2>1. SQL（关系型）vs NoSQL（非关系型）</h2>
+<div class="cg"><div class="c"><span class="em">📊</span><h4>SQL</h4><p>数据像Excel表，有固定的列结构。表与表之间有关联（外键）。MySQL、PostgreSQL、SQLite。用SQL语言查询。适合：用户表、订单表、任何结构固定的数据。</p></div>
+<div class="c"><span class="em">📦</span><h4>NoSQL</h4><p>数据像JSON文档，结构灵活。MongoDB、Redis、Firebase。各有各的查询方式，不统一。适合：日志、缓存、用户行为、结构不固定的数据。</p></div></div>
+
+<h2>2. 核心SQL语句</h2>
+<div class="cb"><span class="lg">SQL</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> users <span class="kw">WHERE</span> age > <span class="nu">18</span>;                    <span class="cm">-- 查：找所有成年用户</span>
+<span class="kw">INSERT INTO</span> users (name, age) <span class="kw">VALUES</span> (<span class="st">'张三'</span>, <span class="nu">25</span>);     <span class="cm">-- 增：创建用户</span>
+<span class="kw">UPDATE</span> users <span class="kw">SET</span> age = <span class="nu">26</span> <span class="kw">WHERE</span> name = <span class="st">'张三'</span>;         <span class="cm">-- 改：更新年龄</span>
+<span class="kw">DELETE FROM</span> users <span class="kw">WHERE</span> id = <span class="nu">1</span>;                        <span class="cm">-- 删：删除用户</span>
+<span class="cm">-- JOIN：关联查询（两张表关联）</span>
+<span class="kw">SELECT</span> u.name, o.total <span class="kw">FROM</span> users u <span class="kw">JOIN</span> orders o <span class="kw">ON</span> u.id = o.user_id;</pre></div>
+
+<h2>3. SQLite — 一行代码建数据库</h2>
+<p>SQLite不需要装服务器——<strong>一个文件就是整个数据库。</strong>Python自带支持。个人项目、原型、小工具，SQLite完全够用。</p>
+<div class="cb"><span class="lg">Python + SQLite</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">import</span> sqlite3
+<span class="kw">conn</span> = sqlite3.connect(<span class="st">"myapp.db"</span>)  <span class="cm"># 文件即数据库！</span>
+<span class="kw">c</span> = conn.cursor()
+c.execute(<span class="st">"""CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    age INTEGER,
+    email TEXT UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)"""</span>)
+c.execute(<span class="st">"INSERT INTO users (name,age) VALUES (?,?)"</span>, (<span class="st">"张三"</span>,<span class="nu">25</span>))
+<span class="kw">rows</span> = c.execute(<span class="st">"SELECT * FROM users WHERE age > ?"</span>, (<span class="nu">18</span>,)).fetchall()
+conn.commit(); conn.close()</pre></div>
+
+<h2>4. 什么时候该升级</h2>
+<p>SQLite → PostgreSQL 的信号：①多用户同时写入（并发）②数据量超过10万条且需要复杂查询 ③需要高可用（主从复制、自动故障转移）④需要更丰富的数据类型（地理坐标JSONB、全文搜索等）。自己用的工具站 SQLite 够用到天荒地老。</p>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

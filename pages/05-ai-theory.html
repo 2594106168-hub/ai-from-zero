@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI 理论 — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>🧠 AI 理论</h1><p class="subtitle">不要求你推导公式。但你需要知道Token/Temperature/ContextWindow，否则调不出好东西。</p>
+
+<h2>1. AI → ML → DL → LLM → Agent</h2>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:22px 20px">
+AI(人工智能): 让机器表现出智能的一切技术 — 下棋、识图、翻译、开车
+  └── ML(机器学习): 不靠人工写规则，让机器从数据中自动找规律
+       └── DL(深度学习): 多层神经网络模拟人脑结构
+            └── LLM(大语言模型): 海量文本训练出的"写文章机器"— GPT/Claude/DeepSeek
+                 └── Agent(智能体): LLM + 工具调用 = 能自主执行任务的AI</pre></div>
+
+<h2>2. LLM的本质：超强"下一个词预测器"</h2>
+<p>不要神话大模型。<strong>它做的基本上就是：给定前文，猜下一个最可能的词。</strong>然后一个词一个词续写下去，直到写完。它没有意识、不懂意义——但它见过万亿级别的文字，对词与词之间的概率关系掌握到极致。这种续写能力强大到让它看起来像在思考。</p>
+<p>你输入"床前明月光，疑似地上"→它预测下一个词是"霜"→继续→输出"举头望明月，低头思故乡"。写代码、翻译、分析——全是同样的"续写"机制。</p>
+
+<h2>3. Token — 模型不是按字计费</h2>
+<p><strong>1 Token ≈ 0.75个英文单词 ≈ 0.5个中文字。</strong>"Hello world"≈3 Token，"你好世界"≈4 Token。一段1000字的文章≈500-700 Token。100行Python≈200-400 Token。</p>
+<p>每次API调用的费用 = (输入Token数+输出Token数) × 单价。DeepSeek单价每百万Token约¥2-8。</p>
+<div class="ib gd"><span class="ie">💰</span><span><strong>成本实测：</strong>问DeepSeek"写一首编程打油诗"→输入约15Token，输出约120Token，共135Token。按每百万Token ¥2算：135/1000000×2≈¥0.00027。<strong>不到0.03分钱。</strong>充¥10能聊几万次。</span></div>
+
+<h2>4. Temperature — 控制AI的"创意浓度"</h2>
+<p>范围0~2。<strong>T=0 → 模型只选概率最高的词。稳定、可重复。</strong>适合：代码、事实回答、翻译。<strong>T=1 → 有一定随机性。</strong>有创意但可能不准确。适合：写作、故事。<strong>T>1 → 开始胡说。</strong></p>
+<div class="ib tp"><span class="ie">🎯</span><span>经验公式：代码/数据→0.0~0.3。文章/邮件→0.7~0.9。头脑风暴→1.0。永远不要超过1.5。</span></div>
+
+<h2>5. Context Window — 一次能"读"多少</h2>
+<p>Context Window = 模型一次能看多少字。GPT-4o是128K(≈300页)，Claude是200K(≈中篇小说)，DeepSeek V4是1M(≈《三体》第一部)。<strong>Context越大越贵</strong>——你放进去的所有内容都计费。</p>
+<p>实际开发中：Context Window ≥ 你的整个项目代码，才能让AI理解全貌。如果不够，就需要RAG（第14章）——先检索相关片段再喂给AI。</p>
+
+<h2>6. System Prompt vs User Prompt</h2>
+<p><strong>System Prompt</strong> = 给AI预设角色+规则（"你是资深Python工程师，用中文+emoji回复"）。不算在对话历史里，不影响计费。<strong>User Prompt</strong> = 用户的实际问题。你可以把System Prompt想成AI的"人设"——它贯穿整个对话，AI一直知道自己扮演什么角色。</p>
+
+<h2>7. 训练 vs 推理</h2>
+<p><strong>训练（Training）：</strong>用海量数据+天价GPU训练出一个模型。你可能没见过这个过程。<strong>推理（Inference）：</strong>你调用API，模型跑一次计算、返回结果。你每次调API都是在做推理。训练费几千万美元；推理费几厘钱。</p>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>部署上线 — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>🚀 部署上线</h1><p class="subtitle">你写的HTML文件，怎么变成全世界都能打开的网址？四种免费方案对比。</p>
+
+<h2>1. GitHub Pages — 最简免费方案</h2>
+<ol class="steps"><li>创建GitHub仓库（Public）</li><li>推送 <code>index.html</code></li><li><code>gh api repos/用户名/仓库/pages -X POST -f "source[branch]=master"</code></li><li>获得网址：<code>https://用户名.github.io/仓库/</code></li></ol>
+<p><strong>优点：</strong>永久免费、操作简单、全球CDN加速、自动HTTPS。国内直接能打开。<strong>局限：</strong>只能托管静态文件（HTML/CSS/JS/图片），不能跑后端。</p>
+
+<h2>2. Vercel — 纯静态+Serverless后端</h2>
+<p>Vercel既托管静态文件，也能跑后端代码（Serverless Functions）。你写一个 <code>api/xxx.js</code> 文件，Vercel自动把它部署成云端函数。<strong>免费额度：</strong>100GB带宽/月，100小时函数执行时长/月。个人项目足够。直接从 GitHub 导入仓库 → 自动部署 → 每次 push 自动更新。</p>
+<p><strong>注意：</strong>Vercel 默认域名 <code>*.vercel.app</code> 在国内有时不稳定，可绑自定义域名解决。</p>
+
+<h2>3. Cloudflare Pages & Workers</h2>
+<p>Cloudflare 的CDN在国内有节点，访问速度比Vercel快。<strong>Cloudflare Pages</strong>托管静态文件（免费、无限带宽）。<strong>Cloudflare Workers</strong>免费提供10万次/天Serverless函数执行。适合想要国内快速访问的项目。</p>
+<p>需要先在 dash.cloudflare.com 注册workers.dev子域名，然后用 <code>wrangler deploy</code> 部署。</p>
+
+<h2>4. Deno Deploy</h2>
+<p>Deno Deploy 托管JS/TS服务端代码。免费额度每天10万次请求。部署极快（10秒上线）。支持直接连接GitHub仓库自动部署。</p>
+
+<h2>5. 方案选择</h2>
+<div class="tb"><table><tr><th>你的项目</th><th>推荐</th></tr><tr><td>纯HTML/CSS/JS网站</td><td><strong>GitHub Pages</strong></td></tr><tr><td>前端+需要后端API</td><td><strong>Vercel</strong></td></tr><tr><td>国内用户为主</td><td><strong>Cloudflare Pages + Workers</strong></td></tr><tr><td>JS/TS后端快速上线</td><td><strong>Deno Deploy</strong></td></tr></table></div>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

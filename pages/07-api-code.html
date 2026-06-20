@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>API 编程 — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>⚡ API 编程</h1><p class="subtitle">第一行代码就让AI为你工作。10分钟跑通。之后所有AI应用都是这段代码的扩展。</p>
+
+<h2>1. 调用 DeepSeek（推荐新手起步）</h2>
+<ol class="steps"><li>注册 <a href="https://platform.deepseek.com">platform.deepseek.com</a> → 实名 → 充值¥10</li><li>左侧"API Keys"→创建→<strong>立即复制保存</strong>（只显示一次！）</li><li>终端：<code>pip install openai</code></li></ol>
+<div class="cb"><span class="lg">Python — 人生第一段AI代码</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+<span class="kw">client</span> = OpenAI(api_key=<span class="st">"sk-你的Key"</span>, base_url=<span class="st">"https://api.deepseek.com/v1"</span>)
+<span class="kw">r</span> = client.chat.completions.create(
+    model=<span class="st">"deepseek-chat"</span>,
+    messages=[{<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>:<span class="st">"用一句话解释什么是递归"</span>}]
+)
+<span class="fn">print</span>(r.choices[<span class="nu">0</span>].message.content)  <span class="cm"># ← 这里就是AI的回复</span></pre></div>
+<div class="ib gd"><span class="ie">✅</span><span>跑通这段代码 = <strong>你人生的第一段AI程序。</strong>接下来所有的聊天机器人、自动写作工具、代码生成器，本质上都是这段代码的扩展。</span></div>
+
+<h2>2. 调用 Claude</h2>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">from</span> anthropic <span class="kw">import</span> Anthropic
+<span class="kw">c</span> = Anthropic(api_key=<span class="st">"sk-ant-"</span>)
+<span class="kw">m</span> = c.messages.create(model=<span class="st">"claude-sonnet-4-6"</span>, max_tokens=<span class="nu">1000</span>,
+    system=<span class="st">"你是中文编程老师"</span>,
+    messages=[{<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>:<span class="st">"解释 async/await"</span>}])
+<span class="fn">print</span>(m.content[<span class="nu">0</span>].text)</pre></div>
+<p>注意：Claude把System Prompt和User Messages分开了。DeepSeek/OpenAI把它们混在messages数组里用role区分。</p>
+
+<h2>3. 多轮对话</h2>
+<p>AI本身无状态——每次请求它"失忆"。要让AI记住上下文，你得把前面的对话全放回messages数组里。</p>
+<div class="cb"><span class="lg">Python — 带记忆的对话</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">msgs</span> = [{<span class="st">"role"</span>:<span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"你是日语老师"</span>}]
+msgs.append({<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"「ありがとう」是什么意思？"</span>})
+msgs.append({<span class="st">"role"</span>:<span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"是'谢谢'的意思。"</span>})
+msgs.append({<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"再教我3个常用单词"</span>})
+<span class="kw">r</span> = client.chat.completions.create(model=<span class="st">"deepseek-chat"</span>, messages=msgs)
+<span class="cm"># AI知道前面教过"ありがとう"</span></pre></div>
+
+<h2>4. 流式输出 — 打字机效果</h2>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">stream</span> = client.chat.completions.create(
+    model=<span class="st">"deepseek-chat"</span>,
+    messages=[{<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"写一首编程打油诗"</span>}],
+    stream=<span class="kw">True</span>
+)
+<span class="kw">for</span> chunk <span class="kw">in</span> stream:
+    <span class="kw">if</span> chunk.choices[<span class="nu">0</span>].delta.content:
+        <span class="fn">print</span>(chunk.choices[<span class="nu">0</span>].delta.content, end=<span class="st">""</span>, flush=<span class="kw">True</span>)</pre></div>
+
+<h2>5. Function Calling — AI决定调用你的工具</h2>
+<p>告诉AI你有哪些工具可用。AI自己决定调哪个工具、传什么参数。你的代码执行工具→把结果返回给AI→AI基于结果继续对话。</p>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">tools</span> = [{<span class="st">"type"</span>:<span class="st">"function"</span>, <span class="st">"function"</span>:{
+    <span class="st">"name"</span>:<span class="st">"get_weather"</span>, <span class="st">"description"</span>:<span class="st">"查天气"</span>,
+    <span class="st">"parameters"</span>:{<span class="st">"type"</span>:<span class="st">"object"</span>, <span class="st">"properties"</span>:{<span class="st">"city"</span>:{<span class="st">"type"</span>:<span class="st">"string"</span>}}}
+}}]
+<span class="kw">r</span> = client.chat.completions.create(
+    model=<span class="st">"deepseek-chat"</span>,
+    messages=[{<span class="st">"role"</span>:<span class="st">"user"</span>, <span class="st">"content"</span>:<span class="st">"北京今天天气怎么样？"</span>}],
+    tools=<span class="kw">tools</span>
+)
+<span class="cm"># AI返回的不是文字——是一个tool_call：{"name":"get_weather","arguments":{"city":"北京"}}</span>
+<span class="cm"># 你的代码执行函数→拿到结果→塞回messages里→继续对话→AI用自然语言告诉你天气</span></pre></div>
+<p><strong>这就是 Agent 的底层机制。</strong>后面的Agent章节你会看到这个模式被放大到极致。</p>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

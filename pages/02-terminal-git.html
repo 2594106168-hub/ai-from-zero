@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>终端 & Git — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>⌨️ 终端 & Git</h1><p class="subtitle">黑框框不可怕。10个命令+Git快照原理+GitHub Pages部署。</p>
+
+<h2>1. 终端为什么重要</h2>
+<p>很多编程工具<strong>没有图形界面，只能在终端用</strong>。Claude Code、Codex CLI、npm、pip——全跑在终端里。你不是要成为命令行大师，但必须能在终端里：①打开正确的文件夹 ②运行一个命令 ③看懂输出。</p>
+<p><strong>你怎么打开终端：</strong>Windows → Win+R → 输入 <code>powershell</code> → 回车。macOS → 聚焦搜索 → 输入 <code>terminal</code> → 回车。</p>
+
+<h2>2. 10个必记命令</h2>
+<div class="cb"><span class="lg">终端</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">ls</span>                <span class="cm"># 列出当前文件夹所有文件 (macOS/Linux)</span>
+<span class="kw">dir</span>               <span class="cm"># 同上 (Windows)</span>
+<span class="kw">cd</span> 文件夹名         <span class="cm"># 进入这个文件夹</span>
+<span class="kw">cd</span> ..              <span class="cm"># 回上一级</span>
+<span class="kw">mkdir</span> 新文件夹      <span class="cm"># 创建文件夹</span>
+<span class="kw">pwd</span>               <span class="cm"># 显示当前完整路径 (macOS/Linux)</span>
+<span class="kw">node</span> 文件.js        <span class="cm"># 运行JavaScript</span>
+<span class="kw">python</span> 文件.py      <span class="cm"># 运行Python</span>
+<span class="kw">npm</span> install 包名    <span class="cm"># 安装Node.js包</span>
+<span class="kw">code</span> .             <span class="cm"># 用 VS Code 打开当前文件夹</span></pre></div>
+
+<h2>3. Git 解决什么问题</h2>
+<p>你写了一个网站。第二天改50行代码。第三天发现改坏了——但已经不知道原来什么样了。<strong>Git 就是解决这个的。</strong></p>
+<p>每次你执行 <code>git commit</code>，Git 就给整个项目拍一张<strong>快照</strong>。任何时刻改坏了，随时回到任意一张快照。你还可以创建<strong>分支</strong>——从主线分一条支线，在上面随便实验。做好了合并回去，做烂了删掉分支，主线毫发无损。<strong>GitHub = 把快照存在云上。</strong></p>
+
+<h2>4. Git 核心概念：工作区 → 暂存区 → 仓库</h2>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:22px 20px">工作区（你正在改的文件）→ git add → 暂存区（列入下次提交清单）→ git commit → 本地仓库（拍快照）→ git push → 远程仓库（GitHub）</pre></div>
+<p>这个三步流是理解 Git 的关键：<strong>你改了文件（工作区）→ git add 选择哪些改动要提交（暂存区）→ git commit 拍快照（仓库）。</strong></p>
+
+<h2>5. 每天做的就这5步</h2>
+<div class="cb"><span class="lg">终端</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>git status              <span class="cm"># 看哪些文件被改了</span>
+git add .               <span class="cm"># 暂存所有改动</span>
+git commit -m <span class="st">"修复了首页bug"</span>  <span class="cm"># 提交（-m后面写备注）</span>
+git push                <span class="cm"># 推到 GitHub</span>
+git pull                <span class="cm"># 拉取别人的更新</span></pre></div>
+
+<h2>6. 分支 — 做实验不搞坏主线</h2>
+<div class="cb"><span class="lg">终端</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>git branch              <span class="cm"># 看所有分支</span>
+git checkout -b 新功能   <span class="cm"># 创建并切换到新分支</span>
+<span class="cm"># ...在新分支上改代码、提交...</span>
+git checkout master     <span class="cm"># 切回主线</span>
+git merge 新功能         <span class="cm"># 把支线的改动合并进来</span>
+git branch -d 新功能     <span class="cm"># 删掉不用的分支</span></pre></div>
+
+<h2>7. .gitignore — 防止 API Key 泄露</h2>
+<div class="cb"><span class="lg">.gitignore</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>node_modules/       <span class="cm"># npm安装的依赖包，体积巨大</span>
+.env                <span class="cm"># 存API Key的文件，绝对不能提交！</span>
+__pycache__/        <span class="cm"># Python缓存</span>
+*.pyc               <span class="cm"># 编译文件</span>
+dist/ build/        <span class="cm"># 构建产物</span></pre></div>
+<div class="ib wn"><span class="ie">⚠️</span><span><strong>如果 API Key 已经push到了 GitHub：</strong>这密钥已经公开了。①去平台后台立即删除这个 Key 重新生成 ②在代码里替换新 Key ③用 <code>git commit --amend</code> 或强制推送覆盖历史。不是改个文件就行的——Git 历史里还有旧版本。</span></div>
+
+<h2>8. GitHub Pages — 免费让你的代码变成网站</h2>
+<ol class="steps"><li>创建 GitHub 仓库 → Public</li><li>把 <code>index.html</code> 推上去</li><li>终端运行：<code>gh api repos/用户名/仓库名/pages -X POST -f "source[branch]=master"</code></li><li>得到网址：<code>https://用户名.github.io/仓库名/</code></li></ol>
+<p>全世界都能打开。不需要买服务器。这是个人开发者最常用的免费部署方案。</p>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

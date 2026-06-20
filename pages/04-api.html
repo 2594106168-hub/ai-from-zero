@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>API 详解 — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>🔌 API 详解</h1><p class="subtitle">API是连接你和AI的管道。所有AI应用都建立在它上面。这一章把API讲到你不可能不懂。</p>
+
+<h2>1. 为什么需要API</h2>
+<p>你想让AI帮你写代码。但AI模型跑在云端的GPU服务器上——你不可能在自己笔记本上跑6710亿参数的模型。你只能发请求给云端服务器，让它算完把结果返回给你。这个"发请求→收结果"的通道就是API。</p>
+
+<h2>2. 用餐厅彻底搞懂</h2>
+<div class="cg"><div class="c"><span class="em">👤</span><h4>你（客户端）</h4><p>坐桌前想吃饭，<b>不能进厨房</b>。只能通过菜单和服务员。</p></div><div class="c"><span class="em">📋</span><h4>菜单（API文档）</h4><p>写着能点什么菜、每道菜要什么配料。<b>API文档就是菜单</b>——告诉你有哪些功能可用、怎么调用。</p></div><div class="c"><span class="em">🤵</span><h4>服务员（API本身）</h4><p>你告诉他我要麻婆豆腐，他去厨房下单，端回来。<b>API就是服务员</b>——在你的程序和AI之间传话。</p></div><div class="c"><span class="em">👨‍🍳</span><h4>厨房（AI服务器）</h4><p>大厨根据订单做菜。<b>大厨 = OpenAI/DeepSeek的大模型</b>。</p></div></div>
+
+<h2>3. API Key不是会员，是预付费电卡</h2>
+<p>很多人以为API Key是买了个会员。不是的。<strong>API Key像预付费电表。</strong>你充值¥10，每次调用扣几分到几毛钱。余额为零就停。你不调用就不扣钱。这跟每月¥20的ChatGPT Plus完全不同。</p>
+<p>OpenAI Key格式：<code>sk-proj-xxxxx</code>。Anthropic Key格式：<code>sk-ant-xxxxx</code>。DeepSeek Key格式：<code>sk-xxxxx</code>。拿到Key=能花你的钱=绝对不能泄露。</p>
+
+<h2>4. JSON — API的世界语</h2>
+<p>你的程序说Python话，AI服务器说C++话，中间怎么沟通？用<strong>JSON</strong>——极简单的纯文本格式，人机都能读。JSON只有6种类型：字符串、数字、布尔、null、数组、对象。</p>
+<div class="cb"><span class="lg">JSON — 这就是API的通信格式</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>{
+  <span class="st">"model"</span>: <span class="st">"deepseek-chat"</span>,         <span class="cm">← 用哪个模型</span>
+  <span class="st">"messages"</span>: [                         <span class="cm">← 对话内容</span>
+    { <span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"什么是API？"</span> }
+  ],
+  <span class="st">"temperature"</span>: <span class="nu">0.7</span>,                  <span class="cm">← 创意程度</span>
+  <span class="st">"max_tokens"</span>: <span class="nu">500</span>                    <span class="cm">← 最多输出多少</span>
+}</pre></div>
+<p>这个JSON翻译成人话：<strong>"喂DeepSeek，用deepseek-chat模型，温度0.7，最多输出500个token，帮我回答：什么是API？"</strong></p>
+
+<h2>5. 请求-响应完整示例</h2>
+<div class="cb"><span class="lg">你发的请求（Request）</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>POST https://api.deepseek.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer sk-xxxxx      <span class="cm">← API Key 就放在这个头部！</span>
+
+{ "model": "deepseek-chat", "messages": [{"role":"user","content":"你好"}] }</pre></div>
+<div class="cb"><span class="lg">AI返回的响应（Response）</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "chatcmpl-xxx",
+  "choices": [{
+    "message": {
+      "role": "assistant",
+      "content": "你好！有什么可以帮助你的吗？"
+    }
+  }],
+  "usage": { "prompt_tokens": 8, "completion_tokens": 12, "total_tokens": 20 }
+}</pre></div>
+<p><strong>你看：</strong>你的代码构造JSON→发给API→API返回JSON→你的代码从choices[0].message.content拿到回复文字。</p>
+
+<h2>6. REST vs GraphQL vs gRPC</h2>
+<div class="tb"><table><tr><th>风格</th><th>特点</th><th>适合</th></tr><tr><td><strong>REST</strong></td><td>HTTP方法+名词URL，最主流</td><td>绝大多数API</td></tr><tr><td><strong>GraphQL</strong></td><td>前端指定要哪些字段，一个请求拿所有数据</td><td>复杂前端应用</td></tr><tr><td><strong>gRPC</strong></td><td>Google出品的二进制协议，超高性能</td><td>微服务内部通信</td></tr></table></div>
+<p>你调的所有AI API都是REST风格。记住这个就够了。</p>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

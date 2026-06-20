@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>计算机网络 — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+
+<div class="content">
+<a href="../index.html" class="back-link">← 返回首页</a>
+<h1>🌐 计算机网络</h1>
+<p class="subtitle">你在浏览器里点了一下，数据怎么从你的电脑跑到地球另一边的服务器再跑回来？这一章全部讲清楚。</p>
+
+<h2>1. 一个消息的环球旅行</h2>
+<p>用微信给朋友发了"你好"。这两个字走了多远？</p>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:22px 20px">
+你的手机 → WiFi路由器 → 光猫 → 运营商基站 → 光纤 → 微信服务器 → 朋友的手机
+  (30ms)     (0.1ms)       (5ms)     (10ms)        (15ms)</pre></div>
+<p>每一步，你的数据都以<strong>电磁波或光信号</strong>的形式在网线上传输。到了目的地再还原成文字。整个过程像快递——打包→贴地址→运输→拆包→签收。你按了发送，三十几毫秒后对方就看到了。</p>
+
+<h2>2. IP 地址 — 互联网门牌号</h2>
+<p><strong>每台联网的设备都有一个唯一的 IP 地址。</strong>就像你家有门牌号、你有手机号。没有 IP 地址，别的机器找不到你。</p>
+<p><strong>IPv4（老标准）：</strong>用 4 个数字，每个 0-255。比如 Google 的 <code>142.250.72.46</code>。全球最多约 43 亿个。不够用了，所以有了 <strong>IPv6（新标准）</strong>——用六组十六进制数（如 <code>2001:db8::1</code>），多到地球上每粒沙子都能分一个。</p>
+<p>你现在用的 IP 是 <strong>局域网 IP</strong>（如 <code>192.168.1.5</code>）——路由器分配给你的内部编号。路由器对外只有一个<strong>公网 IP</strong>。这叫 <strong>NAT（网络地址转换）</strong>——一台路由器背后可以藏几十台设备，共用一个公网 IP。</p>
+
+<h2>3. DNS — 互联网的电话簿</h2>
+<p>你记得 <code>google.com</code>，但记不住 <code>142.250.72.46</code>。<strong>DNS（Domain Name System）就是把网址翻译成IP的全球分布式电话簿。</strong></p>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:22px 20px">
+你在浏览器打 "google.com"
+         ↓
+ [浏览器DNS缓存] 有记录吗？ → 没有。继续问。
+         ↓
+ [操作系统DNS缓存] 有吗？ → 没有。继续问。
+         ↓
+ [你的路由器] 有吗？ → 没有。继续问。
+         ↓
+ [运营商DNS服务器] 有记录吗？ → 有！返回 142.250.72.46
+         ↓
+ 浏览器向这个IP发请求 → 页面显示</pre></div>
+<p><strong>DNS 劫持：</strong>恶意程序改掉你的 DNS 设置，把 <code>google.com</code> 翻译到色情网站。你之前 WiFi 跳黄网就是这个原因。换成<strong>干净DNS</strong>：阿里 <code>223.5.5.5</code>、Cloudflare <code>1.1.1.1</code>、Google <code>8.8.8.8</code>。</p>
+
+<h2>4. 端口 — 一台机器跑几十个服务</h2>
+<p>IP 找到哪台机器。端口找到这台机器上的哪个服务。</p>
+<p>类比：IP = 写字楼的地址。端口 = 楼里的房间号。你寄快递要写"XX大厦801室"。发 HTTP 请求就是"IP + 端口80"。</p>
+<div class="tb"><table><tr><th>端口</th><th>标准服务</th><th>你什么时候用到</th></tr>
+<tr><td><strong>80</strong></td><td>HTTP（明文网页）</td><td>每次打开 http://xxx</td></tr>
+<tr><td><strong>443</strong></td><td>HTTPS（加密网页）</td><td>地址栏有🔒时</td></tr>
+<tr><td><strong>22</strong></td><td>SSH（远程登录服务器）</td><td>部署网站</td></tr>
+<tr><td><strong>3306</strong></td><td>MySQL 默认端口</td><td>开数据库</td></tr>
+<tr><td><strong>3000</strong></td><td>开发服务器默认端口</td><td>npm run dev / node server.js</td></tr></table></div>
+
+<h2>5. HTTP 协议 — 双方怎么对话</h2>
+<p>IP 找到机器、端口找到服务。剩下就是「怎么说话」——用 <strong>HTTP 协议</strong>。</p>
+<p>HTTP 请求必须包含：①用什么方法（GET/POST…）②找哪个资源（路径 /index.html）③协议版本（HTTP/1.1）④Host 头部（找哪个网站——因为一台服务器可能托管几百个网站）。</p>
+<div class="cb"><span class="lg">HTTP 请求 — 浏览器发给服务器</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>GET /api/users HTTP/1.1                   <span class="cm">← 方法 路径 版本</span>
+Host: www.example.com                      <span class="cm">← 找哪个网站</span>
+Authorization: Bearer sk-xxxx              <span class="cm">← 身份认证（API Key 在这！）</span>
+Content-Type: application/json             <span class="cm">← 请求体是什么格式</span>
+Accept: application/json                   <span class="cm">← 我想要什么格式的返回</span></pre></div>
+
+<div class="cb"><span class="lg">HTTP 响应 — 服务器返回给浏览器</span><button class="cp" onclick="cp(this)">复制</button>
+<pre>HTTP/1.1 200 OK                            <span class="cm">← 200=成功，最重要的状态码</span>
+Content-Type: application/json; charset=utf-8
+Content-Length: 256                        <span class="cm">← 返回内容的大小</span>
+
+{ "name": "张三", "age": 25 }              <span class="cm">← 真正的返回数据（JSON）</span></pre></div>
+
+<h2>6. HTTP 方法 — GET/POST/PUT/DELETE</h2>
+<div class="tb"><table><tr><th>方法</th><th>干什么</th><th>类比</th><th>有请求体吗</th><th>幂等吗</th></tr>
+<tr><td><strong>GET</strong></td><td>读取数据</td><td>淘宝搜"鞋子"→看到结果</td><td>❌ 没有</td><td>✅ 是</td></tr>
+<tr><td><strong>POST</strong></td><td>创建数据</td><td>注册账号→填表提交</td><td>✅ 有</td><td>❌ 不</td></tr>
+<tr><td><strong>PUT</strong></td><td>完整替换</td><td>把整篇文章替换成新版本</td><td>✅ 有</td><td>✅ 是</td></tr>
+<tr><td><strong>PATCH</strong></td><td>部分更新</td><td>只改文章标题，正文不动</td><td>✅ 有</td><td>❌ 不</td></tr>
+<tr><td><strong>DELETE</strong></td><td>删除</td><td>删帖子</td><td>❌ 没有</td><td>✅ 是</td></tr></table></div>
+<div class="ib tp"><span class="ie">💡</span><span><strong>幂等是什么意思？</strong>同一个请求，发1次和发100次结果一样=幂等。GET 查数据，查100次都一样=幂等。POST 创建用户，创建100次就有100个用户=不幂等。PUT 替换，第100次替换和第1次结果一样=幂等。</span></div>
+<p><strong>GET 和 POST 最核心的区别：</strong>GET 把参数放在网址后面（<code>?name=张三&age=25</code>），POST 把参数藏在请求体里。所以密码绝对不能用 GET——网址会被别人看到、被浏览器历史记录。用 POST。</p>
+
+<h2>7. HTTP 状态码</h2>
+<div class="cg"><div class="c" style="border-left:3px solid var(--gn)"><h4>2xx 成功了</h4><p><code>200 OK</code> — 正常<br><code>201 Created</code> — 创建成功<br><code>204 No Content</code> — 成功但没数据返回（删除常用）</p></div>
+<div class="c" style="border-left:3px solid var(--or)"><h4>3xx 重定向</h4><p><code>301</code> — 永久搬家，以后直接去新地址<br><code>302</code> — 临时搬家<br><code>304</code> — 你的缓存没过期，别重复发</p></div>
+<div class="c" style="border-left:3px solid var(--rd)"><h4>4xx 你的锅</h4><p><code>400 Bad Request</code> — 请求格式不对<br><code>401 Unauthorized</code> — 没登录或Key过期<br><code>403 Forbidden</code> — 你没权限<br><code>404 Not Found</code> — 这个路径不存在<br><code>429 Too Many</code> — 请求太频繁被限速</p></div>
+<div class="c" style="border-left:3px solid var(--rd)"><h4>5xx 服务器锅</h4><p><code>500 Internal Error</code> — 服务器崩了<br><code>502 Bad Gateway</code> — 网关挂了<br><code>503 Service Unavailable</code> — 服务器在维护</p></div></div>
+
+<h2>8. HTTPS 为什么比 HTTP 安全</h2>
+<p>HTTP 传输是<strong>明文</strong>的。任何人截获数据包都能直接看到你发的密码、银行卡号。<strong>HTTPS = HTTP + TLS 加密。</strong>数据在发送前加密，中间截获的是一堆乱码，只有服务器有密钥能解开。地址栏有🔒=HTTPS。现在几乎所有网站都用 HTTPS。</p>
+
+<h2>9. REST API — 最主流的 API 设计风格</h2>
+<p>REST 不是技术，是<strong>一套命名规范</strong>。用 HTTP 方法+名词化的 URL 来操作资源：</p>
+<div class="cb"><span class="lg">REST API 设计</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="cm"># 获取所有用户</span>    GET    /api/users
+<span class="cm"># 获取ID=1的用户</span>   GET    /api/users/1
+<span class="cm"># 创建用户</span>         POST   /api/users       (+ 请求体含用户信息JSON)
+<span class="cm"># 完整替换用户</span>     PUT    /api/users/1      (+ 请求体含所有字段)
+<span class="cm"># 只改年龄</span>         PATCH  /api/users/1      (+ 请求体只含age字段)
+<span class="cm"># 删除用户</span>         DELETE /api/users/1</pre></div>
+<p>这就是你调用 DeepSeek API 的本质：<strong>POST 一个 JSON 到 https://api.deepseek.com/v1/chat/completions → 服务器处理 → 返回 JSON 结果。</strong></p>
+
+<h2>10. WebSocket — 不只是请求-响应</h2>
+<p>HTTP 是"你问我才答"。但聊天应用、实时股票——服务器需要<strong>主动推给你数据</strong>。WebSocket 就解决这个问题：建立一条长连接，服务器随时推数据。Claude Code 和 Codex 的流式输出底层用的就是类似机制。</p>
+</div>
+
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

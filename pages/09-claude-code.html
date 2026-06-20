@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Claude Code — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>🦾 Claude Code</h1><p class="subtitle">终端里的AI程序员。能读你的文件、写代码、改代码、运行命令、部署项目。不是聊天——是指挥一个虚拟程序员干活。</p>
+
+<h2>1. Claude Code 是什么</h2>
+<p>Claude Code 是 Anthropic 发布的<strong>命令行 AI 编程助手</strong>。它在你的终端里运行，能读你的整个项目目录、创建新文件、修改现有代码、执行终端命令、安装依赖包、部署上线。你只需要告诉它"我想做什么"，它自己做。</p>
+<p>跟 ChatGPT 网页版的区别：ChatGPT 你复制粘贴代码自己跑。Claude Code 直接帮你改了文件还帮你跑了。</p>
+
+<h2>2. 安装（3步）</h2>
+<ol class="steps"><li><code>node -v</code> → 没装就去 nodejs.org 下 LTS 版</li><li><code>npm install -g @anthropic-ai/claude-code</code></li><li><code>claude login</code> → 浏览器自动弹出授权</li></ol>
+
+<h2>3. 核心命令</h2>
+<div class="tb"><table><tr><th>命令</th><th>做什么</th></tr><tr><td><code>claude</code></td><td>启动对话</td></tr><tr><td><code>/init</code></td><td>初始化项目，生成 CLAUDE.md</td></tr><tr><td><code>/compact</code></td><td>压缩对话历史省 Token</td></tr><tr><td><code>/clear</code></td><td>清空对话</td></tr><tr><td><code>/config</code></td><td>换模型、改配置</td></tr><tr><td><code>/doctor</code></td><td>自检诊断</td></tr></table></div>
+
+<h2>4. 用 CC Switch 走 DeepSeek（省90%成本）</h2>
+<p>Claude Code 默认用 Anthropic 的 API，较贵。你已装了 CC Switch，把后端切到 DeepSeek：</p>
+<div class="cb"><pre><span class="cm">Base URL:</span>  https://api.deepseek.com/anthropic
+<span class="cm">API Key:</span>   sk-你的DeepSeek Key
+<span class="cm">主模型:</span>   deepseek-v4-pro[1m]
+<span class="cm">快模型:</span>   deepseek-v4-flash</pre></div>
+<div class="ib gd"><span class="ie">💰</span><span>走 DeepSeek 成本降低约90%。写一天代码可能只要几块钱。Anthropic 官方要几十块。</span></div>
+
+<h2>5. 实战：一句话建网站</h2>
+<p>打开终端，进入空文件夹，输入 <code>claude</code>，直接说：</p>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:14px;padding:16px">"帮我做一个人博客网站。HTML+CSS+JS，深色主题，首页+文章列表+关于我。
+先告诉我你打算怎么设计，我确认了你再写代码。"</pre></div>
+<p>Claude Code会：①先给你设计方案 ②你点头后自动创建文件写代码 ③你继续提修改意见 ④它直接改文件。</p>
+
+<h2>6. CLAUDE.md — 项目的记忆文件</h2>
+<p>项目根目录放一个 <code>CLAUDE.md</code>，用中文写清楚技术栈、代码风格、当前任务。Claude Code 每次启动自动读。省得每次都重新解释。</p>
+<div class="cb"><span class="lg">CLAUDE.md 示例</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="cm"># 项目: 个人博客</span>
+- 技术: HTML + CSS + JS, 不用框架
+- 部署: GitHub Pages
+- 风格: 深色主题, 紫色为主, 简洁
+- 不要引入任何第三方库
+- 代码加中文注释
+- 修改前先告诉我你打算怎么做</pre></div>
+
+<h2>7. 子 Agent — 多个 AI 同时干活</h2>
+<p>Claude Code 支持<strong>子 Agent 并行执行</strong>。你让它做一个网站，它内部可能启动一个前端 Agent 写 HTML、一个样式 Agent 写 CSS、一个逻辑 Agent 写 JS，三个同时干然后合并。不需要你插手。这对大项目效率提升巨大。</p>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI Agent — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>🤖 AI Agent</h1><p class="subtitle">普通LLM问你一句答一句。Agent给你目标——自己规划、用工具、循环执行直到完成。</p>
+
+<h2>1. Agent是什么</h2>
+<p>普通LLM：你问"这段代码有bug吗"→它说"第3行少了分号"→你自己去改。<strong>Agent：</strong>你说"检查这个项目有没有bug，有就修了"→它自己读所有文件、找到3个bug、逐一修复、告诉你修了哪些。</p>
+<p>Agent = LLM + 工具调用 + 循环决策</p>
+
+<h2>2. 工作循环：ReAct模式</h2>
+<ol class="steps"><li><strong>思考（Thought）：</strong>我现在该做什么？有哪些工具可用？</li><li><strong>行动（Action）：</strong>调用一个工具——搜索API、读文件、写代码、执行命令</li><li><strong>观察（Observation）：</strong>工具返回了什么？</li><li>回到步骤1，直到目标达成</li></ol>
+<div class="cb"><pre style="font-family:var(--font-zh);font-size:13px;line-height:2.2;padding:18px 20px">
+用户: "帮我做市场调研：上周AI行业有什么大新闻？整理成报告发邮件给我。"
+  ↓
+Agent: 1) 调用web_search搜索"AI news last week"
+      2) 阅读搜索结果→提取关键信息→调用write_file写报告
+      3) 调用send_email发送→"✅已发送，请查收邮件"</pre></div>
+
+<h2>3. Function Calling — Agent的底层机制</h2>
+<p>在第7章里你看到了Function Calling的基础写法。Agent就是把它放大：给AI十几个工具（查网页、写文件、发邮件、读数据库、搜索代码…），AI自己决定用哪个、怎么组合。</p>
+<div class="cb"><span class="lg">Python — Agent循环伪代码</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">def</span> <span class="fn">agent_loop</span>(goal, tools):
+    <span class="kw">msgs</span> = [{<span class="st">"role"</span>:<span class="st">"system"</span>, <span class="st">"content"</span>: f<span class="st">"你是一个Agent。目标:{goal}。可用工具:{tools}"</span>}]
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="kw">r</span> = client.chat.completions.create(model=<span class="st">"deepseek-chat"</span>, messages=msgs, tools=tools)
+        <span class="kw">if</span> r.choices[<span class="nu">0</span>].finish_reason == <span class="st">"stop"</span>: <span class="kw">return</span> r  <span class="cm"># 完成了</span>
+        <span class="cm"># AI要求调用工具 → 执行 → 结果塞回对话 → 继续</span>
+        <span class="kw">tool_call</span> = r.choices[<span class="nu">0</span>].message.tool_calls[<span class="nu">0</span>]
+        <span class="kw">result</span> = <span class="fn">execute_tool</span>(tool_call)
+        msgs.append({<span class="st">"role"</span>:<span class="st">"tool"</span>, <span class="st">"content"</span>: result})</pre></div>
+
+<h2>4. MCP（Model Context Protocol）</h2>
+<p>MCP是Anthropic推出的<strong>AI与工具的连接标准。</strong>类比：USB统一了电脑和键盘/鼠标/U盘的连接方式，MCP统一了AI和各类外部工具（数据库、文件系统、第三方API）的连接方式。</p>
+<p>只要一个工具支持MCP，任何支持MCP的AI程序都能直接调用。不用为每个AI重写适配代码。Claude Code、Cursor、OpenClaw都已支持MCP。<a href="https://modelcontextprotocol.io">官方文档</a></p>
+
+<h2>5. 多Agent系统</h2>
+<div class="cg"><div class="c"><span class="em">🏗️</span><h4>编配Agent</h4><p>收需求→拆成子任务→分发给专业Agent→汇总→交付</p></div><div class="c"><span class="em">💻</span><h4>开发Agent</h4><p>专门写代码、跑测试、修bug</p></div><div class="c"><span class="em">🔍</span><h4>审查Agent</h4><p>专门查代码质量、安全漏洞、性能问题</p></div><div class="c"><span class="em">📝</span><h4>文档Agent</h4><p>专门写README、API文档</p></div></div>
+<p>Claude Code的子Agent就是这个架构的实践——你让它做一个网站，它内部并行启动前端Agent+样式Agent+逻辑Agent同时干活。</p>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>

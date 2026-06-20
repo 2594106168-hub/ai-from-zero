@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Python 编程 — AI从零到精通</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav><div class="ni"><a href="../index.html" class="nl">🤖 AI从0到精通</a><ul class="nav-links"><li><a href="../index.html">首页</a></li></ul></div></nav>
+<div class="content"><a href="../index.html" class="back-link">← 返回首页</a>
+<h1>🐍 Python 编程入门</h1><p class="subtitle">AI开发90%用Python。你不需要精通，但需要看得懂、改得动、能让Claude Code帮你写。</p>
+
+<h2>1. 安装 Python</h2>
+<ol class="steps"><li><a href="https://python.org">python.org</a> → 下载最新版 → 安装时<strong>务必勾选"Add Python to PATH"</strong></li><li>终端输入 <code>python --version</code>，看到版本号=成功</li><li><code>pip install openai requests pandas</code> 把最常用的三个包装上</li></ol>
+
+<h2>2. 变量 — 给数据贴标签</h2>
+<p>你有一个数字25，想存起来反复用。给它取个名字age。这就是变量。Python是<strong>动态类型</strong>——你不需要声明类型，解释器自己判断。</p>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">age</span> = <span class="nu">25</span>                          <span class="cm"># int 整数</span>
+<span class="kw">price</span> = <span class="nu">99.90</span>                    <span class="cm"># float 浮点数</span>
+<span class="kw">name</span> = <span class="st">"张三"</span>                    <span class="cm"># str 字符串（单引号双引号都行）</span>
+<span class="kw">is_admin</span> = <span class="kw">True</span>                 <span class="cm"># bool 布尔值（首字母大写！）</span>
+<span class="kw">nothing</span> = <span class="kw">None</span>                  <span class="cm"># NoneType 空值</span>
+
+<span class="cm"># f-string — 把变量插进文字里，Python 3.6+支持</span>
+<span class="fn">print</span>(f<span class="st">"{name}今年{age}岁，余额{price}元"</span>)  <span class="cm"># 张三今年25岁，余额99.9元</span></pre></div>
+
+<h2>3. 容器：列表/元组/字典/集合</h2>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="cm"># 【list 列表】有序、可改、可重复 — 最常用</span>
+<span class="kw">fruits</span> = [<span class="st">"🍎"</span>, <span class="st">"🍌"</span>, <span class="st">"🍊"</span>]
+<span class="fn">print</span>(fruits[<span class="nu">0</span>])          <span class="cm"># 🍎 索引从0开始</span>
+<span class="fn">print</span>(fruits[-<span class="nu">1</span>])         <span class="cm"># 🍊 -1=倒数第一个</span>
+fruits.append(<span class="st">"🍇"</span>)       <span class="cm"># 加一个到末尾</span>
+fruits.remove(<span class="st">"🍌"</span>)       <span class="cm"># 删掉指定元素</span>
+
+<span class="cm"># 【tuple 元组】有序、不可改 — 坐标/配置项用这个</span>
+<span class="kw">point</span> = (<span class="nu">3</span>, <span class="nu">4</span>)           <span class="cm"># 不能 point[0]=5 会报错</span>
+
+<span class="cm"># 【dict 字典】键值对 — 最核心的数据结构</span>
+<span class="kw">user</span> = {<span class="st">"name"</span>:<span class="st">"张三"</span>, <span class="st">"age"</span>:<span class="nu">25</span>, <span class="st">"skills"</span>:[<span class="st">"Python"</span>,<span class="st">"React"</span>]}
+<span class="fn">print</span>(user[<span class="st">"name"</span>])       <span class="cm"># 张三</span>
+user[<span class="st">"email"</span>] = <span class="st">"z@qq.com"</span> <span class="cm"># 随时加新字段</span>
+
+<span class="cm"># 【set 集合】无序、不重复 — 去重、成员检查</span>
+<span class="kw">tags</span> = {<span class="st">"AI"</span>,<span class="st">"Python"</span>,<span class="st">"AI"</span>}  <span class="cm"># 自动去重 → {"AI","Python"}</span></pre></div>
+
+<h2>4. 条件判断</h2>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">score</span> = <span class="nu">85</span>
+<span class="kw">if</span> score >= <span class="nu">90</span>: <span class="fn">print</span>(<span class="st">"A"</span>)
+<span class="kw">elif</span> score >= <span class="nu">70</span>: <span class="fn">print</span>(<span class="st">"B"</span>)    <span class="cm"># elif = else if</span>
+<span class="kw">else</span>: <span class="fn">print</span>(<span class="st">"C"</span>)
+<span class="cm"># 注意：Python用缩进表示代码块（4个空格），不是{}大括号</span></pre></div>
+
+<h2>5. 循环</h2>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="cm"># for 遍历每个元素</span>
+<span class="kw">for</span> f <span class="kw">in</span> fruits: <span class="fn">print</span>(f)
+
+<span class="cm"># range() 生成0到n-1的整数 — 超常用</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">5</span>): <span class="fn">print</span>(i)  <span class="cm"># 0 1 2 3 4</span>
+
+<span class="cm"># enumerate 同时拿索引和值</span>
+<span class="kw">for</span> i, f <span class="kw">in</span> <span class="fn">enumerate</span>(fruits): <span class="fn">print</span>(f<span class="st">"#{i}: {f}"</span>)
+
+<span class="cm"># 列表推导式 — 一行生成新列表（Pythonic写法）</span>
+<span class="kw">squares</span> = [x**<span class="nu">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">10</span>)]  <span class="cm"># [0,1,4,9,16,...81]</span></pre></div>
+
+<h2>6. 函数</h2>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">def</span> <span class="fn">calculate_price</span>(base, discount=<span class="nu">0</span>, tax=<span class="nu">0.13</span>):
+    <span class="st">"""计算含税价格。discount=折扣率(0~1), tax=税率"""</span>
+    <span class="kw">return</span> base * (<span class="nu">1</span> - discount) * (<span class="nu">1</span> + tax)
+
+<span class="fn">print</span>(<span class="fn">calculate_price</span>(<span class="nu">100</span>, discount=<span class="nu">0.2</span>))  <span class="cm"># 100×0.8×1.13 = 90.4</span>
+
+<span class="kw">def</span> <span class="fn">sum_all</span>(*nums): <span class="kw">return</span> <span class="fn">sum</span>(nums)  <span class="cm"># *args 可变参数</span>
+<span class="fn">print</span>(<span class="fn">sum_all</span>(<span class="nu">1</span>,<span class="nu">2</span>,<span class="nu">3</span>,<span class="nu">4</span>,<span class="nu">5</span>))  <span class="cm"># 15</span></pre></div>
+
+<h2>7. 类</h2>
+<div class="cb"><span class="lg">Python</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">class</span> <span class="fn">Student</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, score):  <span class="cm"># __init__是构造函数，创建时自动调用</span>
+        <span class="kw">self</span>.name = name; <span class="kw">self</span>.score = score
+    <span class="kw">def</span> <span class="fn">pass_or_not</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> <span class="st">"✅"</span> <span class="kw">if</span> <span class="kw">self</span>.score >= <span class="nu">60</span> <span class="kw">else</span> <span class="st">"❌"</span>
+    <span class="kw">def</span> <span class="fn">change_score</span>(<span class="kw">self</span>, new): <span class="kw">self</span>.score = new
+
+<span class="kw">s1</span> = <span class="fn">Student</span>(<span class="st">"张三"</span>, <span class="nu">85</span>); <span class="kw">s2</span> = <span class="fn">Student</span>(<span class="st">"李四"</span>, <span class="nu">45</span>)
+<span class="fn">print</span>(s1.pass_or_not(), s2.pass_or_not())  <span class="cm"># ✅ ❌</span></pre></div>
+
+<h2>8. Excel 处理 — ¥50-200 的单子</h2>
+<div class="cb"><span class="lg">Python — Excel 自动化（能卖钱）</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">df</span> = pd.read_excel(<span class="st">"销售数据.xlsx"</span>)
+<span class="kw">high</span> = df[df[<span class="st">"销售额"</span>] > <span class="nu">5000</span>]                       <span class="cm"># 筛选</span>
+<span class="kw">summary</span> = df.groupby(<span class="st">"部门"</span>)[<span class="st">"销售额"</span>].<span class="fn">sum</span>()          <span class="cm"># 分组汇总</span>
+<span class="kw">all_data</span> = pd.concat([pd.read_excel(f) <span class="kw">for</span> f <span class="kw">in</span> [<span class="st">"1.xlsx"</span>,<span class="st">"2.xlsx"</span>]])  <span class="cm"># 合并多文件</span>
+all_data.to_excel(<span class="st">"结果.xlsx"</span>, index=<span class="kw">False</span>)          <span class="cm"># 导出</span></pre></div>
+
+<h2>9. 网页爬虫 — ¥100-500 的单子</h2>
+<div class="cb"><span class="lg">Python — 爬虫（能卖钱）</span><button class="cp" onclick="cp(this)">复制</button>
+<pre><span class="kw">import</span> requests; <span class="kw">from</span> bs4 <span class="kw">import</span> BeautifulSoup; <span class="kw">import</span> csv
+<span class="kw">url</span> = <span class="st">"https://books.toscrape.com"</span>  <span class="cm"># 练习用，随便爬不违法</span>
+<span class="kw">soup</span> = BeautifulSoup(requests.get(url).text, <span class="st">"html.parser"</span>)
+<span class="kw">books</span> = []; <span class="kw">for</span> i <span class="kw">in</span> soup.select(<span class="st">"article.product_pod"</span>):
+    books.append({<span class="st">"title"</span>:i.h3.a.attrs[<span class="st">"title"</span>], <span class="st">"price"</span>:i.select_one(<span class="st">".price_color"</span>).text})
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"books.csv"</span>,<span class="st">"w"</span>,newline=<span class="st">""</span>,encoding=<span class="st">"utf-8"</span>) <span class="kw">as</span> f:
+    w = csv.DictWriter(f, fieldnames=[<span class="st">"title"</span>,<span class="st">"price"</span>]); w.writeheader(); w.writerows(books)</pre></div>
+<div class="ib wn"><span class="ie">⚠️</span><span>爬虫有法律边界。只爬公开数据、不绕登录、尊重 robots.txt、不把数据转卖。不要爬政府网站和个人信息。</span></div>
+</div>
+<footer><p>🤖 AI 从零到精通 · <a href="../index.html">返回首页</a></p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><script>function cp(b){const p=b.parentElement.querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='✓';b.classList.add('done');setTimeout(()=>{b.textContent='复制';b.classList.remove('done')},1500)})}window.addEventListener('scroll',()=>{document.querySelector('.btt').classList.toggle('vs',window.scrollY>500)})</script></body></html>
